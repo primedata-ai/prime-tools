@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Track event</title>
+    <link rel="icon" href="https://dev.primedata.ai/primedata_logo.png"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <style>
+        label {
+            margin-top: 24px;
+        }
+
+        input {
+            margin-bottom: 24px;
+        }
+
+        .btn {
+            width: fit-content;
+            padding: 12px 24px;
+            border-radius: 50px;
+            background: linear-gradient(135deg, rgb(135, 9, 53) 0%, rgb(179, 22, 22) 100%);
+            color: #fffffa;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+
+<section>
+    <div>
+        <h1>Identify with name</h1>
+
+        <label for="cdp_name_customer">name_customer:</label>
+        <input type="text" id="cdp_name_customer" name="cdp_name_customer" placeholder="Input your name_customer"
+               style="height: 40px; width: 100%; border-radius: 8px; padding: 0 8px; border: 1px solid #d6d6d7">
+
+        <button id="cdp_analytic_identify_profile" class="has-text-color has-background btn">
+            Identify profile
+        </button>
+    </div>
+</section>
+
+<section>
+    <div>
+        <h1>Event: create_order_event</h1>
+
+        <label for="cdp_discount_value">discount_value:</label>
+        <input type="number" id="cdp_discount_value" name="cdp_discount_value" placeholder="Input your discount_value"
+               style="height: 40px; width: 100%; border-radius: 8px; padding: 0 8px; border: 1px solid #d6d6d7">
+
+        <label for="cdp_net_revenue">net_revenue:</label>
+        <input type="number" id="cdp_net_revenue" name="cdp_net_revenue" placeholder="Input your net_revenue"
+               style="height: 40px; width: 100%; border-radius: 8px; padding: 0 8px; border: 1px solid #d6d6d7">
+
+        <label for="cdp_total_value">total_value:</label>
+        <input type="number" id="cdp_total_value" name="cdp_total_value" placeholder="Input your total_value"
+               style="height: 40px; width: 100%; border-radius: 8px; padding: 0 8px; border: 1px solid #d6d6d7">
+        <div style="padding-top: 12px;"></div>
+
+        <button id="cdp_analytic_track_event" class="has-text-color has-background btn">
+            Track create_order_event
+        </button>
+
+    </div>
+</section>
+
+<section>
+
+    <div>
+        <h1>Event: create_order_aristino</h1>
+
+
+        <label for="name_customer">name_customer:</label>
+        <input type="text" id="name_customer" name="name_customer" placeholder="Input your name_customer"
+               style="height: 40px; width: 100%; border-radius: 8px; padding: 0 8px; border: 1px solid #d6d6d7">
+
+
+        <label for="discount">discount:</label>
+        <input type="number" id="discount" name="discount" placeholder="Input your discount"
+               style="height: 40px; width: 100%; border-radius: 8px; padding: 0 8px; border: 1px solid #d6d6d7">
+
+        <label for="revenue">revenue:</label>
+        <input type="number" id="revenue" name="revenue" placeholder="Input your revenue"
+               style="height: 40px; width: 100%; border-radius: 8px; padding: 0 8px; border: 1px solid #d6d6d7">
+
+        <label for="valueAfterDiscount">valueAfterDiscount:</label>
+        <input type="number" id="valueAfterDiscount" name="valueAfterDiscount"
+               placeholder="Input your valueAfterDiscount"
+               style="height: 40px; width: 100%; border-radius: 8px; padding: 0 8px; border: 1px solid #d6d6d7">
+
+        <div style="padding-top: 12px;"></div>
+        <button id="cdp_analytic_track_event_aristino" class="has-text-color has-background btn">
+            Track create_order_aristino
+        </button>
+    </div>
+</section>
+
+</body>
+<script>
+  jQuery(document).ready(function ($) {
+    $(document).ready(function () {
+
+      function initSDK () {
+        !function(){var follower=window.follower=window.follower||[];if(!follower.initialize)if(follower.invoked)window.console&&console.error&&console.error("PrimeDATA snippet included twice.");else{follower.invoked=!0;follower.methods=["initOneSignal", "initWebPush","initWebPopup","utils","trackSubmit","trackClick","trackLink","trackForm","pageview","personalize","identify","initialize","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];follower.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);follower.push(e);return follower}};for(var t=0;t<follower.methods.length;t++){var e=follower.methods[t];follower[e]=follower.factory(e)}follower.load=function(t,e){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src="https://dev.primedata.ai/powehi/mining.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(n,a);follower._loadOptions=e};follower.SNIPPET_VERSION="0.1.0";
+          follower.load();
+          const primeJsOpts = {
+            scope: 'JS-25op1nncWL5g6xgLONmPKIpoYWq',
+            url: 'https://dev.primedata.ai/powehi',
+            writeKey: '25op1mUEi8p9QweluasTAOPDMUB',
+            initialPageProperties: {
+              pageInfo: {
+                destinationURL: location.href
+              }
+            },
+            detectAdBlock: {
+              enable: true,
+              bannerMessage: "You are on the ad blocker. Our feature does not work well when your ad blocker is enabled on this site. To fully enjoy the service, please disable the ad blocker on our site. We guarantee that there will be no ads on our site.",
+              closeButtonLabel: "close"
+            },
+            webPush: {
+              enabled: false,
+              options: {
+                showLogs: false,
+                endpoint: 'https://dev.primedata.ai',
+                firebaseMessagingSwUrl: "./firebase-messaging-sw.js",
+                firebaseConfig: {
+                  authDomain: "primedata-ai-c128b.firebaseapp.com",
+                  projectId: "primedata-ai-c128b",
+                  storageBucket: "primedata-ai-c128b.appspot.com",
+                  messagingSenderId: "615374224384",
+                  appId: "1:615374224384:web:b6e95abaf525c339e76ce5",
+                  apiKey: "AIzaSyB0cQZgXYVCTaKE6dk_voN5tle_HXNCaUU"
+                }
+              }
+            },
+            webPopup: {
+              enabled: false,
+              options: {
+                showLogs: false,
+                onsiteWorkerPath: "./posjs-worker.js",
+                endpoint: 'https://dev.primedata.ai'
+              }
+            },
+            oneSignal: {
+              enabled: false,
+              options: {
+                showLogs: false,
+                embedOneSignalSDK: true,
+                appId: "679be029-5cd1-4353-9d24-cc563201468e"
+              }
+            }
+          };
+          follower.initialize({"Prime Data": primeJsOpts})
+
+          if (primeJsOpts.webPush && primeJsOpts.webPush.enabled) {
+            if (firebase && !firebase.apps.length) {
+              firebase.initializeApp(primeJsOpts.webPush.options.firebaseConfig);
+            }
+            follower.initWebPush(primeJsOpts.webPush.options);
+          }
+
+          if(primeJsOpts.webPopup && primeJsOpts.webPopup.enabled){
+            follower.initWebPopup(primeJsOpts);
+          }
+
+          if (primeJsOpts.oneSignal && primeJsOpts.oneSignal.enabled) {
+            follower.initOneSignal(primeJsOpts);
+          }
+        }}();
+      }
+
+      initSDK()
+
+      function trackCreateOrderEvent() {
+        $(`#cdp_analytic_track_event`).on("click", async function (event) {
+          event.stopPropagation();
+          event.stopImmediatePropagation();
+
+          let discountValueNode = document.getElementById("cdp_discount_value");
+          let discountValue = discountValueNode.value || "";
+
+          let netRevenueNode = document.getElementById("cdp_net_revenue");
+          let netRevenue = netRevenueNode.value || "";
+
+          let totalValueNode = document.getElementById("cdp_total_value");
+          let totalValue = totalValueNode.value || "";
+
+          if (discountValue && netRevenue && totalValue) {
+            console.log("Click button track event: ", "create_order_event", {
+              properties: {
+                currency: "VND",
+                discount_value: Number(discountValue),
+                net_revenue: Number(netRevenue),
+                total_value: Number(totalValue)
+              }
+            });
+
+            follower.track("create_order_event", {
+              properties: {
+                currency: "VND",
+                discount_value: Number(discountValue),
+                net_revenue: Number(netRevenue),
+                total_value: Number(totalValue)
+              }
+            });
+
+            alert("Click button track event: create_order_event => có hoạt động rồi");
+
+
+          }
+        });
+
+      }
+
+      function trackCreateOrderAristinoEvent() {
+
+
+        let discountValueNode = document.getElementById("discount");
+        let discountValue = discountValueNode.value || "";
+
+        let nameCustomerNode = document.getElementById("name_customer");
+        let nameCustomer = nameCustomerNode.value || "";
+
+        let netRevenueNode = document.getElementById("revenue");
+        let netRevenue = netRevenueNode.value || "";
+
+        let valueAfterDiscountNode = document.getElementById("valueAfterDiscount");
+        let valueAfterDiscount = valueAfterDiscountNode.value || "";
+
+        if (discountValue && nameCustomer && netRevenue && valueAfterDiscount) {
+          console.log("Click button track event: ", "create_order", {
+            "properties": {
+              "discount": Number(discountValue),
+              "name_customer": nameCustomer,
+              "revenue": Number(discountValue),
+              "valueAfterDiscount": Number(valueAfterDiscount)
+            }
+          });
+
+          follower.track("create_order", {
+            "properties": {
+              "discount": Number(discountValue),
+              "name_customer": nameCustomer,
+              "revenue": Number(discountValue),
+              "valueAfterDiscount": Number(valueAfterDiscount)
+            }
+          });
+
+          alert("Click button track event: create_order => có hoạt động rồi");
+        }
+
+
+      }
+
+      trackCreateOrderAristinoEvent();
+      trackCreateOrderEvent();
+
+      $(`#cdp_analytic_identify_profile`).on("click", async function (event) {
+        event.stopPropagation();
+        event.stopImmediatePropagation();
+        let nameCustomerNode = document.getElementById("cdp_name_customer");
+        let nameCustomer = nameCustomerNode.value || "";
+
+        if (nameCustomer) {
+          console.log("Click button track event: identify", nameCustomer);
+          follower.identify(nameCustomer, {fullname: nameCustomer});
+        }
+      });
+    });
+  });
+</script>
+</html>

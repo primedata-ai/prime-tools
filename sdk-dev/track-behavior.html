@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Track Behavior</title>
+    <style>
+        .p-action-bar {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .btn-action {
+            margin: 6px;
+            padding: 8px 12px;
+            background: #05b305;
+            color: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+            border: unset;
+        }
+
+        .btn-action:hover {
+            background: #14cd8f;
+        }
+    </style>
+</head>
+<body>
+<div class="p-action">
+    <h4>Action</h4>
+    <div class="p-action-bar">
+        <a href="https://wp.primedata.ai/product/amet-justo-donec/">
+            <button class="btn-action" onclick="trackEvent('pbar')" title="Track Event Popup Message bar">Present bar</button>
+        </a>
+        <a href="https://wp.primedata.ai/product/faucibus-in-ornare/">
+            <button class="btn-action" onclick="trackEvent('pslideout')" title="Track Event Popup Message bar">Present slideout</button>
+        </a>
+        <a href="https://wp.primedata.ai/product/faucibus-in-ornare/">
+            <button class="btn-action" onclick="trackEvent('pmodal')" title="Track Event Popup Message bar">Present modal</button>
+        </a>
+        <a href="https://wp.primedata.ai/product/faucibus-in-ornare/">
+            <button class="btn-action" onclick="trackEvent('cslideout')" title="Track Event Popup Message bar">Collect leads slideout</button>
+        </a>
+        <a href="https://wp.primedata.ai/product/sed-tempus-2/">
+            <button class="btn-action" onclick="trackEvent('cmodal')" title="Track Event Popup Message bar">Collect leads modal</button>
+        </a>
+        <a href="https://wp.primedata.ai/product/faucibus-in-ornare/">
+            <button class="btn-action" onclick="trackEvent('dbar')" title="Track Event Popup Message bar">Drive bar</button>
+        </a>
+        <a href="https://wp.primedata.ai/product/faucibus-in-ornare/">
+            <button class="btn-action" onclick="trackEvent('dslideout')" title="Track Event Popup Message bar">Drive slideout</button>
+        </a>
+        <a href="https://wp.primedata.ai/product/faucibus-in-ornare/">
+            <button class="btn-action" onclick="trackEvent('dmodal')" title="Track Event Popup Message bar">Drive modal</button>
+        </a>
+    </div>
+</div>
+<script>
+  function trackEvent(type) {
+    follower.track(type)
+  }
+</script>
+</body>
+</html>

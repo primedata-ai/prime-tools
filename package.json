@@ -1,0 +1,24 @@
+{
+  "name": "prime-tools",
+  "version": "1.0.0",
+  "description": "PrimeData.ai Support",
+  "main": "index.js",
+  "scripts": {
+    "css": "tailwindcss build -i testing/behavior-testing.style.css -o testing/behavior-testing.min.css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/primedata-ai/prime-tools.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/primedata-ai/prime-tools/issues"
+  },
+  "homepage": "https://github.com/primedata-ai/prime-tools#readme",
+  "dependencies": {
+    "autoprefixer": "^10.4.2",
+    "tailwindcss": "^3.0.23"
+  }
+}

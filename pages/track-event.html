@@ -9,7 +9,7 @@
     <link rel="icon" href="https://dev.primedata.ai/primedata_logo.png"/>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
+    <script src="https://unpkg.com/uuid@latest/dist/umd/uuidv4.min.js"></script>
     <style>
         label {
             margin-top: 24px;
@@ -28,78 +28,116 @@
             cursor: pointer;
         }
 
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+
+        }
+
+        section {
+            padding: 24px;
+            border: 1px solid #d6d6d7;
+        }
+
     </style>
 </head>
 <body>
 
-<section>
-    <div>
-        <h1>Identify with name</h1>
-
-        <label for="cdp_name_customer">name_customer:</label>
-        <input type="text" id="cdp_name_customer" name="cdp_name_customer" placeholder="Input your name_customer"
-               style="height: 40px; width: 100%; border-radius: 8px; padding: 0 8px; border: 1px solid #d6d6d7">
-
-        <button id="cdp_analytic_identify_profile" class="has-text-color has-background btn">
-            Identify profile
-        </button>
-    </div>
-</section>
-
-<section>
-    <div>
-        <h1>Event: create_order_event</h1>
-
-        <label for="cdp_discount_value">discount_value:</label>
-        <input type="number" id="cdp_discount_value" name="cdp_discount_value" placeholder="Input your discount_value"
-               style="height: 40px; width: 100%; border-radius: 8px; padding: 0 8px; border: 1px solid #d6d6d7">
-
-        <label for="cdp_net_revenue">net_revenue:</label>
-        <input type="number" id="cdp_net_revenue" name="cdp_net_revenue" placeholder="Input your net_revenue"
-               style="height: 40px; width: 100%; border-radius: 8px; padding: 0 8px; border: 1px solid #d6d6d7">
-
-        <label for="cdp_total_value">total_value:</label>
-        <input type="number" id="cdp_total_value" name="cdp_total_value" placeholder="Input your total_value"
-               style="height: 40px; width: 100%; border-radius: 8px; padding: 0 8px; border: 1px solid #d6d6d7">
-        <div style="padding-top: 12px;"></div>
-
-        <button id="cdp_analytic_track_event" class="has-text-color has-background btn">
-            Track create_order_event
-        </button>
-
-    </div>
-</section>
-
-<section>
-
-    <div>
-        <h1>Event: create_order_aristino</h1>
+<div class="container">
 
 
-        <label for="name_customer">name_customer:</label>
-        <input type="text" id="name_customer" name="name_customer" placeholder="Input your name_customer"
-               style="height: 40px; width: 100%; border-radius: 8px; padding: 0 8px; border: 1px solid #d6d6d7">
+    <section>
+        <div>
+            <h1>Identify with name</h1>
+
+            <label for="cdp_name_customer">name_customer:</label>
+            <input type="text" id="cdp_name_customer" name="cdp_name_customer" placeholder="Input your name_customer"
+                   style="height: 40px; width: 100%; border-radius: 8px; padding: 0 8px; border: 1px solid #d6d6d7">
+
+            <button id="cdp_analytic_identify_profile" class="has-text-color has-background btn">
+                Identify profile
+            </button>
+        </div>
+    </section>
+
+    <section>
+        <div>
+            <h1>Event: create_order_event</h1>
+
+            <label for="cdp_discount_value">discount_value:</label>
+            <input type="number" id="cdp_discount_value" name="cdp_discount_value" placeholder="Input your discount_value"
+                   style="height: 40px; width: 100%; border-radius: 8px; padding: 0 8px; border: 1px solid #d6d6d7">
+
+            <label for="cdp_net_revenue">net_revenue:</label>
+            <input type="number" id="cdp_net_revenue" name="cdp_net_revenue" placeholder="Input your net_revenue"
+                   style="height: 40px; width: 100%; border-radius: 8px; padding: 0 8px; border: 1px solid #d6d6d7">
+
+            <label for="cdp_total_value">total_value:</label>
+            <input type="number" id="cdp_total_value" name="cdp_total_value" placeholder="Input your total_value"
+                   style="height: 40px; width: 100%; border-radius: 8px; padding: 0 8px; border: 1px solid #d6d6d7">
+            <div style="padding-top: 12px;"></div>
+
+            <button id="cdp_analytic_track_event" class="has-text-color has-background btn">
+                Track create_order_event
+            </button>
+
+        </div>
+    </section>
+
+    <section>
+
+        <div>
+            <h1>Event: create_order_aristino</h1>
 
 
-        <label for="discount">discount:</label>
-        <input type="number" id="discount" name="discount" placeholder="Input your discount"
-               style="height: 40px; width: 100%; border-radius: 8px; padding: 0 8px; border: 1px solid #d6d6d7">
+            <label for="name_customer">name_customer:</label>
+            <input type="text" id="name_customer" name="name_customer" placeholder="Input your name_customer"
+                   style="height: 40px; width: 100%; border-radius: 8px; padding: 0 8px; border: 1px solid #d6d6d7">
 
-        <label for="revenue">revenue:</label>
-        <input type="number" id="revenue" name="revenue" placeholder="Input your revenue"
-               style="height: 40px; width: 100%; border-radius: 8px; padding: 0 8px; border: 1px solid #d6d6d7">
 
-        <label for="valueAfterDiscount">valueAfterDiscount:</label>
-        <input type="number" id="valueAfterDiscount" name="valueAfterDiscount"
-               placeholder="Input your valueAfterDiscount"
-               style="height: 40px; width: 100%; border-radius: 8px; padding: 0 8px; border: 1px solid #d6d6d7">
+            <label for="discount">discount:</label>
+            <input type="number" id="discount" name="discount" placeholder="Input your discount"
+                   style="height: 40px; width: 100%; border-radius: 8px; padding: 0 8px; border: 1px solid #d6d6d7">
 
-        <div style="padding-top: 12px;"></div>
-        <button id="cdp_analytic_track_event_aristino" class="has-text-color has-background btn">
-            Track create_order_aristino
-        </button>
-    </div>
-</section>
+            <label for="revenue">revenue:</label>
+            <input type="number" id="revenue" name="revenue" placeholder="Input your revenue"
+                   style="height: 40px; width: 100%; border-radius: 8px; padding: 0 8px; border: 1px solid #d6d6d7">
+
+            <label for="valueAfterDiscount">valueAfterDiscount:</label>
+            <input type="number" id="valueAfterDiscount" name="valueAfterDiscount"
+                   placeholder="Input your valueAfterDiscount"
+                   style="height: 40px; width: 100%; border-radius: 8px; padding: 0 8px; border: 1px solid #d6d6d7">
+
+            <div style="padding-top: 12px;"></div>
+            <button id="cdp_analytic_track_event_aristino" class="has-text-color has-background btn">
+                Track create_order_aristino
+            </button>
+        </div>
+    </section>
+
+    <section>
+        <div>
+            <h1>Event: item_added</h1>
+
+            <div>CartID: <p  id="cartID"></p></div>
+
+            <label for="quantity">quantity:</label>
+            <input type="text" id="quantity" name="quantity" placeholder="Input your quantity"
+                   style="height: 40px; width: 100%; border-radius: 8px; padding: 0 8px; border: 1px solid #d6d6d7">
+
+
+            <label for="valueAdded">valueAdded:</label>
+            <input type="number" id="valueAdded" name="valueAdded" placeholder="Input your valueAdded"
+                   style="height: 40px; width: 100%; border-radius: 8px; padding: 0 8px; border: 1px solid #d6d6d7">
+
+
+            <div style="padding-top: 12px;"></div>
+            <button id="cdp_analytic_track_item_added" class="has-text-color has-background btn">
+                Track item_added
+            </button>
+        </div>
+    </section>
+</div>
 
 </body>
 <script>
@@ -219,47 +257,91 @@
       }
 
       function trackCreateOrderAristinoEvent() {
+        $(`#cdp_analytic_identify_profile`).on("click", async function (event) {
+          event.stopPropagation();
+          event.stopImmediatePropagation();
+
+          let discountValueNode = document.getElementById("discount");
+          let discountValue = discountValueNode.value || "";
+
+          let nameCustomerNode = document.getElementById("name_customer");
+          let nameCustomer = nameCustomerNode.value || "";
+
+          let netRevenueNode = document.getElementById("revenue");
+          let netRevenue = netRevenueNode.value || "";
+
+          let valueAfterDiscountNode = document.getElementById("valueAfterDiscount");
+          let valueAfterDiscount = valueAfterDiscountNode.value || "";
+
+          if (discountValue && nameCustomer && netRevenue && valueAfterDiscount) {
+            console.log("Click button track event: ", "create_order", {
+              "properties": {
+                "discount": Number(discountValue),
+                "name_customer": nameCustomer,
+                "revenue": Number(discountValue),
+                "valueAfterDiscount": Number(valueAfterDiscount)
+              }
+            });
+
+            follower.track("create_order", {
+              "properties": {
+                "discount": Number(discountValue),
+                "name_customer": nameCustomer,
+                "revenue": Number(discountValue),
+                "valueAfterDiscount": Number(valueAfterDiscount)
+              }
+            });
+
+            alert("Click button track event: create_order => có hoạt động rồi");
+          }
+
+        })
+      }
 
 
-        let discountValueNode = document.getElementById("discount");
-        let discountValue = discountValueNode.value || "";
+      let cartId = uuidv4();
+      document.getElementById("cartID").textContent = cartId
 
-        let nameCustomerNode = document.getElementById("name_customer");
-        let nameCustomer = nameCustomerNode.value || "";
+      function trackItemAddEvent() {
+        $(`#cdp_analytic_track_item_added`).on("click", async function (event) {
+          event.stopPropagation();
+          event.stopImmediatePropagation();
 
-        let netRevenueNode = document.getElementById("revenue");
-        let netRevenue = netRevenueNode.value || "";
+          let quantityNode = document.getElementById("quantity");
+          let quantity = quantityNode.value || "";
 
-        let valueAfterDiscountNode = document.getElementById("valueAfterDiscount");
-        let valueAfterDiscount = valueAfterDiscountNode.value || "";
+          let valueAddedNode = document.getElementById("valueAdded");
+          let valueAdded = valueAddedNode.value || "";
 
-        if (discountValue && nameCustomer && netRevenue && valueAfterDiscount) {
-          console.log("Click button track event: ", "create_order", {
-            "properties": {
-              "discount": Number(discountValue),
-              "name_customer": nameCustomer,
-              "revenue": Number(discountValue),
-              "valueAfterDiscount": Number(valueAfterDiscount)
-            }
-          });
+          if (quantity && valueAdded) {
+            console.log("Click button track event: ", "item_added", {
+              "properties": {
+                "quantity": Number(quantity),
+                "cartID": cartId,
+                "valueAdded": Number(valueAdded),
+              }
+            });
 
-          follower.track("create_order", {
-            "properties": {
-              "discount": Number(discountValue),
-              "name_customer": nameCustomer,
-              "revenue": Number(discountValue),
-              "valueAfterDiscount": Number(valueAfterDiscount)
-            }
-          });
+            follower.track("item_added", {
+              "properties": {
+                "properties": {
+                  "quantity": Number(quantity),
+                  "cartID": cartId,
+                  "valueAdded": Number(valueAdded),
+                }
+              }
+            });
 
-          alert("Click button track event: create_order => có hoạt động rồi");
-        }
+            alert("Click button track event: item_added => có hoạt động rồi");
+          }
+        })
 
 
       }
 
       trackCreateOrderAristinoEvent();
       trackCreateOrderEvent();
+      trackItemAddEvent();
 
       $(`#cdp_analytic_identify_profile`).on("click", async function (event) {
         event.stopPropagation();

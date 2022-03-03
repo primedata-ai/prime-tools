@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Convert Excel to JSON</title>
+    <link rel="icon" href="https://dev.primedata.ai/primedata_logo.png"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <style>
+        .main {
+          display: block;
+        }
+        .title {
+          font-weight: bold;
+          font-size: 30px;
+        }
+        .input-pane {
+          display: flex;
+          gap: 12px;
+          flex-direction: column;
+          width: fit-content;
+        }
+        
+        .label {
+          font-weight: 500;
+          font-size: 20px;
+        }
+
+        button {
+          font-size: 16px;
+          font-weight: 400;
+          background: rgb(6, 147, 86);
+          border: none;
+          border-radius: 8px;
+          color: white;
+          padding: 12px 24px;
+        }
+
+    </style>
+</head>
+<body>
+
+<section>
+    <div class="main">
+        <h1 class="title">Convert Excel Files To JSON</h1>
+        <div class="input-pane">
+          <label for="excel" class="label">Choose your excel file (*.xlsx, *.xls, *.csv):</label>
+          <input type="file" id="excel" name="excel" accept=".xlsx, .xls, .csv"/>
+          <button id="convert" onclick="convertfile()">Convert file</button>
+        </div>
+
+    </div>
+</section>
+
+</section>
+
+</body>
+<script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+<!-- <script type="text/javascript" src="../node_modules/fs/" -->
+<script>
+  const fr = new FileReader();
+  // fr.addEventListener("load", function(e) {
+  //   console.log(e.target.result)
+  //   var data = e.target.result;
+  //   var workbook = XLSX.read(data, {type: "buffer"});
+  //   console.log(workbook);
+  //   var jsonData = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[workbook.SheetNames[0]]);
+  //   console.log(jsonData);
+  // })
+  async function convertfile() {
+    var inputFile = document.getElementById("excel");
+    // fr.readAsDataURL(inputFile.files[0]);
+    const f = inputFile.files[0];
+    const data = await f.arrayBuffer();
+    const workbook = XLSX.read(data);
+    console.log(workbook);
+    const jsonData = XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]]);
+    console.log(jsonData);
+  }
+</script>
+</html>

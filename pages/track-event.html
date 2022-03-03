@@ -257,7 +257,7 @@
       }
 
       function trackCreateOrderAristinoEvent() {
-        $(`#cdp_analytic_identify_profile`).on("click", async function (event) {
+        $(`#cdp_analytic_track_event_aristino`).on("click", async function (event) {
           event.stopPropagation();
           event.stopImmediatePropagation();
 
@@ -323,6 +323,54 @@
             });
 
             follower.track("item_added", {
+              "target": {
+                "itemType": "item",
+                "itemId": "1rNBtMsFhXo6U1LDQgoh5IkcXGA",
+                "properties": {
+                  "active": true,
+                  "brand": "Hồ Chí Minh",
+                  "category": "Macbook",
+                  "categoryID": "M0107",
+                  "categoryLevel1ID": "A0107",
+                  "categoryLevel1Name": "A0107",
+                  "categoryLevel2ID": "A0107",
+                  "categoryLevel2Name": "A0107",
+                  "categoryLevel3ID": "A0107",
+                  "categoryLevel3Name": "A0107",
+                  "categoryLevel4ID": "A0107",
+                  "categoryLevel4Name": "A0107",
+                  "categoryName": "Máy Tính",
+                  "categoryPath": "Hồ Chí Minh",
+                  "collection": "ABCD",
+                  "color": "green",
+                  "colorID": "#fafafa",
+                  "colorName": "Xám",
+                  "dateAdded": "04-03-2022",
+                  "description": "Ngay mai",
+                  "discountPercentage": 10,
+                  "discountValue": 200000,
+                  "fashionSeason": "New",
+                  "form": "X",
+                  "gender": "Nam",
+                  "itemID": "0107",
+                  "material": "Vai",
+                  "price": "1000000",
+                  "priceAfterDiscount": 800000,
+                  "product": "MacBook",
+                  "productID": "Mac0101",
+                  "productName": "MacBook Pro",
+                  "size": "Z",
+                  "stockLevel": 1,
+                  "stockStatus": true,
+                  "title": "I Phone Pro Maxx",
+                  "webCategoryLevel1": "https://primedata.ai/",
+                  "webCategoryLevel2": "https://primedata.ai/",
+                  "webCategoryLevel3": "https://primedata.ai/",
+                  "webImage": "https://hc.com.vn/i/ecommerce/media/GS.006064_FEATURE_70758.jpg",
+                  "webUrl": "https://hc.com.vn/i/ecommerce/media/GS.006064_FEATURE_70758.jpg",
+                  "yearAdded": "2022"
+                }
+              },
               "properties": {
                 "properties": {
                   "quantity": Number(quantity),
@@ -351,7 +399,7 @@
 
         if (nameCustomer) {
           console.log("Click button track event: identify", nameCustomer);
-          follower.identify(nameCustomer, {fullname: nameCustomer});
+          follower.identify(nameCustomer);
         }
       });
     });

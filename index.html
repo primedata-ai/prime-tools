@@ -6,12 +6,302 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>PrimeData Supporter</title>
+    <link rel="icon" href="https://dev.primedata.ai/primedata_logo.png"/>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            width: 100vw;
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #fef8f8;
+        }
+
+        .container {
+            height: 100%;
+        }
+
+        .wrapper-page {
+            height: 100%;
+        }
+
+
+        :root {
+            --surface-color: #fff;
+            --curve: 40;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 24px;
+            padding: 0;
+            list-style-type: none;
+        }
+
+        .card {
+            position: relative;
+            display: block;
+            height: 100%;
+            border-radius: calc(var(--curve) * 1px);
+            overflow: hidden;
+            text-decoration: none;
+        }
+
+        .card__image {
+            width: 100%;
+            height: auto;
+        }
+
+        .card__overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1;
+            border-radius: calc(var(--curve) * 1px);
+            background-color: var(--surface-color);
+            transform: translateY(100%);
+            transition: .2s ease-in-out;
+        }
+
+        .card:hover .card__overlay {
+            transform: translateY(0);
+        }
+
+        .card__header {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 2em;
+            padding: 2em;
+            border-radius: calc(var(--curve) * 1px) 0 0 0;
+            background-color: var(--surface-color);
+            transform: translateY(-100%);
+            transition: .2s ease-in-out;
+        }
+
+        .card__arc {
+            width: 80px;
+            height: 80px;
+            position: absolute;
+            bottom: 100%;
+            right: 0;
+            z-index: 1;
+        }
+
+        .card__arc path {
+            fill: var(--surface-color);
+            d: path("M 40 80 c 22 0 40 -22 40 -40 v 40 Z");
+        }
+
+        .card:hover .card__header {
+            transform: translateY(0);
+        }
+
+        .card__thumb {
+            flex-shrink: 0;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+
+        .card__title {
+            font-size: 1em;
+            margin: 0 0 .3em;
+            color: #6A515E;
+        }
+
+        .card__tagline {
+            display: block;
+            margin: 1em 0;
+            font-family: "MockFlowFont";
+            font-size: .8em;
+            color: #D7BDCA;
+        }
+
+        .card__status {
+            font-size: .8em;
+            color: #D7BDCA;
+        }
+
+        .card__description {
+            padding: 0 2em 2em;
+            margin: 0;
+            color: #D7BDCA;
+            font-family: "MockFlowFont";
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3;
+            overflow: hidden;
+        }
+    </style>
 </head>
 <body>
-    <main class="container">
-        <a href="./sdk-dev/index.html">Web SDK Testing</a>
-        <a href="./testing/behavior-testing.html">Behavior Testing</a>
-        <a href="./pages/track-event.html">Track Event Analytics</a>
-    </main>
+
+<main class="container">
+    <div class="wrapper-page">
+        <div>
+            <span style="background: transparent; color: transparent">a</span>
+
+            <ul class="cards">
+                <li>
+                    <a href="./sdk-dev/index.html" class="card">
+                        <img src="https://i.imgur.com/oYiTqum.jpg" class="card__image" alt=""/>
+                        <div class="card__overlay">
+                            <div class="card__header">
+                                <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
+                                    <path/>
+                                </svg>
+                                <img class="card__thumb" src="https://i.imgur.com/7D7I6dI.png" alt=""/>
+                                <div class="card__header-text">
+                                    <h3 class="card__title">Web SDK Testing</h3>
+                                    <span class="card__status">Dev</span>
+                                </div>
+                            </div>
+                            <p class="card__description">Test Web Popup</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="./testing/behavior-testing.html" class="card">
+                        <img src="https://i.imgur.com/2DhmtJ4.jpg" class="card__image" alt=""/>
+                        <div class="card__overlay">
+                            <div class="card__header">
+                                <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
+                                    <path/>
+                                </svg>
+                                <img class="card__thumb" src="https://i.imgur.com/sjLMNDM.png" alt=""/>
+                                <div class="card__header-text">
+                                    <h3 class="card__title">Behavior Testing</h3>
+                                    <span class="card__status">QC</span>
+                                </div>
+                            </div>
+                            <p class="card__description">Test Event Behavior</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="./pages/track-event.html" class="card">
+                        <img src="https://i.imgur.com/oYiTqum.jpg" class="card__image" alt=""/>
+                        <div class="card__overlay">
+                            <div class="card__header">
+                                <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
+                                    <path/>
+                                </svg>
+                                <img class="card__thumb" src="https://i.imgur.com/7D7I6dI.png" alt=""/>
+                                <div class="card__header-text">
+                                    <h3 class="card__title">Track Event Analytics</h3>
+                                    <span class="card__tagline">QC</span>
+<!--                                    <span class="card__status">1 hour ago</span>-->
+                                </div>
+                            </div>
+                            <p class="card__description">item_added, identify, ...</p>
+                        </div>
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+    </div>
+</main>
+
 </body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.dots.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.birds.min.js"></script>
+<script>
+  let randomNumb = Math.floor(Math.random() * 4) + 1;
+  switch (randomNumb) {
+    case 1:
+      VANTA.NET({
+        el: ".wrapper-page",
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.00,
+        minWidth: 200.00,
+        scale: 1.00,
+        scaleMobile: 1.00
+      });
+      break;
+
+    case 2:
+      VANTA.GLOBE({
+        el: ".wrapper-page",
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.00,
+        minWidth: 200.00,
+        scale: 1.00,
+        scaleMobile: 1.00
+      });
+      break;
+
+    case 3:
+      VANTA.DOTS({
+        el: ".wrapper-page",
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.00,
+        minWidth: 200.00,
+        scale: 1.00,
+        scaleMobile: 1.00,
+        color: 0x17be0d,
+        color2: 0x61ff20,
+        backgroundColor: 0x1b1b1b,
+        size: 2.60,
+        spacing: 23.00
+      });
+      break;
+
+    case 3:
+      VANTA.BIRDS({
+        el: ".wrapper-page",
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.00,
+        minWidth: 200.00,
+        scale: 1.00,
+        scaleMobile: 1.00,
+        backgroundColor: 0xc0c5c,
+        color1: 0xff1e,
+        color2: 0x161514,
+        birdSize: 1.20,
+        wingSpan: 17.00,
+        separation: 23.00,
+        alignment: 38.00,
+        quantity: 4.00,
+        backgroundAlpha: 0.84
+      });
+      break;
+
+    default:
+      VANTA.NET({
+        el: ".wrapper-page",
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.00,
+        minWidth: 200.00,
+        scale: 1.00,
+        scaleMobile: 1.00
+      });
+      break;
+  }
+
+</script>
 </html>

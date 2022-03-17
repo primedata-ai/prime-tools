@@ -178,6 +178,8 @@
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/uuid@latest/dist/umd/uuidv4.min.js"></script>
     <script src="https://kit.fontawesome.com/8454470208.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="./dist/snackbar.min.css" media="screen" title="no title" charset="utf-8">
 </head>
 <body>
 <header>
@@ -363,7 +365,7 @@
         let profileId = email.substring(0, email.indexOf("@"));
         follower.identify(profileId, {full_name: fullName, email: email});
         follower.track("demo-login", {});
-        console.log("Click button track event: identify", fullName, email, profileId);
+        showSnackbar("Identify with name: " + fullName + ", email: " + email + ", profileId: " + profileId + " success");
       }
     });
 
@@ -371,7 +373,7 @@
       event.stopPropagation();
       event.stopImmediatePropagation();
       follower.track("demo-registering-news", {});
-      console.log("Click button track event: demo-registering-news");
+      showSnackbar("Track event: demo-registering-news success");
     });
 
 
@@ -380,7 +382,7 @@
       event.stopImmediatePropagation();
 
       follower.track("demo-get-now", {});
-      console.log("Click button track event: demo-get-now");
+      showSnackbar("Track event: demo-get-now success");
     });
 
     $(`#demo_view_best_seller`).on("click", async function (event) {
@@ -388,7 +390,7 @@
       event.stopImmediatePropagation();
 
       follower.track("demo-view-best-sellers", {});
-      console.log("Click button track event:  demo-view-best-sellers");
+      showSnackbar("Track event:  demo-view-best-sellers success");
     });
 
 
@@ -397,14 +399,14 @@
       event.stopImmediatePropagation();
 
       follower.track("demo-view-product-details", {});
-      console.log("Click button track event: demo-view-product-details");
+      showSnackbar("Track event: demo-view-product-details success");
     });
 
     $(`#demo-view-office-shirts`).on("click", async function (event) {
       event.stopPropagation();
       event.stopImmediatePropagation();
       follower.track("demo-view-office-shirts", {});
-      console.log("Click button track event: demo-view-office-shirts");
+      showSnackbar("Track event: demo-view-office-shirts success");
     });
 
     $(`#demo_add_to_cart`).on("click", async function (event) {
@@ -467,7 +469,7 @@
       });
       follower.track("demo-add-to-cart", {});
 
-      console.log("Click button track event: item_added, demo-add-to-cart");
+      showSnackbar("Track event: item_added, demo-add-to-cart success");
 
     });
 
@@ -487,18 +489,25 @@
         net_revenue: Number(1),
         total_value: Number(1)
       });
-      console.log("Click button track event: create_order_event, demo-check-out");
+      showSnackbar("Track event: create_order_event, demo-check-out success");
 
 
     });
 
   }
 
+  function showSnackbar(...mess) {
+    Snackbar.show({text: mess});
+  }
+
   initDataSource();
   randomInit();
   addListenerEventForButton();
+
   // https://cssbuttons.app/buttons/20
   // https://fontawesome.com/icons/basket-shopping-simple?s=light
 </script>
+
+<script src="./dist/snackbar.min.js" charset="utf-8"></script>
 </body>
 </html>

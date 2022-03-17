@@ -299,7 +299,7 @@
       event.stopPropagation();
       event.stopImmediatePropagation();
 
-      follower.track("profileId", {full_name: "fullName"});
+      // follower.track("profileId", {full_name: "fullName"});
       console.log("Click button track event: identify");
     });
 
@@ -307,7 +307,7 @@
       event.stopPropagation();
       event.stopImmediatePropagation();
 
-      follower.track("profileId", {full_name: "fullName"});
+      // follower.track("profileId", {full_name: "fullName"});
       console.log("Click button track event: identify");
     });
 
@@ -316,7 +316,7 @@
       event.stopPropagation();
       event.stopImmediatePropagation();
 
-      follower.track("profileId", {full_name: "fullName"});
+      // follower.track("profileId", {full_name: "fullName"});
       console.log("Click button track event: identify");
     });
 
@@ -324,22 +324,13 @@
       event.stopPropagation();
       event.stopImmediatePropagation();
 
-      follower.track("profileId", {full_name: "fullName"});
+      // follower.track("profileId", {full_name: "fullName"});
       console.log("Click button track event: identify");
     });
 
     $(`#demo_add_to_cart`).on("click", async function (event) {
       event.stopPropagation();
       event.stopImmediatePropagation();
-
-      follower.track("profileId", {full_name: "fullName"});
-      console.log("Click button track event: identify");
-    });
-
-    $(`#demo_checkout`).on("click", async function (event) {
-      event.stopPropagation();
-      event.stopImmediatePropagation();
-
       follower.track("item_added", {
         "target": {
           "itemType": "item",
@@ -398,6 +389,21 @@
         }
       });
       console.log("Click button track event: item_added");
+    });
+
+    $(`#demo_checkout`).on("click", async function (event) {
+      event.stopPropagation();
+      event.stopImmediatePropagation();
+      follower.track("create_order_event", {
+        properties: {
+          currency: "VND",
+          discount_value: Number(1),
+          net_revenue: Number(1),
+          total_value: Number(1)
+        }
+      });
+      console.log("Click button track event: create_order_event");
+
     });
 
   }

@@ -195,24 +195,23 @@
                 <input id="demo_email" type="email" placeholder="Input your email">
             </form>
             <button id="demo_login" class="bn29 mt-12"><i class="fa-solid fa-user"></i> Log In</button>
-            <button id="demo-registering-news" class="bn29 mt-12"><i class="fa-solid fa-user"></i> Register</button>
         </div>
     </section>
 
     <section>
         <div class="events_section">
             <h1>View Event</h1>
-            <button id="demo_view_home_page" class="bn632-hover bn26"><i class="fa-solid fa-house-chimney"></i> View
-                Home Page
+            <button id="demo_view_home_page" class="bn632-hover bn26"><i class="fa-solid fa-house-chimney"></i>
+                Subscribe
+            </button>
+            <button id="demo-registering-news" class="bn632-hover bn26"><i class="fa-solid fa-house-chimney"></i>
+                Registering News
             </button>
             <button id="demo_view_best_seller" class="bn632-hover bn20"><i class="fa-brands fa-sellcast"></i> View Best
                 Seller
             </button>
             <button id="demo_view_product_detail" class="bn632-hover bn20"><i class="fa-solid fa-laptop"></i> View
                 Product Detail
-            </button>
-            <button id="demo_view_macbook_product" class="bn632-hover bn20"><i class="fa-brands fa-apple"></i> View
-                Macbook Product
             </button>
             <button id="demo-view-office-shirts" class="bn632-hover bn20"><i class="fa-brands fa-apple"></i> View
                 Office shirts
@@ -371,16 +370,8 @@
     $(`#demo-registering-news`).on("click", async function (event) {
       event.stopPropagation();
       event.stopImmediatePropagation();
-      let fullName = document.getElementById("demo_full_name")?.value || "";
-      let email = document.getElementById("demo_email")?.value || "";
-
-
-      if (fullName && email) {
-        let profileId = email.substring(0, email.indexOf("@"));
-        follower.identify(profileId, {full_name: fullName, email: email});
-        follower.track("demo-registering-news", {});
-        console.log("Click button track event: demo-registering-news", fullName, email, profileId);
-      }
+      follower.track("demo-registering-news", {});
+      console.log("Click button track event: demo-registering-news");
     });
 
 
@@ -407,14 +398,6 @@
 
       follower.track("demo-view-product-details", {});
       console.log("Click button track event: demo-view-product-details");
-    });
-
-    $(`#demo_view_macbook_product`).on("click", async function (event) {
-      event.stopPropagation();
-      event.stopImmediatePropagation();
-
-      follower.track("demo-view-macbook-product", {});
-      console.log("Click button track event: identify");
     });
 
     $(`#demo-view-office-shirts`).on("click", async function (event) {

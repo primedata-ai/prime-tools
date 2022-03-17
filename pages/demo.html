@@ -65,6 +65,7 @@
             width: 115%;
             height: 115%;
         }
+
         .bn632-hover {
             font-size: 16px;
             font-weight: 600;
@@ -194,6 +195,7 @@
                 <input id="demo_email" type="email" placeholder="Input your email">
             </form>
             <button id="demo_login" class="bn29 mt-12"><i class="fa-solid fa-user"></i> Log In</button>
+            <button id="demo-registering-news" class="bn29 mt-12"><i class="fa-solid fa-user"></i> Register</button>
         </div>
     </section>
 
@@ -206,11 +208,14 @@
             <button id="demo_view_best_seller" class="bn632-hover bn20"><i class="fa-brands fa-sellcast"></i> View Best
                 Seller
             </button>
-            <button id="demo_view_laptop_collection" class="bn632-hover bn20"><i class="fa-solid fa-laptop"></i> View
-                Laptop Collection
+            <button id="demo_view_product_detail" class="bn632-hover bn20"><i class="fa-solid fa-laptop"></i> View
+                Product Detail
             </button>
             <button id="demo_view_macbook_product" class="bn632-hover bn20"><i class="fa-brands fa-apple"></i> View
                 Macbook Product
+            </button>
+            <button id="demo-view-office-shirts" class="bn632-hover bn20"><i class="fa-brands fa-apple"></i> View
+                Office shirts
             </button>
         </div>
     </section>
@@ -222,7 +227,8 @@
             <button id="demo_add_to_cart" class="bn632-hover bn22"><i class="fa-solid fa-cart-arrow-down"></i> Add to
                 Cart
             </button>
-            <button id="demo_checkout" class="bn632-hover bn22"><i class="fa-solid fa-cart-arrow-down"></i> Checkout</button>
+            <button id="demo_checkout" class="bn632-hover bn22"><i class="fa-solid fa-cart-arrow-down"></i> Checkout
+            </button>
 
         </div>
     </section>
@@ -357,7 +363,23 @@
       if (fullName && email) {
         let profileId = email.substring(0, email.indexOf("@"));
         follower.identify(profileId, {full_name: fullName, email: email});
+        follower.track("demo-login", {});
         console.log("Click button track event: identify", fullName, email, profileId);
+      }
+    });
+
+    $(`#demo-registering-news`).on("click", async function (event) {
+      event.stopPropagation();
+      event.stopImmediatePropagation();
+      let fullName = document.getElementById("demo_full_name")?.value || "";
+      let email = document.getElementById("demo_email")?.value || "";
+
+
+      if (fullName && email) {
+        let profileId = email.substring(0, email.indexOf("@"));
+        follower.identify(profileId, {full_name: fullName, email: email});
+        follower.track("demo-registering-news", {});
+        console.log("Click button track event: demo-registering-news", fullName, email, profileId);
       }
     });
 
@@ -366,33 +388,40 @@
       event.stopPropagation();
       event.stopImmediatePropagation();
 
-      // follower.track("profileId", {full_name: "fullName"});
-      console.log("Click button track event: identify");
+      follower.track("demo-get-now", {});
+      console.log("Click button track event: demo-get-now");
     });
 
     $(`#demo_view_best_seller`).on("click", async function (event) {
       event.stopPropagation();
       event.stopImmediatePropagation();
 
-      // follower.track("profileId", {full_name: "fullName"});
-      console.log("Click button track event: identify");
+      follower.track("demo-view-best-sellers", {});
+      console.log("Click button track event:  demo-view-best-sellers");
     });
 
 
-    $(`#demo_view_laptop_collection`).on("click", async function (event) {
+    $(`#demo_view_product_detail`).on("click", async function (event) {
       event.stopPropagation();
       event.stopImmediatePropagation();
 
-      // follower.track("profileId", {full_name: "fullName"});
-      console.log("Click button track event: identify");
+      follower.track("demo-view-product-details", {});
+      console.log("Click button track event: demo-view-product-details");
     });
 
     $(`#demo_view_macbook_product`).on("click", async function (event) {
       event.stopPropagation();
       event.stopImmediatePropagation();
 
-      // follower.track("profileId", {full_name: "fullName"});
+      follower.track("demo-view-macbook-product", {});
       console.log("Click button track event: identify");
+    });
+
+    $(`#demo-view-office-shirts`).on("click", async function (event) {
+      event.stopPropagation();
+      event.stopImmediatePropagation();
+      follower.track("demo-view-office-shirts", {});
+      console.log("Click button track event: demo-view-office-shirts");
     });
 
     $(`#demo_add_to_cart`).on("click", async function (event) {
@@ -448,34 +477,41 @@
           }
         },
         "properties": {
-          "properties": {
-            "quantity": Number(1),
-            "cartID": uuidByte(),
-            "valueAdded": Number(1),
-          }
+          "quantity": Number(1),
+          "cartID": uuidv4(),
+          "valueAdded": Number(1)
         }
       });
-      console.log("Click button track event: item_added");
+      follower.track("demo-add-to-cart", {});
+
+      console.log("Click button track event: item_added, demo-add-to-cart");
+
     });
 
     $(`#demo_checkout`).on("click", async function (event) {
       event.stopPropagation();
       event.stopImmediatePropagation();
       follower.track("create_order_event", {
-        properties: {
-          currency: "VND",
-          discount_value: Number(1),
-          net_revenue: Number(1),
-          total_value: Number(1)
-        }
+        currency: "VND",
+        discount_value: Number(1),
+        net_revenue: Number(1),
+        total_value: Number(1)
       });
-      console.log("Click button track event: create_order_event");
+
+      follower.track("demo-check-out", {
+        currency: "VND",
+        discount_value: Number(1),
+        net_revenue: Number(1),
+        total_value: Number(1)
+      });
+      console.log("Click button track event: create_order_event, demo-check-out");
+
 
     });
 
   }
 
-  initDataSource()
+  initDataSource();
   randomInit();
   addListenerEventForButton();
 </script>

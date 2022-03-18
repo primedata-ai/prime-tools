@@ -488,16 +488,16 @@
       event.stopImmediatePropagation();
       follower.track("create_order_event", {
         currency: "VND",
-        discount_value: Number(1),
-        net_revenue: Number(1),
-        total_value: Number(1)
+        discount_value: Number(100000),
+        net_revenue: Number(1100000),
+        total_value: Number(1000000)
       });
 
       follower.track("demo-check-out", {
         currency: "VND",
-        discount_value: Number(1),
-        net_revenue: Number(1),
-        total_value: Number(1)
+        discount_value: Number(100000),
+        net_revenue: Number(1100000),
+        total_value: Number(1000000)
       });
       showSnackbar("Track event: create_order_event, demo-check-out success");
 

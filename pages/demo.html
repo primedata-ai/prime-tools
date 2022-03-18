@@ -233,6 +233,16 @@
 
         </div>
     </section>
+
+    <section>
+        <div class="events_section">
+            <h1>Engagement Event</h1>
+
+            <button id="demo_engagement_popup" class="bn632-hover bn22"><i class="fas fa-address-card"></i> Contact Us
+            </button>
+
+        </div>
+    </section>
 </main>
 
 <footer>
@@ -491,6 +501,14 @@
       });
       showSnackbar("Track event: create_order_event, demo-check-out success");
 
+
+    });
+
+    $(`#demo_engagement_popup`).on("click", async function (event) {
+      event.stopPropagation();
+      event.stopImmediatePropagation();
+      follower.track("demo-engagement-popup");
+      showSnackbar("Track event: demo-engagement-popup success");
 
     });
 

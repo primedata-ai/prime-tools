@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Aristino Form</title>
+    <link rel="canonical" href="http://www.snet.today/aristo"/>
+    <meta property="og:url" content="http://www.snet.today/aristo"/>
+    <meta property="og:title" content="Aristino Form"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:description" content="Aristino Form"/>
+    <meta name="format-detection" content="telephone=no"/>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+            text-decoration: none;
+            box-sizing: border-box;
+            font-family: "Montserrat", sans-serif;
+        }
+
+        .cdp_lead_form {
+
+        }
+
+        section {
+            width: 100%;
+            margin: 0;
+        }
+
+
+        .cdp_row {
+            display: grid;
+            grid-template-columns: auto auto;
+            column-gap: 24px;
+            row-gap: 24px;
+            /*display: flex;*/
+            /*justify-content: space-between;*/
+            padding: 24px;
+        }
+
+        .cdp_info {
+            display: flex;
+            justify-content: center;
+            align-content: center;
+        }
+
+        .lbf {
+            margin-top: 12px;
+            margin-bottom: 4px;
+        }
+
+        .lbf .required {
+            color: red;
+        }
+
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+            border-radius: 24px;
+            justify-content: center;
+        }
+
+        .form_headline {
+            text-transform: uppercase;
+            text-align: center;
+            color: orangered;
+        }
+
+        .form-input {
+            height: 40px;
+            border-radius: 8px;
+            text-align: left;
+            min-width: 200px;
+            border: 1px solid #d6d6d7;
+            padding: 4px 8px;
+        }
+
+        .f_inline {
+            display: grid;
+            column-gap: 24px;
+            row-gap: 24px;
+            grid-template-columns: calc(50% - 12px) calc(50% - 12px);
+        }
+
+        .f_item {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .field_center {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            height: 100%;
+        }
+
+        .f_radio_item {
+            margin-right: 12px;
+        }
+
+        .t-area {
+            height: unset;
+        }
+
+        .form-action {
+            text-align: center;
+        }
+
+        .btn-submit {
+            border-radius: 4px;
+            border: unset;
+            min-width: 200px;
+            padding: 12px 24px;
+            background: #B81920;
+            color: #fff;
+        }
+
+        #form_status {
+            display: none;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+
+        #form_field {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .status_headline {
+            color: #000;
+            font-size: 24px;
+            line-height: 32px;
+            text-align: center;
+        }
+
+        @media screen and (min-width: 1440px) {
+            .form-container {
+                width: 620px;
+            }
+
+        }
+
+        @media screen and (max-width: 768px) {
+
+
+            .cdp_row {
+                /*flex-direction: column;*/
+                grid-template-columns: auto;
+            }
+
+            .f_inline {
+                /*flex-direction: column;*/
+                grid-template-columns: auto;
+                row-gap: unset;
+            }
+
+            .cdp_info, .cdp_form {
+                width: 100%;
+            }
+
+            .cdp_form {
+                padding: 24px 0;
+            }
+
+        }
+
+
+        .bn30 {
+            border: 5em;
+            cursor: pointer;
+            outline: none;
+            font-size: 16px;
+            -webkit-transform: translate(0);
+            transform: translate(0);
+            background-image: linear-gradient(45deg, #4568dc, #b06ab3);
+            padding: 0.7em 2em;
+            border-radius: 65px;
+            box-shadow: 1px 1px 10px rgba(255, 255, 255, 0.438);
+            -webkit-transition: box-shadow 0.25s;
+            transition: box-shadow 0.25s;
+            color: white;
+        }
+
+        .bn30 .text {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-image: linear-gradient(45deg, #4568dc, #b06ab3);
+        }
+
+        .bn30:after {
+            content: "";
+            border-radius: 18px;
+            position: absolute;
+            margin: 4px;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            z-index: -1;
+            background: #0e0e10;
+        }
+
+        .bn30:hover {
+            background-image: linear-gradient(-45deg, #4568dc, #b06ab3);
+            box-shadow: 0 12px 24px rgba(128, 128, 128, 0.1);
+        }
+
+        .bn30:hover .text {
+            background-image: linear-gradient(-45deg, #4568dc, #b06ab3);
+        }
+
+        .bn632-hover {
+            width: 160px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+            cursor: pointer;
+            margin: 20px;
+            height: 55px;
+            text-align:center;
+            border: none;
+            background-size: 300% 100%;
+            border-radius: 50px;
+            moz-transition: all .4s ease-in-out;
+            -o-transition: all .4s ease-in-out;
+            -webkit-transition: all .4s ease-in-out;
+            transition: all .4s ease-in-out;
+        }
+
+        .bn632-hover:hover {
+            background-position: 100% 0;
+            moz-transition: all .4s ease-in-out;
+            -o-transition: all .4s ease-in-out;
+            -webkit-transition: all .4s ease-in-out;
+            transition: all .4s ease-in-out;
+        }
+
+        .bn632-hover:focus {
+            outline: none;
+        }
+
+
+        .bn632-hover.bn28 {
+            background-image: linear-gradient(
+                    to right,
+                    #eb3941,
+                    #f15e64,
+                    #e14e53,
+                    #e2373f
+            );
+            box-shadow: 0 5px 15px rgba(242, 97, 103, 0.4);
+        }
+    </style>
+
+    <script src="https://kit.fontawesome.com/e97f01f33c.js" crossorigin="anonymous"></script>
+    <!--  Flatpicker Styles  -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/vn.js"></script>
+</head>
+<body>
+
+<main class="cdp_lead_form">
+
+    <section id="form_info">
+        <div class="cdp_row">
+            <div class="cdp_info">
+                <div class=" body_content">
+                    <h3>Thể lệ chương trình</h3>
+                    1. Đối tượng: Tất cả khách hàng Aristino nhận được tin nhắn<br>
+                    2. Thời gian áp dụng: 17/02 - 31/03/2022<br>
+                    3. Địa chỉ áp dụng: Toàn hệ thống showroom và Thương mại điện tử<br>
+                    4. Cách thức tham gia:<br>
+                    <br>
+                    - Bước 1: Để lại thông tin nhận thưởng<br>
+                    - Bước 2: Click vào Vòng quay may mắn, bấm "Quay"
+                    <br>
+                    - Bước 3: Mã Voucher sẽ được gửi tới SĐT đăng ký<br>
+                    - Bước 4: Dùng mã Voucher để mua sắm tại Aristino<br>
+                    <br>
+                    <i><strong>Lưu ý:</strong> Voucher không có giá trị cộng gộp, không áp dụng đồng thời CTKM khác và
+                        chỉ áp dụng với sản phẩm nguyên giá.</i><br>
+                    <br>
+                    <i>Hotline hỗ trợ: 1800.6226<br>
+                        Email: cskh@kgvietnam.com
+                    </i>
+                    <br>
+                    <br>
+                </div>
+            </div>
+
+            <div id="subscribe" class="cdp_form">
+                <form action="#" onsubmit="onSubmitContactForm();return false" class="form-container">
+                    <h3 class="form_headline">Đăng ký ngay hôm nay <br> để nhận ưu đãi khai trương</h3>
+
+                    <div id="form_status">
+                        <p class="status_headline">Chúc mừng bạn đã đăng ký thành công</p>
+                        <p class="status_headline">Mời bạn kiểm tra email để nhận ưu đãi</p>
+                    </div>
+
+                    <div id="form_field">
+
+                        <div class="f_inline">
+                            <div class="f_item">
+                                <label class="lbf" for="cdp_fname">Họ và tên <span class="required">*</span></label>
+                                <input required class="form-input" type="text" id="cdp_fname" name="fname"
+                                       placeholder="Họ và tên" value="">
+                            </div>
+
+                            <div class="f_item">
+                                <p class="lbf">Giới tính</p>
+                                <div class="field_center">
+                                    <div class="f_radio_item">
+                                        <input type="radio" id="cdp_gender_male"
+                                               name="cdp_gender_male" value="cdp_gender_male" checked>
+                                        <label for="cdp_gender_male">Nam</label>
+                                    </div>
+                                    <div class="f_radio_item">
+                                        <input type="radio" id="cdp_gender_female"
+                                               name="cdp_gender_male" value="cdp_gender_female">
+                                        <label for="cdp_gender_female">Nữ</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="f_inline">
+                            <div class="f_item">
+                                <label class="lbf" for="cdp_phone">Số điện thoại <span class="required">*</span></label>
+                                <input pattern="(\+84|0)\d{9,10}" title="Số điện thoại không hợp lệ" required
+                                       class="form-input"
+                                       type="text" id="cdp_phone" name="phone" placeholder="Số điện thoại"
+                                       value="">
+
+                            </div>
+
+                            <div class="f_item">
+                                <label class="lbf" for="cdp_dob">Ngày sinh</label>
+                                <input type="text" id="cdp_dob" class="form-input" placeholder="Ngày sinh của bạn"
+                                       data-input>
+                            </div>
+
+                        </div>
+
+                        <label class="lbf" for="cdp_email">Địa chỉ email <span class="required">*</span></label>
+                        <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                               title="Địa chỉ email không hợp lệ" required class="form-input" id="cdp_email"
+                               name="email"
+                               placeholder="Địa chỉ email" value="">
+
+                        <label class="lbf" for="cdp_address">Address</label>
+                        <textarea class="form-input t-area" rows="4" id="cdp_address" name="address"
+                                  placeholder="Địa chỉ"></textarea>
+
+                        <div class="form-action">
+                            <button id="btn-submit-cdp_form" style="height: 40px" class="bn632-hover bn28"
+                                    type="submit">Đăng ký
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+
+</body>
+<script>
+  function initDataForm() {
+    flatpickr("#cdp_dob", {
+      enableTime: false,
+      dateFormat: "F, d Y H:i",
+      locale: "vn"
+    });
+  }
+
+  initDataForm();
+
+  function initDataSource() {
+    // PrimeData JS SDK
+    !function () {
+      var follower = window.follower = window.follower || [];
+      if (!follower.initialize) if (follower.invoked) window.console && console.error && console.error("PrimeDATA snippet included twice."); else {
+        follower.invoked = !0;
+        follower.methods = ["initOneSignal", "initWebPush", "initWebPopup", "utils", "trackSubmit", "trackClick", "trackLink", "trackForm", "pageview", "personalize", "identify", "initialize", "reset", "group", "track", "ready", "alias", "debug", "page", "once", "off", "on", "addSourceMiddleware", "addIntegrationMiddleware", "setAnonymousId", "addDestinationMiddleware"];
+        follower.factory = function (t) {
+          return function () {
+            var e = Array.prototype.slice.call(arguments);
+            e.unshift(t);
+            follower.push(e);
+            return follower;
+          };
+        };
+        for (var t = 0; t < follower.methods.length; t++) {
+          var e = follower.methods[t];
+          follower[e] = follower.factory(e);
+        }
+        follower.load = function (t, e) {
+          var n = document.createElement("script");
+          n.type = "text/javascript";
+          n.async = !0;
+          n.src = "https://primedata.aristino.com/powehi/mining.js";
+          var a = document.getElementsByTagName("script")[0];
+          a.parentNode.insertBefore(n, a);
+          follower._loadOptions = e;
+        };
+        follower.SNIPPET_VERSION = "0.1.0";
+        follower.load();
+        const primeJsOpts = {
+          scope: "JS-1rNSiugS2Ymue2sFSKZfQsOfrGS",
+          url: "https://primedata.aristino.com/powehi",
+          writeKey: "1rNSivbljtItN2nM5opiNT3faqz",
+          initialPageProperties: {
+            pageInfo: {
+              destinationURL: location.href
+            }
+          },
+          detectAdBlock: {
+            enable: false,
+            bannerMessage: "You are on the ad blocker. Our feature does not work well when your ad blocker is enabled on this site. To fully enjoy the service, please disable the ad blocker on our site. We guarantee that there will be no ads on our site.",
+            closeButtonLabel: "close"
+          },
+          webPush: {
+            enabled: false,
+            options: {
+              showLogs: false,
+              endpoint: "https://primedata.aristino.com",
+              firebaseMessagingSwUrl: "./firebase-messaging-sw.js",
+              firebaseConfig: {
+                authDomain: "aristino-webpush.firebaseapp.com",
+                projectId: "aristino-webpush",
+                storageBucket: "aristino-webpush.appspot.com",
+                messagingSenderId: "839057798326",
+                appId: "1:839057798326:web:c1c02082bdb2c52336e217",
+                apiKey: "AIzaSyCpP5Z1ZEAWj85sMGCPGEUoZpJRtP1GbQI"
+              }
+            }
+          },
+          webPopup: {
+            enabled: false,
+            options: {
+              showLogs: false,
+              onsiteWorkerPath: "./posjs-worker.js",
+              endpoint: "https://primedata.aristino.com"
+            }
+          },
+          oneSignal: {
+            enabled: false,
+            options: {
+              showLogs: false,
+              embedOneSignalSDK: false,
+              appId: "679be029-5cd1-4353-9d24-cc563201468e"
+            }
+          }
+        };
+        follower.initialize({"Prime Data": primeJsOpts});
+
+        if (primeJsOpts.webPush && primeJsOpts.webPush.enabled) {
+          if (firebase && !firebase.apps.length) {
+            firebase.initializeApp(primeJsOpts.webPush.options.firebaseConfig);
+          }
+          follower.initWebPush(primeJsOpts.webPush.options);
+        }
+
+        if (primeJsOpts.webPopup && primeJsOpts.webPopup.enabled) {
+          follower.initWebPopup(primeJsOpts);
+        }
+
+        if (primeJsOpts.oneSignal && primeJsOpts.oneSignal.enabled) {
+          follower.initOneSignal(primeJsOpts);
+        }
+      }
+    }();
+  }
+
+  function onSubmitContactForm() {
+    let data = {
+      fname: document.getElementById("cdp_fname").value,
+      phone: document.getElementById("cdp_phone").value,
+      email: document.getElementById("cdp_email").value,
+      address: document.getElementById("cdp_address").value
+    };
+    console.log("PrimeData identify: ", data);
+    window.follower && follower.identify(data.email, data);
+
+    window.follower && follower.track("campaign_engaged", {
+      campaign_id: "OPENING",
+      campaign_name: "OPENING",
+      campaign_source: "Landing Page"
+    });
+
+    document.getElementById("form_status").style.display = "flex";
+    document.getElementById("form_field").style.display = "none";
+  }
+</script>
+
+
+</html>

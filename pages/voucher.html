@@ -190,8 +190,20 @@
         <div class="events_section">
             <h1>Voucher Event</h1>
 
-            <input type="text" value="" placeholder="Input voucher code">
-            <button id="demo_check_with_voucher" class="bn632-hover bn22"><i class="fa-solid fa-cart-arrow-down"></i> Check with voucher
+            <input id="voucherID" type="text" value="" placeholder="Input voucher id">
+
+            <input id="voucherCode" type="text" value="" placeholder="Input voucher code">
+
+            <button id="demo_check_with_voucher" class="bn632-hover bn22"><i class="fa-solid fa-cart-arrow-down"></i>
+                Check with voucher LIVE
+            </button>
+
+            <button id="demo_check_with_voucher_dev" class="bn632-hover bn22"><i class="fa-solid fa-cart-arrow-down"></i>
+                Check with voucher DEV
+            </button>
+
+            <button id="demo_add_voucher_code" class="bn632-hover bn22"><i class="fa-solid fa-cart-arrow-down"></i>
+                Track Add Voucher Code
             </button>
 
         </div>
@@ -212,14 +224,6 @@
     secondPart = ("000" + secondPart.toString(36)).slice(-3);
     return firstPart + secondPart;
   };
-
-  function randomInit() {
-    let randomText = uuidByte();
-    let fullName = document.getElementById("demo_full_name");
-    let email = document.getElementById("demo_email");
-    fullName.value = "Demo 1803 " + randomText;
-    email.value = `id${randomText}@mailinator.com`;
-  }
 
   function initDataSource() {
     !function () {
@@ -319,14 +323,63 @@
 
   function addListenerEventForButton() {
 
-    $(`#demo_check_with_voucher`).on("click", async function (event) {
+    $(`#demo_add_voucher_code`).on("click", async function (event) {
       event.stopPropagation();
       event.stopImmediatePropagation();
       follower.track("add-voucher-code");
-      follower.track("checkout-with-voucher");
       showSnackbar("Track event: add-voucher-code success");
-      showSnackbar("Track event: checkout-with-voucher success");
+    })
 
+    $(`#demo_check_with_voucher`).on("click", async function (event) {
+      event.stopPropagation();
+      event.stopImmediatePropagation();
+      follower.track("checkout-with-voucher");
+      showSnackbar("Track event: checkout-with-voucher LIVE success");
+
+      let voucherId = document.getElementById("voucherID")?.value;
+      let voucherCode = document.getElementById("voucherCode")?.value;
+
+      let url = `https://live.primedata.ai/prile/voucher/1/${voucherId}/activate/${voucherCode}?id=${voucherId}&code=${voucherCode}`;
+
+      fetch(url, {
+        "headers": {
+          "accept": "application/json",
+          "Content-Type": "application/json",
+          "access-control-request-origin": "*",
+          "Access-Control-Allow-Origin": "*",
+        },
+        "body": null,
+        "method": "PUT",
+      }).then(res => {
+        console.log(res);
+        showSnackbar("API response status: " + res.status);
+      });
+    });
+
+    $(`#demo_check_with_voucher_dev`).on("click", async function (event) {
+      event.stopPropagation();
+      event.stopImmediatePropagation();
+      follower.track("checkout-with-voucher");
+      showSnackbar("Track event: checkout-with-voucher DEV success");
+
+      let voucherId = document.getElementById("voucherID")?.value;
+      let voucherCode = document.getElementById("voucherCode")?.value;
+
+      let url = `https://dev.primedata.ai/prile/voucher/1/${voucherId}/activate/${voucherCode}?id=${voucherId}&code=${voucherCode}`;
+
+      fetch(url, {
+        "headers": {
+          "accept": "application/json",
+          "Content-Type": "application/json",
+          "access-control-request-origin": "*",
+          "Access-Control-Allow-Origin": "*",
+        },
+        "body": null,
+        "method": "PUT",
+      }).then(res => {
+        console.log(res);
+        showSnackbar("API response status: " + res.status);
+      });
     });
 
   }
@@ -336,7 +389,6 @@
   }
 
   initDataSource();
-  randomInit();
   addListenerEventForButton();
 </script>
 

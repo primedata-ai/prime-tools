@@ -288,7 +288,9 @@
       follower.track("demo-view-product-new-tab", {})
       showSnackbar("Track event: demo-view-product-new-tab and reload page success");
 
-      window.location.reload();
+      setTimeout(() => {
+        window.location.reload();
+      }, 500)
     });
 
     $(`#demo_popup_new_tab`).on("click", async function (event) {

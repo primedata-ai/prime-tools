@@ -330,12 +330,12 @@
                                 <div class="field_center">
                                     <div class="f_radio_item">
                                         <input type="radio" id="cdp_gender_male"
-                                               name="cdp_gender_male" value="cdp_gender_male" checked>
+                                               name="cdp_gender_male" value="Nam" checked>
                                         <label for="cdp_gender_male">Nam</label>
                                     </div>
                                     <div class="f_radio_item">
                                         <input type="radio" id="cdp_gender_female"
-                                               name="cdp_gender_male" value="cdp_gender_female">
+                                               name="cdp_gender_male" value="Nữ">
                                         <label for="cdp_gender_female">Nữ</label>
                                     </div>
                                 </div>
@@ -602,24 +602,105 @@
   }
 
   function onSubmitContactForm() {
+    let cityData = [
+      { value: '0', title: 'Chọn' },
+      { value: '50538', title: 'Hà Nội' },
+      { value: '50539', title: 'Hà Giang' },
+      { value: '50540', title: 'Cao Bằng' },
+      { value: '50541', title: 'Bắc Kạn' },
+      { value: '50542', title: 'Tuyên Quang' },
+      { value: '50543', title: 'Lào Cai' },
+      { value: '50544', title: 'Điện Biên' },
+      { value: '50545', title: 'Lai Châu' },
+      { value: '50546', title: 'Sơn La' },
+      { value: '50547', title: 'Yên Bái' },
+      { value: '50548', title: 'Hoà Bình' },
+      { value: '50549', title: 'Thái Nguyên' },
+      { value: '50550', title: 'Lạng Sơn' },
+      { value: '50551', title: 'Quảng Ninh' },
+      { value: '50552', title: 'Bắc Giang' },
+      { value: '50553', title: 'Phú Thọ' },
+      { value: '50554', title: 'Vĩnh Phúc' },
+      { value: '50555', title: 'Bắc Ninh' },
+      { value: '50556', title: 'Hải Dương' },
+      { value: '50557', title: 'Hải Phòng' },
+      { value: '50558', title: 'Hưng Yên' },
+      { value: '50559', title: 'Thái Bình' },
+      { value: '50560', title: 'Hà Nam' },
+      { value: '50561', title: 'Nam Định' },
+      { value: '50562', title: 'Ninh Bình' },
+      { value: '50563', title: 'Thanh Hóa' },
+      { value: '50564', title: 'Nghệ An' },
+      { value: '50565', title: 'Hà Tĩnh' },
+      { value: '50566', title: 'Quảng Bình' },
+      { value: '50567', title: 'Quảng Trị' },
+      { value: '50568', title: 'Thừa Thiên Huế' },
+      { value: '50569', title: 'Đà Nẵng' },
+      { value: '50570', title: 'Quảng Nam' },
+      { value: '50571', title: 'Quảng Ngãi' },
+      { value: '50572', title: 'Bình Định' },
+      { value: '50573', title: 'Phú Yên' },
+      { value: '50574', title: 'Khánh Hòa' },
+      { value: '50575', title: 'Ninh Thuận' },
+      { value: '50576', title: 'Bình Thuận' },
+      { value: '50577', title: 'Kon Tum' },
+      { value: '50578', title: 'Gia Lai' },
+      { value: '50579', title: 'Đắk Lắk' },
+      { value: '50580', title: 'Đắk Nông' },
+      { value: '50581', title: 'Lâm Đồng' },
+      { value: '50582', title: 'Bình Phước' },
+      { value: '50583', title: 'Tây Ninh' },
+      { value: '50584', title: 'Bình Dương' },
+      { value: '50585', title: 'Đồng Nai' },
+      { value: '50586', title: 'Bà Rịa - Vũng Tàu' },
+      { value: '50587', title: 'Hồ Chí Minh' },
+      { value: '50588', title: 'Long An' },
+      { value: '50589', title: 'Tiền Giang' },
+      { value: '50590', title: 'Bến Tre' },
+      { value: '50591', title: 'Trà Vinh' },
+      { value: '50592', title: 'Vĩnh Long' },
+      { value: '50593', title: 'Đồng Tháp' },
+      { value: '50594', title: 'An Giang' },
+      { value: '50595', title: 'Kiên Giang' },
+      { value: '50596', title: 'Cần Thơ' },
+      { value: '50597', title: 'Hậu Giang' },
+      { value: '50598', title: 'Sóc Trăng' },
+      { value: '50599', title: 'Bạc Liêu' },
+      { value: '50600', title: 'Cà Mau' },
+    ]
+    let cityName = cityData.find(x => x.value === document.getElementById("cdp_city").value)?.title || "-"
     let data = {
       fname: document.getElementById("cdp_fname").value,
       phone: document.getElementById("cdp_phone").value,
       email: document.getElementById("cdp_email").value,
       // address: document.getElementById("cdp_address").value,
-      city: document.getElementById("cdp_city").value,
+      city: cityName,
       // job: document.getElementById("cdp_job").value,
       dob: document.getElementById("cdp_dob").value,
       gender: document.getElementById("cdp_gender_male").value || document.getElementById("cdp_gender_female").value
     };
     console.log("PrimeData identify: ", data);
-    window.follower && follower.identify(data.email, data);
-
-    window.follower && follower.track("campaign_engaged", {
-      campaign_id: "OPENING",
-      campaign_name: "OPENING",
-      campaign_source: "Landing Page"
+    window.follower && follower.identify(data.email, {
+      date_of_birth: data.dob,
+      phone_number: data.phone,
+      email: data.email,
+      full_name: data.fname,
+      gender: data.gender,
+      city: data.city,
     });
+
+    follower.track("LeadFormSubmitted", {
+      "properties": {
+        "city": data.city,
+        "dob": data.dob,
+        "email": data.email,
+        "error_message": "",
+        "full_name": data.fname,
+        "gender": data.gender,
+        "phone_number": data.phone,
+        "status": ""
+      }
+    })
 
     document.getElementById("form_status").style.display = "flex";
     document.getElementById("form_field").style.display = "none";
@@ -664,72 +745,6 @@
     },
   ]
 
-  let cityData = [
-    { value: '0', title: 'Chọn' },
-    { value: '50538', title: 'Hà Nội' },
-    { value: '50539', title: 'Hà Giang' },
-    { value: '50540', title: 'Cao Bằng' },
-    { value: '50541', title: 'Bắc Kạn' },
-    { value: '50542', title: 'Tuyên Quang' },
-    { value: '50543', title: 'Lào Cai' },
-    { value: '50544', title: 'Điện Biên' },
-    { value: '50545', title: 'Lai Châu' },
-    { value: '50546', title: 'Sơn La' },
-    { value: '50547', title: 'Yên Bái' },
-    { value: '50548', title: 'Hoà Bình' },
-    { value: '50549', title: 'Thái Nguyên' },
-    { value: '50550', title: 'Lạng Sơn' },
-    { value: '50551', title: 'Quảng Ninh' },
-    { value: '50552', title: 'Bắc Giang' },
-    { value: '50553', title: 'Phú Thọ' },
-    { value: '50554', title: 'Vĩnh Phúc' },
-    { value: '50555', title: 'Bắc Ninh' },
-    { value: '50556', title: 'Hải Dương' },
-    { value: '50557', title: 'Hải Phòng' },
-    { value: '50558', title: 'Hưng Yên' },
-    { value: '50559', title: 'Thái Bình' },
-    { value: '50560', title: 'Hà Nam' },
-    { value: '50561', title: 'Nam Định' },
-    { value: '50562', title: 'Ninh Bình' },
-    { value: '50563', title: 'Thanh Hóa' },
-    { value: '50564', title: 'Nghệ An' },
-    { value: '50565', title: 'Hà Tĩnh' },
-    { value: '50566', title: 'Quảng Bình' },
-    { value: '50567', title: 'Quảng Trị' },
-    { value: '50568', title: 'Thừa Thiên Huế' },
-    { value: '50569', title: 'Đà Nẵng' },
-    { value: '50570', title: 'Quảng Nam' },
-    { value: '50571', title: 'Quảng Ngãi' },
-    { value: '50572', title: 'Bình Định' },
-    { value: '50573', title: 'Phú Yên' },
-    { value: '50574', title: 'Khánh Hòa' },
-    { value: '50575', title: 'Ninh Thuận' },
-    { value: '50576', title: 'Bình Thuận' },
-    { value: '50577', title: 'Kon Tum' },
-    { value: '50578', title: 'Gia Lai' },
-    { value: '50579', title: 'Đắk Lắk' },
-    { value: '50580', title: 'Đắk Nông' },
-    { value: '50581', title: 'Lâm Đồng' },
-    { value: '50582', title: 'Bình Phước' },
-    { value: '50583', title: 'Tây Ninh' },
-    { value: '50584', title: 'Bình Dương' },
-    { value: '50585', title: 'Đồng Nai' },
-    { value: '50586', title: 'Bà Rịa - Vũng Tàu' },
-    { value: '50587', title: 'Hồ Chí Minh' },
-    { value: '50588', title: 'Long An' },
-    { value: '50589', title: 'Tiền Giang' },
-    { value: '50590', title: 'Bến Tre' },
-    { value: '50591', title: 'Trà Vinh' },
-    { value: '50592', title: 'Vĩnh Long' },
-    { value: '50593', title: 'Đồng Tháp' },
-    { value: '50594', title: 'An Giang' },
-    { value: '50595', title: 'Kiên Giang' },
-    { value: '50596', title: 'Cần Thơ' },
-    { value: '50597', title: 'Hậu Giang' },
-    { value: '50598', title: 'Sóc Trăng' },
-    { value: '50599', title: 'Bạc Liêu' },
-    { value: '50600', title: 'Cà Mau' },
-  ]
 
 </script>
 

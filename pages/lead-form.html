@@ -679,7 +679,6 @@
       dob: document.getElementById("cdp_dob").value,
       gender: document.getElementById("cdp_gender_male").value || document.getElementById("cdp_gender_female").value
     };
-    console.log("PrimeData identify: ", data);
     window.follower && follower.identify(data.email, {
       date_of_birth: data.dob,
       phone_number: data.phone,
@@ -687,20 +686,24 @@
       full_name: data.fname,
       gender: data.gender,
       city: data.city,
+    }, null, () => {
+      setTimeout(() => {
+        follower.track("LeadFormSubmitted", {
+          "properties": {
+            "city": data.city,
+            "dob": data.dob,
+            "email": data.email,
+            "error_message": "",
+            "full_name": data.fname,
+            "gender": data.gender,
+            "phone_number": data.phone,
+            "status": ""
+          }
+        })
+      }, 2000)
     });
 
-    follower.track("LeadFormSubmitted", {
-      "properties": {
-        "city": data.city,
-        "dob": data.dob,
-        "email": data.email,
-        "error_message": "",
-        "full_name": data.fname,
-        "gender": data.gender,
-        "phone_number": data.phone,
-        "status": ""
-      }
-    })
+
 
     document.getElementById("form_status").style.display = "flex";
     document.getElementById("form_field").style.display = "none";

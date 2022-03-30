@@ -624,8 +624,12 @@
       gender: document.getElementById("cdp_gender_male").value || document.getElementById("cdp_gender_female").value
     };
     console.log("PrimeData identify: ", data);
-    window.follower && follower.identify(data.email, data);
-    window.follower && follower.track("demo-voucher-for-client", {properties: data});
+    window.follower && follower.identify(data.email, data, null, () => {
+      setTimeout(() => {
+        console.log("Track event demo-voucher-for-client after call identify: ", data);
+        window.follower && follower.track("demo-voucher-for-client", {properties: data});
+      }, 2000)
+    });
 
     document.getElementById("form_status").style.display = "flex";
     document.getElementById("form_field").style.display = "none";

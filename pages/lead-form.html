@@ -28,22 +28,26 @@
         }
 
         .cdp_lead_form {
-
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
         }
 
         section {
-            width: 100%;
+            width: calc(100vw - 30%);
             margin: 0;
         }
 
 
         .cdp_row {
-            display: grid;
-            grid-template-columns: auto auto;
-            column-gap: 24px;
-            row-gap: 24px;
-            /*display: flex;*/
-            /*justify-content: space-between;*/
+            /*display: grid;*/
+            /*grid-template-columns: auto auto;*/
+            /*column-gap: 24px;*/
+            /*row-gap: 24px;*/
+            display: flex;
+            justify-content: space-between;
             padding: 24px;
         }
 
@@ -51,6 +55,7 @@
             display: flex;
             justify-content: center;
             align-content: center;
+            padding: 24px;
         }
 
         .lbf {
@@ -148,17 +153,24 @@
 
         @media screen and (min-width: 1440px) {
             .form-container {
-                width: 620px;
+                /*width: 620px;*/
             }
 
         }
 
         @media screen and (max-width: 768px) {
 
+            .form-container {
+                padding: 24px;
+            }
 
             .cdp_row {
-                /*flex-direction: column;*/
-                grid-template-columns: auto;
+                flex-direction: column;
+                /*grid-template-columns: auto;*/
+            }
+
+            section {
+                width: 100%;
             }
 
             .f_inline {
@@ -224,7 +236,7 @@
         }
 
         .bn632-hover {
-            width: 160px;
+            width: 180px;
             font-size: 16px;
             font-weight: 600;
             color: #fff;
@@ -264,6 +276,40 @@
             );
             box-shadow: 0 5px 15px rgba(242, 97, 103, 0.4);
         }
+
+        .cdp-banner-bg {
+            padding: 24px;
+        }
+
+        #section-form-register {
+            display: none;
+        }
+
+        .cta-wrapper {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            padding: 24px 0;
+        }
+
+        .btn-trigger-form {
+            font-family: lato,sans-serif;
+            font-weight: bold;
+            font-size: 1em;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            color: #fff;
+            display: inline-block;
+            padding: 10px 40px 10px 40px;
+            position: relative;
+            border: 3px solid #ffffff;
+            border-radius: 8px;
+            text-transform: uppercase;
+            background: red;
+            cursor: pointer;
+        }
+
+
     </style>
 
     <script src="https://kit.fontawesome.com/e97f01f33c.js" crossorigin="anonymous"></script>
@@ -309,185 +355,164 @@
                 </div>
             </div>
 
-            <div id="subscribe" class="cdp_form">
-                <form action="#" onsubmit="onSubmitContactForm();return false" class="form-container">
-                    <h3 class="form_headline">Đăng ký ngay hôm nay <br> để nhận ưu đãi khai trương</h3>
+            <div id="photo-banner" class="cdp-banner-bg">
+                <img width="100%" src="../statics/TMDT-01.png" alt="TMDT-01">
+            </div>
 
-                    <div id="form_status">
-                        <p class="status_headline">Chúc mừng bạn đã đăng ký thành công</p>
-                        <p class="status_headline">Mời bạn kiểm tra email để nhận ưu đãi</p>
-                    </div>
+        </div>
 
-                    <div id="form_field">
+        <div class="cta-wrapper">
+            <button class="btn-trigger-form" onclick="triggerFormRegister()">Đăng ký tham gia</button>
+        </div>
 
-                        <div class="f_inline">
-                            <div class="f_item">
-                                <label class="lbf" for="cdp_fname">Họ và tên <span class="required">*</span></label>
-                                <input required class="form-input" type="text" id="cdp_fname" name="fname"
-                                       placeholder="Họ và tên" value="">
-                            </div>
+    </section>
 
-                            <div class="f_item">
-                                <p class="lbf">Giới tính</p>
-                                <div class="field_center">
-                                    <div class="f_radio_item">
-                                        <input type="radio" id="cdp_gender_male"
-                                               name="cdp_gender_male" value="Nam" checked>
-                                        <label for="cdp_gender_male">Nam</label>
-                                    </div>
-                                    <div class="f_radio_item">
-                                        <input type="radio" id="cdp_gender_female"
-                                               name="cdp_gender_male" value="Nữ">
-                                        <label for="cdp_gender_female">Nữ</label>
-                                    </div>
+    <section id="section-form-register">
+        <div id="subscribe" class="cdp_form">
+            <form action="#" onsubmit="onSubmitContactForm();return false" class="form-container">
+<!--                <h3 class="form_headline">Đăng ký ngay hôm nay <br> để nhận ưu đãi khai trương</h3>-->
+
+                <div id="form_status">
+                    <p class="status_headline">Chúc mừng bạn đã đăng ký thành công</p>
+                    <p class="status_headline">Mời bạn kiểm tra email để nhận ưu đãi</p>
+                </div>
+
+                <div id="form_field">
+
+                    <div class="f_inline">
+                        <div class="f_item">
+                            <label class="lbf" for="cdp_fname">Họ và tên <span class="required">*</span></label>
+                            <input required class="form-input" type="text" id="cdp_fname" name="fname"
+                                   placeholder="Họ và tên" value="">
+                        </div>
+
+                        <div class="f_item">
+                            <p class="lbf">Giới tính</p>
+                            <div class="field_center">
+                                <div class="f_radio_item">
+                                    <input type="radio" id="cdp_gender_male"
+                                           name="cdp_gender_male" value="Nam" checked>
+                                    <label for="cdp_gender_male">Nam</label>
+                                </div>
+                                <div class="f_radio_item">
+                                    <input type="radio" id="cdp_gender_female"
+                                           name="cdp_gender_male" value="Nữ">
+                                    <label for="cdp_gender_female">Nữ</label>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
 
-                        <div class="f_inline">
-                            <div class="f_item">
-                                <label class="lbf" for="cdp_phone">Số điện thoại <span class="required">*</span></label>
-                                <input pattern="(\+84|0)\d{9,10}" title="Số điện thoại không hợp lệ" required
-                                       class="form-input"
-                                       type="text" id="cdp_phone" name="phone" placeholder="Số điện thoại"
-                                       value="">
-
-                            </div>
-
-                            <div class="f_item">
-                                <label class="lbf" for="cdp_email">Địa chỉ email <span class="required">*</span></label>
-                                <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-                                       title="Địa chỉ email không hợp lệ" required class="form-input" id="cdp_email"
-                                       name="email"
-                                       placeholder="Địa chỉ email" value="">
-                            </div>
+                    <div class="f_inline">
+                        <div class="f_item">
+                            <label class="lbf" for="cdp_phone">Số điện thoại <span class="required">*</span></label>
+                            <input pattern="(\+84|0)\d{9,10}" title="Số điện thoại không hợp lệ" required
+                                   class="form-input"
+                                   type="text" id="cdp_phone" name="phone" placeholder="Số điện thoại"
+                                   value="">
 
                         </div>
 
-                        <!--                        <label class="lbf" for="cdp_address">Address</label>-->
-                        <!--                        <textarea class="form-input t-area" rows="4" id="cdp_address" name="address"-->
-                        <!--                                  placeholder="Địa chỉ"></textarea>-->
-
-                        <div class="f_inline">
-
-
-                            <div class="f_item">
-                                <!--                                <label class="lbf" for="cdp_job">Ngành nghề</label>-->
-                                <!--                                <select class="form-input" name="cdp_job" id="cdp_job" required="required">-->
-                                <!--                                    <option value="0" selected="selected">Chọn</option>-->
-                                <!--                                    <option value="61892">Ngành nghề khác/ văn phòng</option>-->
-                                <!--                                    <option value="61893">Tổ chức và cơ quan quốc tế, liên hợp quốc</option>-->
-                                <!--                                    <option value="61894">Dệt may</option>-->
-                                <!--                                    <option value="61895">Xuất Nhập Khẩu, hải quan</option>-->
-                                <!--                                    <option value="61896">Xây Dựng</option>-->
-                                <!--                                    <option value="61897">Tuyên giáo Chính trị xã hội</option>-->
-                                <!--                                    <option value="61898">Tài nguyên Môi Trường</option>-->
-                                <!--                                    <option value="61899">Tài chính ngân hàng bảo hiểm chứng khoán tiền tệ</option>-->
-                                <!--                                    <option value="61900">Âm nhạc/ Nhạc sỹ</option>-->
-                                <!--                                    <option value="61901">Hội họa/ họa sỹ</option>-->
-                                <!--                                    <option value="61902">Nghệ thuật, điện ảnh</option>-->
-                                <!--                                    <option value="61903">Pháp luật ( Luật sư), cơ quan thi hành pháp</option>-->
-                                <!--                                    <option value="61904">Quân đội nhân dân</option>-->
-                                <!--                                    <option value="61905">Công an nhân dân</option>-->
-                                <!--                                    <option value="61906">Hàng Không</option>-->
-                                <!--                                    <option value="61907">Hàng Hải</option>-->
-                                <!--                                    <option value="61908">Giáo Dục và đào tạo</option>-->
-                                <!--                                    <option value="61909">Bưu Chính - Viễn Thông</option>-->
-                                <!--                                    <option value="61910">Doanh nhân ( chủ doanh nghiệp)</option>-->
-                                <!--                                    <option value="61911">Thể Dục/thể thao</option>-->
-                                <!--                                    <option value="61912">Thông tin và truyền thông , báo chí</option>-->
-                                <!--                                    <option value="61913">Y tế và hoạt động sức khỏe hỗ trợ cộng đồng ( Y bác sỹ)-->
-                                <!--                                    </option>-->
-                                <!--                                </select>-->
-
-
-                                <label class="lbf" for="cdp_dob">Ngày sinh</label>
-                                <input type="text" id="cdp_dob" class="form-input" placeholder="Ngày sinh của bạn"
-                                       data-input>
-                            </div>
-
-                            <div class="f_item">
-                                <label class="lbf" for="cdp_city">Tỉnh/Thành phố</label>
-                                <select class="form-input" name="cdp_city" id="cdp_city" required="required">
-                                    <option value="0" selected="selected">Chọn</option>
-                                    <option value="50538">Hà Nội</option>
-                                    <option value="50539">Hà Giang</option>
-                                    <option value="50540">Cao Bằng</option>
-                                    <option value="50541">Bắc Kạn</option>
-                                    <option value="50542">Tuyên Quang</option>
-                                    <option value="50543">Lào Cai</option>
-                                    <option value="50544">Điện Biên</option>
-                                    <option value="50545">Lai Châu</option>
-                                    <option value="50546">Sơn La</option>
-                                    <option value="50547">Yên Bái</option>
-                                    <option value="50548">Hoà Bình</option>
-                                    <option value="50549">Thái Nguyên</option>
-                                    <option value="50550">Lạng Sơn</option>
-                                    <option value="50551">Quảng Ninh</option>
-                                    <option value="50552">Bắc Giang</option>
-                                    <option value="50553">Phú Thọ</option>
-                                    <option value="50554">Vĩnh Phúc</option>
-                                    <option value="50555">Bắc Ninh</option>
-                                    <option value="50556">Hải Dương</option>
-                                    <option value="50557">Hải Phòng</option>
-                                    <option value="50558">Hưng Yên</option>
-                                    <option value="50559">Thái Bình</option>
-                                    <option value="50560">Hà Nam</option>
-                                    <option value="50561">Nam Định</option>
-                                    <option value="50562">Ninh Bình</option>
-                                    <option value="50563">Thanh Hóa</option>
-                                    <option value="50564">Nghệ An</option>
-                                    <option value="50565">Hà Tĩnh</option>
-                                    <option value="50566">Quảng Bình</option>
-                                    <option value="50567">Quảng Trị</option>
-                                    <option value="50568">Thừa Thiên Huế</option>
-                                    <option value="50569">Đà Nẵng</option>
-                                    <option value="50570">Quảng Nam</option>
-                                    <option value="50571">Quảng Ngãi</option>
-                                    <option value="50572">Bình Định</option>
-                                    <option value="50573">Phú Yên</option>
-                                    <option value="50574">Khánh Hòa</option>
-                                    <option value="50575">Ninh Thuận</option>
-                                    <option value="50576">Bình Thuận</option>
-                                    <option value="50577">Kon Tum</option>
-                                    <option value="50578">Gia Lai</option>
-                                    <option value="50579">Đắk Lắk</option>
-                                    <option value="50580">Đắk Nông</option>
-                                    <option value="50581">Lâm Đồng</option>
-                                    <option value="50582">Bình Phước</option>
-                                    <option value="50583">Tây Ninh</option>
-                                    <option value="50584">Bình Dương</option>
-                                    <option value="50585">Đồng Nai</option>
-                                    <option value="50586">Bà Rịa - Vũng Tàu</option>
-                                    <option value="50587">Hồ Chí Minh</option>
-                                    <option value="50588">Long An</option>
-                                    <option value="50589">Tiền Giang</option>
-                                    <option value="50590">Bến Tre</option>
-                                    <option value="50591">Trà Vinh</option>
-                                    <option value="50592">Vĩnh Long</option>
-                                    <option value="50593">Đồng Tháp</option>
-                                    <option value="50594">An Giang</option>
-                                    <option value="50595">Kiên Giang</option>
-                                    <option value="50596">Cần Thơ</option>
-                                    <option value="50597">Hậu Giang</option>
-                                    <option value="50598">Sóc Trăng</option>
-                                    <option value="50599">Bạc Liêu</option>
-                                    <option value="50600">Cà Mau</option>
-                                </select>
-
-                            </div>
+                        <div class="f_item">
+                            <label class="lbf" for="cdp_email">Địa chỉ email <span class="required">*</span></label>
+                            <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                                   title="Địa chỉ email không hợp lệ" required class="form-input" id="cdp_email"
+                                   name="email"
+                                   placeholder="Địa chỉ email" value="">
                         </div>
 
+                    </div>
 
-                        <div class="form-action">
-                            <button id="btn-submit-cdp_form" style="height: 40px" class="bn632-hover bn28"
-                                    type="submit">Đăng ký
-                            </button>
+                    <div class="f_inline">
+
+                        <div class="f_item">
+
+                            <label class="lbf" for="cdp_dob">Ngày sinh</label>
+                            <input type="text" id="cdp_dob" class="form-input" placeholder="Ngày sinh của bạn"
+                                   data-input>
+                        </div>
+
+                        <div class="f_item">
+                            <label class="lbf" for="cdp_city">Tỉnh/Thành phố</label>
+                            <select class="form-input" name="cdp_city" id="cdp_city" required="required">
+                                <option value="0" selected="selected">Chọn</option>
+                                <option value="50538">Hà Nội</option>
+                                <option value="50539">Hà Giang</option>
+                                <option value="50540">Cao Bằng</option>
+                                <option value="50541">Bắc Kạn</option>
+                                <option value="50542">Tuyên Quang</option>
+                                <option value="50543">Lào Cai</option>
+                                <option value="50544">Điện Biên</option>
+                                <option value="50545">Lai Châu</option>
+                                <option value="50546">Sơn La</option>
+                                <option value="50547">Yên Bái</option>
+                                <option value="50548">Hoà Bình</option>
+                                <option value="50549">Thái Nguyên</option>
+                                <option value="50550">Lạng Sơn</option>
+                                <option value="50551">Quảng Ninh</option>
+                                <option value="50552">Bắc Giang</option>
+                                <option value="50553">Phú Thọ</option>
+                                <option value="50554">Vĩnh Phúc</option>
+                                <option value="50555">Bắc Ninh</option>
+                                <option value="50556">Hải Dương</option>
+                                <option value="50557">Hải Phòng</option>
+                                <option value="50558">Hưng Yên</option>
+                                <option value="50559">Thái Bình</option>
+                                <option value="50560">Hà Nam</option>
+                                <option value="50561">Nam Định</option>
+                                <option value="50562">Ninh Bình</option>
+                                <option value="50563">Thanh Hóa</option>
+                                <option value="50564">Nghệ An</option>
+                                <option value="50565">Hà Tĩnh</option>
+                                <option value="50566">Quảng Bình</option>
+                                <option value="50567">Quảng Trị</option>
+                                <option value="50568">Thừa Thiên Huế</option>
+                                <option value="50569">Đà Nẵng</option>
+                                <option value="50570">Quảng Nam</option>
+                                <option value="50571">Quảng Ngãi</option>
+                                <option value="50572">Bình Định</option>
+                                <option value="50573">Phú Yên</option>
+                                <option value="50574">Khánh Hòa</option>
+                                <option value="50575">Ninh Thuận</option>
+                                <option value="50576">Bình Thuận</option>
+                                <option value="50577">Kon Tum</option>
+                                <option value="50578">Gia Lai</option>
+                                <option value="50579">Đắk Lắk</option>
+                                <option value="50580">Đắk Nông</option>
+                                <option value="50581">Lâm Đồng</option>
+                                <option value="50582">Bình Phước</option>
+                                <option value="50583">Tây Ninh</option>
+                                <option value="50584">Bình Dương</option>
+                                <option value="50585">Đồng Nai</option>
+                                <option value="50586">Bà Rịa - Vũng Tàu</option>
+                                <option value="50587">Hồ Chí Minh</option>
+                                <option value="50588">Long An</option>
+                                <option value="50589">Tiền Giang</option>
+                                <option value="50590">Bến Tre</option>
+                                <option value="50591">Trà Vinh</option>
+                                <option value="50592">Vĩnh Long</option>
+                                <option value="50593">Đồng Tháp</option>
+                                <option value="50594">An Giang</option>
+                                <option value="50595">Kiên Giang</option>
+                                <option value="50596">Cần Thơ</option>
+                                <option value="50597">Hậu Giang</option>
+                                <option value="50598">Sóc Trăng</option>
+                                <option value="50599">Bạc Liêu</option>
+                                <option value="50600">Cà Mau</option>
+                            </select>
+
                         </div>
                     </div>
-                </form>
-            </div>
+
+
+                    <div class="form-action">
+                        <button id="btn-submit-cdp_form" style="height: 40px" class="bn632-hover bn28"
+                                type="submit">Nhận voucher ngay
+                        </button>
+                    </div>
+                </div>
+            </form>
         </div>
     </section>
 </main>
@@ -708,45 +733,9 @@
     document.getElementById("form_field").style.display = "none";
   }
 
-
-  let jobData = [
-    {value: "0", title: "Chọn"},
-    {value: "61892", title: "Ngành nghề khác/ văn phòng"},
-    {
-      value: "61893",
-      title: "Tổ chức và cơ quan quốc tế, liên hợp quốc"
-    },
-    {value: "61894", title: "Dệt may"},
-    {value: "61895", title: "Xuất Nhập Khẩu, hải quan"},
-    {value: "61896", title: "Xây Dựng"},
-    {value: "61897", title: "Tuyên giáo Chính trị xã hội"},
-    {value: "61898", title: "Tài nguyên Môi Trường"},
-    {
-      value: "61899",
-      title: "Tài chính ngân hàng bảo hiểm chứng khoán tiền tệ"
-    },
-    {value: "61900", title: "Âm nhạc/ Nhạc sỹ"},
-    {value: "61901", title: "Hội họa/ họa sỹ"},
-    {value: "61902", title: "Nghệ thuật, điện ảnh"},
-    {
-      value: "61903",
-      title: "Pháp luật ( Luật sư), cơ quan thi hành pháp"
-    },
-    {value: "61904", title: "Quân đội nhân dân"},
-    {value: "61905", title: "Công an nhân dân"},
-    {value: "61906", title: "Hàng Không"},
-    {value: "61907", title: "Hàng Hải"},
-    {value: "61908", title: "Giáo Dục và đào tạo"},
-    {value: "61909", title: "Bưu Chính - Viễn Thông"},
-    {value: "61910", title: "Doanh nhân ( chủ doanh nghiệp)"},
-    {value: "61911", title: "Thể Dục/thể thao"},
-    {value: "61912", title: "Thông tin và truyền thông , báo chí"},
-    {
-      value: "61913",
-      title: "Y tế và hoạt động sức khỏe hỗ trợ cộng đồng ( Y bác sỹ)"
-    }
-  ];
-
+  function triggerFormRegister () {
+    document.getElementById("section-form-register").style.display = "block"
+  }
 
 </script>
 

@@ -119,21 +119,8 @@
             margin-right: 12px;
         }
 
-        .t-area {
-            height: unset;
-        }
-
         .form-action {
             text-align: center;
-        }
-
-        .btn-submit {
-            border-radius: 4px;
-            border: unset;
-            min-width: 200px;
-            padding: 12px 24px;
-            background: #B81920;
-            color: #fff;
         }
 
         #form_status {
@@ -156,12 +143,6 @@
             text-align: center;
         }
 
-        @media screen and (min-width: 1440px) {
-            .form-container {
-                /*width: 620px;*/
-            }
-
-        }
 
         @media screen and (max-width: 768px) {
 
@@ -171,7 +152,6 @@
 
             .cdp_row {
                 flex-direction: column;
-                /*grid-template-columns: auto;*/
             }
 
             section {
@@ -179,7 +159,6 @@
             }
 
             .f_inline {
-                /*flex-direction: column;*/
                 grid-template-columns: auto;
                 row-gap: unset;
             }
@@ -195,21 +174,7 @@
         }
 
         .bn632-hover {
-            /*width: 180px;*/
-            /*font-size: 16px;*/
-            /*font-weight: 600;*/
-            /*color: #fff;*/
-            /*cursor: pointer;*/
-            /*margin: 20px;*/
-            /*text-align: center;*/
-            /*border: none;*/
-            /*background-size: 300% 100%;*/
-            /*border-radius: 50px;*/
-            /*moz-transition: all .4s ease-in-out;*/
-            /*-o-transition: all .4s ease-in-out;*/
-            /*-webkit-transition: all .4s ease-in-out;*/
-            /*transition: all .4s ease-in-out;*/
-
+            font-family: inherit;
             margin: 20px;
             display: inline-flex;
             justify-content: center;
@@ -224,30 +189,6 @@
             cursor: pointer;
         }
 
-        .bn632-hover:hover {
-            /*background-position: 100% 0;*/
-            /*moz-transition: all .4s ease-in-out;*/
-            /*-o-transition: all .4s ease-in-out;*/
-            /*-webkit-transition: all .4s ease-in-out;*/
-            /*transition: all .4s ease-in-out;*/
-        }
-
-        .bn632-hover:focus {
-            /*outline: none;*/
-        }
-
-
-        .bn632-hover.bn28 {
-            /*background-image: linear-gradient(*/
-            /*        to right,*/
-            /*        #eb3941,*/
-            /*        #f15e64,*/
-            /*        #e14e53,*/
-            /*        #e2373f*/
-            /*);*/
-            /*box-shadow: 0 5px 15px rgba(242, 97, 103, 0.4);*/
-        }
-
         .cdp-banner-bg {
             padding: 24px;
         }
@@ -260,15 +201,14 @@
         }
 
         .btn-trigger-form {
-            font-weight: bold;
+            font-family: inherit;
+            font-weight: 500;
             font-size: 1.5em;
             letter-spacing: 0.1em;
             text-decoration: none;
             color: #000;
             text-transform: uppercase;
         }
-
-
 
     </style>
 
@@ -561,7 +501,7 @@
             }
           },
           webPopup: {
-            enabled: false,
+            enabled: true,
             options: {
               showLogs: false,
               onsiteWorkerPath: "./posjs-worker.js",
@@ -704,7 +644,7 @@
     document.getElementById("form_field").style.display = "none";
   }
 
-
+  initDataSource()
 </script>
 
 

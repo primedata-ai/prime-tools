@@ -48,7 +48,7 @@
             /*row-gap: 24px;*/
             display: flex;
             justify-content: space-between;
-            padding: 24px;
+            padding: 0 24px;
         }
 
         .cdp_info {
@@ -127,7 +127,7 @@
             display: none;
             flex-direction: column;
             gap: 12px;
-            margin-top: 24px;
+            /*margin-top: 24px;*/
         }
 
 
@@ -138,13 +138,13 @@
 
         .status_headline {
             color: #000;
-            font-size: 24px;
-            line-height: 32px;
+            font-size: 18px;
+            line-height: 22px;
             text-align: center;
         }
 
 
-        @media screen and (max-width: 768px) {
+        @media screen and (max-width: 1024px) {
 
             .form-container {
                 padding: 24px;
@@ -197,7 +197,7 @@
             display: flex;
             width: 100%;
             justify-content: center;
-            padding: 24px 0;
+            padding-bottom: 24px ;
         }
 
         .btn-trigger-form {
@@ -234,11 +234,10 @@
                     nguyên giá từ Aristino. <br>
                     Để nhận Voucher ưu đãi, Quý khách vui lòng thực hiện các bước sau: <br>
                     <br>
-                    - Bước 1: Nhấn vào nút "NHẬN VOUCHER NGAY"<br>
-                    - Bước 2: Để lại thông tin nhận Voucher
+                    - Bước 1: Để lại thông tin nhận Voucher
                     <br>
-                    - Bước 3: Mã Voucher sẽ được gửi tới Email của Quý Khách<br>
-                    - Bước 4: Dùng mã Voucher để mua sắm tại website Aristino.com<br>
+                    - Bước 2: Mã Voucher sẽ được gửi tới Email của Quý Khách<br>
+                    - Bước 3: Dùng mã Voucher để mua sắm tại website Aristino.com<br>
                     <br>
                     Ngoài Voucher ưu đãi 50K cho đơn hàng 500K, Quý khách sẽ được nhận một phần quà bí mật từ Aristino
                     được gửi về Email. <br>
@@ -273,8 +272,7 @@
 <!--                <h3 class="form_headline">Đăng ký ngay hôm nay <br> để nhận ưu đãi khai trương</h3>-->
 
                 <div id="form_status">
-                    <p class="status_headline">Chúc mừng bạn đã đăng ký thành công</p>
-                    <p class="status_headline">Mời bạn kiểm tra email để nhận ưu đãi</p>
+                    <p class="status_headline">Cảm ơn quý khách, vui lòng kiểm tra hộp thư để nhận và sử dụng voucher tại các cửa hàng Aristino toàn quốc.</p>
                 </div>
 
                 <div id="form_field">
@@ -395,9 +393,9 @@
                                 </div>
 
                                 <div class="f_item">
-                                    <label class="lbf" for="cdp_email">Email</label>
+                                    <label class="lbf" for="cdp_email">Email <span class="required">*</span></label>
                                     <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-                                           title="Địa chỉ email không hợp lệ" class="form-input" id="cdp_email"
+                                           title="Địa chỉ email không hợp lệ" required class="form-input" id="cdp_email"
                                            name="email"
                                            placeholder="Địa chỉ email" value="">
                                 </div>
@@ -433,7 +431,7 @@
   function initDataForm() {
     flatpickr("#cdp_dob", {
       enableTime: false,
-      dateFormat: "F, d Y H:i",
+      dateFormat: "F, d Y",
       locale: "vn"
     });
   }

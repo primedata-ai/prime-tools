@@ -1,0 +1,649 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>QC Gift Voucher</title>
+    <link rel="canonical" href="http://www.snet.today/aristo"/>
+    <meta property="og:url" content="http://www.snet.today/aristo"/>
+    <meta property="og:title" content="Aristino Form"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:description" content="Aristino Form"/>
+    <meta name="format-detection" content="telephone=no"/>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+            text-decoration: none;
+            box-sizing: border-box;
+            font-family: "Montserrat", sans-serif;
+        }
+
+        .cdp_lead_form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+        }
+
+        section {
+            width: calc(100vw - 30%);
+            margin: 0;
+        }
+
+
+        .cdp_row {
+            /*display: grid;*/
+            /*grid-template-columns: auto auto;*/
+            /*column-gap: 24px;*/
+            /*row-gap: 24px;*/
+            display: flex;
+            justify-content: space-between;
+            padding: 0 24px;
+        }
+
+        .cdp_info {
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            padding: 24px;
+        }
+
+        .cdp_form {
+            border: 1px solid #000;
+            padding: 24px;
+        }
+
+        .lbf {
+            margin-top: 12px;
+            margin-bottom: 4px;
+        }
+
+        .lbf .required {
+            color: red;
+        }
+
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+            border-radius: 24px;
+            justify-content: center;
+        }
+
+        .form_headline {
+            text-transform: uppercase;
+            text-align: center;
+            color: orangered;
+        }
+
+        .form-input {
+            height: 40px;
+            border-radius: 8px;
+            text-align: left;
+            min-width: 200px;
+            border: 1px solid #d6d6d7;
+            padding: 4px 8px;
+        }
+
+        .f_inline {
+            display: grid;
+            column-gap: 24px;
+            row-gap: 24px;
+            grid-template-columns: calc(50% - 12px) calc(50% - 12px);
+        }
+
+        .f_item {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .field_center {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            height: 100%;
+        }
+
+        .f_radio_item {
+            margin-right: 12px;
+        }
+
+        .form-action {
+            text-align: center;
+        }
+
+        #form_status {
+            display: none;
+            flex-direction: column;
+            gap: 12px;
+            /*margin-top: 24px;*/
+        }
+
+
+        #form_field {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .status_headline {
+            color: #000;
+            font-size: 18px;
+            line-height: 22px;
+            text-align: center;
+        }
+
+
+        @media screen and (max-width: 1024px) {
+
+            .form-container {
+                padding: 24px;
+            }
+
+            .cdp_row {
+                flex-direction: column;
+            }
+
+            section {
+                width: 100%;
+            }
+
+            .f_inline {
+                grid-template-columns: auto;
+                row-gap: unset;
+            }
+
+            .cdp_info, .cdp_form {
+                width: 100%;
+            }
+
+            .cdp_form {
+                padding: 24px 0;
+            }
+
+        }
+
+        .bn632-hover {
+            font-family: inherit;
+            margin: 20px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            padding: 14px;
+            width: 237px;
+            height: 49px;
+            background: #D10019;
+            color: #fff;
+            border: 0;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .cdp-banner-bg {
+            padding: 24px;
+        }
+
+        .cta-wrapper {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            padding-bottom: 24px ;
+        }
+
+        .btn-trigger-form {
+            font-family: inherit;
+            font-weight: 500;
+            font-size: 1.5em;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            color: #000;
+            text-transform: uppercase;
+        }
+
+    </style>
+
+    <script src="https://kit.fontawesome.com/e97f01f33c.js" crossorigin="anonymous"></script>
+    <!--  Flatpicker Styles  -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/vn.js"></script>
+</head>
+<body>
+
+<main class="cdp_lead_form">
+
+    <section id="form_info">
+        <div class="cdp_row">
+            <div class="cdp_info">
+                <div class=" body_content">
+                    Chúc mừng Quý khách đã trở thành khách hàng may mắn nhận được Voucher ưu đãi 50K cho đơn hàng 500K
+                    nguyên giá từ Aristino. <br>
+                    Để nhận Voucher ưu đãi, Quý khách vui lòng thực hiện các bước sau: <br>
+                    <br>
+                    - Bước 1: Để lại thông tin nhận Voucher
+                    <br>
+                    - Bước 2: Mã Voucher sẽ được gửi tới Email của Quý Khách<br>
+                    - Bước 3: Dùng mã Voucher để mua sắm tại website Aristino.com<br>
+                    <br>
+                    Ngoài Voucher ưu đãi 50K cho đơn hàng 500K, Quý khách sẽ được nhận một phần quà bí mật từ Aristino
+                    được gửi về Email. <br>
+                    Thời gian sử dụng Voucher: 01.04 - 30.04.2022 <br>
+                    Địa chỉ áp dụng: Mua hàng trên website Aristino.com <br>
+                    <i><strong>Lưu ý:</strong> Voucher không có giá trị cộng gộp, không áp dụng đồng thời CTKM khác, chỉ
+                        áp dụng khi mua hàng nguyên giá.</i><br>
+                    <br>
+                    <i>Hotline hỗ trợ: 1800.6226<br>
+                        Email: cskh@kgvietnam.com
+                    </i>
+                    <br>
+                    <br>
+                </div>
+            </div>
+
+            <div id="photo-banner" class="cdp-banner-bg">
+                <img  width="100%" src="../statics/TMDT-01.png" alt="TMDT-01">
+            </div>
+
+        </div>
+
+        <div class="cta-wrapper">
+            <h3 class="btn-trigger-form" >Đăng ký tham gia</h3>
+        </div>
+
+    </section>
+
+    <section id="section-form-register">
+        <div id="subscribe" class="cdp_form">
+            <form action="#" onsubmit="onSubmitContactForm();return false" class="form-container">
+<!--                <h3 class="form_headline">Đăng ký ngay hôm nay <br> để nhận ưu đãi khai trương</h3>-->
+
+                <div id="form_status">
+                    <p class="status_headline">Cảm ơn quý khách, vui lòng kiểm tra hộp thư để nhận và sử dụng voucher tại các cửa hàng Aristino toàn quốc.</p>
+                </div>
+
+                <div id="form_field">
+
+                    <div class="f_inline">
+                        <div class="f_item">
+                            <label class="lbf" for="cdp_fname">Họ và tên <span class="required">*</span></label>
+                            <input required class="form-input" type="text" id="cdp_fname" name="fname"
+                                   placeholder="Họ và tên" value="">
+                        </div>
+
+                        <div class="f_item">
+
+                            <div class="f_inline">
+
+                                <div class="f_item">
+                                    <p class="lbf">Giới tính <span class="required">*</span></p>
+                                    <div class="field_center">
+                                        <div class="f_radio_item">
+                                            <input required type="radio" id="cdp_gender_male"
+                                                   name="cdp_gender_male" value="Nam" checked>
+                                            <label for="cdp_gender_male">Nam</label>
+                                        </div>
+                                        <div class="f_radio_item">
+                                            <input type="radio" id="cdp_gender_female"
+                                                   name="cdp_gender_male" value="Nữ">
+                                            <label for="cdp_gender_female">Nữ</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="f_item">
+                                    <label class="lbf" for="cdp_city">Tỉnh/Thành phố <span class="required">*</span></label>
+                                    <select class="form-input" name="cdp_city" id="cdp_city" required >
+                                        <option value="50538">Hà Nội</option>
+                                        <option value="50539">Hà Giang</option>
+                                        <option value="50540">Cao Bằng</option>
+                                        <option value="50541">Bắc Kạn</option>
+                                        <option value="50542">Tuyên Quang</option>
+                                        <option value="50543">Lào Cai</option>
+                                        <option value="50544">Điện Biên</option>
+                                        <option value="50545">Lai Châu</option>
+                                        <option value="50546">Sơn La</option>
+                                        <option value="50547">Yên Bái</option>
+                                        <option value="50548">Hoà Bình</option>
+                                        <option value="50549">Thái Nguyên</option>
+                                        <option value="50550">Lạng Sơn</option>
+                                        <option value="50551">Quảng Ninh</option>
+                                        <option value="50552">Bắc Giang</option>
+                                        <option value="50553">Phú Thọ</option>
+                                        <option value="50554">Vĩnh Phúc</option>
+                                        <option value="50555">Bắc Ninh</option>
+                                        <option value="50556">Hải Dương</option>
+                                        <option value="50557">Hải Phòng</option>
+                                        <option value="50558">Hưng Yên</option>
+                                        <option value="50559">Thái Bình</option>
+                                        <option value="50560">Hà Nam</option>
+                                        <option value="50561">Nam Định</option>
+                                        <option value="50562">Ninh Bình</option>
+                                        <option value="50563">Thanh Hóa</option>
+                                        <option value="50564">Nghệ An</option>
+                                        <option value="50565">Hà Tĩnh</option>
+                                        <option value="50566">Quảng Bình</option>
+                                        <option value="50567">Quảng Trị</option>
+                                        <option value="50568">Thừa Thiên Huế</option>
+                                        <option value="50569">Đà Nẵng</option>
+                                        <option value="50570">Quảng Nam</option>
+                                        <option value="50571">Quảng Ngãi</option>
+                                        <option value="50572">Bình Định</option>
+                                        <option value="50573">Phú Yên</option>
+                                        <option value="50574">Khánh Hòa</option>
+                                        <option value="50575">Ninh Thuận</option>
+                                        <option value="50576">Bình Thuận</option>
+                                        <option value="50577">Kon Tum</option>
+                                        <option value="50578">Gia Lai</option>
+                                        <option value="50579">Đắk Lắk</option>
+                                        <option value="50580">Đắk Nông</option>
+                                        <option value="50581">Lâm Đồng</option>
+                                        <option value="50582">Bình Phước</option>
+                                        <option value="50583">Tây Ninh</option>
+                                        <option value="50584">Bình Dương</option>
+                                        <option value="50585">Đồng Nai</option>
+                                        <option value="50586">Bà Rịa - Vũng Tàu</option>
+                                        <option value="50587">Hồ Chí Minh</option>
+                                        <option value="50588">Long An</option>
+                                        <option value="50589">Tiền Giang</option>
+                                        <option value="50590">Bến Tre</option>
+                                        <option value="50591">Trà Vinh</option>
+                                        <option value="50592">Vĩnh Long</option>
+                                        <option value="50593">Đồng Tháp</option>
+                                        <option value="50594">An Giang</option>
+                                        <option value="50595">Kiên Giang</option>
+                                        <option value="50596">Cần Thơ</option>
+                                        <option value="50597">Hậu Giang</option>
+                                        <option value="50598">Sóc Trăng</option>
+                                        <option value="50599">Bạc Liêu</option>
+                                        <option value="50600">Cà Mau</option>
+                                    </select>
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
+                    <div class="f_inline">
+                        <div class="f_item">
+                            <div class="f_inline">
+                                <div class="f_item">
+                                    <label class="lbf" for="cdp_phone">Số điện thoại <span class="required">*</span></label>
+                                    <input pattern="(\+84|0)\d{9,10}" title="Số điện thoại không hợp lệ" required
+                                           class="form-input"
+                                           type="text" id="cdp_phone" name="phone" placeholder="Số điện thoại"
+                                           value="">
+
+                                </div>
+
+                                <div class="f_item">
+                                    <label class="lbf" for="cdp_email">Email <span class="required">*</span></label>
+                                    <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                                           title="Địa chỉ email không hợp lệ" required class="form-input" id="cdp_email"
+                                           name="email"
+                                           placeholder="Địa chỉ email" value="">
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="f_item">
+
+                            <label class="lbf" for="cdp_dob">Ngày sinh</label>
+                            <input type="text" id="cdp_dob" class="form-input" placeholder="Ngày sinh của bạn"
+                                   data-input>
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="form-action">
+                        <button id="btn-submit-cdp_form" style="height: 40px" class="bn632-hover bn28"
+                                type="submit">Nhận voucher ngay
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</main>
+
+</body>
+<script>
+  function initDataForm() {
+    flatpickr("#cdp_dob", {
+      enableTime: false,
+      dateFormat: "F, d Y",
+      locale: "vn"
+    });
+  }
+
+  initDataForm();
+
+  function initDataSource() {
+    // PrimeData JS SDK
+    !function () {
+      var follower = window.follower = window.follower || [];
+      if (!follower.initialize) if (follower.invoked) window.console && console.error && console.error("PrimeDATA snippet included twice."); else {
+        follower.invoked = !0;
+        follower.methods = ["initOneSignal", "initWebPush", "initWebPopup", "utils", "trackSubmit", "trackClick", "trackLink", "trackForm", "pageview", "personalize", "identify", "initialize", "reset", "group", "track", "ready", "alias", "debug", "page", "once", "off", "on", "addSourceMiddleware", "addIntegrationMiddleware", "setAnonymousId", "addDestinationMiddleware"];
+        follower.factory = function (t) {
+          return function () {
+            var e = Array.prototype.slice.call(arguments);
+            e.unshift(t);
+            follower.push(e);
+            return follower;
+          };
+        };
+        for (var t = 0; t < follower.methods.length; t++) {
+          var e = follower.methods[t];
+          follower[e] = follower.factory(e);
+        }
+        follower.load = function (t, e) {
+          var n = document.createElement("script");
+          n.type = "text/javascript";
+          n.async = !0;
+          n.src = "https://primedata.aristino.com/powehi/mining.js";
+          var a = document.getElementsByTagName("script")[0];
+          a.parentNode.insertBefore(n, a);
+          follower._loadOptions = e;
+        };
+        follower.SNIPPET_VERSION = "0.1.0";
+        follower.load();
+        const primeJsOpts = {
+          scope: "JS-1rNSiugS2Ymue2sFSKZfQsOfrGS",
+          url: "https://primedata.aristino.com/powehi",
+          writeKey: "1rNSivbljtItN2nM5opiNT3faqz",
+          initialPageProperties: {
+            pageInfo: {
+              destinationURL: location.href
+            }
+          },
+          detectAdBlock: {
+            enable: false,
+            bannerMessage: "You are on the ad blocker. Our feature does not work well when your ad blocker is enabled on this site. To fully enjoy the service, please disable the ad blocker on our site. We guarantee that there will be no ads on our site.",
+            closeButtonLabel: "close"
+          },
+          webPush: {
+            enabled: false,
+            options: {
+              showLogs: false,
+              endpoint: "https://primedata.aristino.com",
+              firebaseMessagingSwUrl: "./firebase-messaging-sw.js",
+              firebaseConfig: {
+                authDomain: "aristino-webpush.firebaseapp.com",
+                projectId: "aristino-webpush",
+                storageBucket: "aristino-webpush.appspot.com",
+                messagingSenderId: "839057798326",
+                appId: "1:839057798326:web:c1c02082bdb2c52336e217",
+                apiKey: "AIzaSyCpP5Z1ZEAWj85sMGCPGEUoZpJRtP1GbQI"
+              }
+            }
+          },
+          webPopup: {
+            enabled: true,
+            options: {
+              showLogs: false,
+              onsiteWorkerPath: "./posjs-worker.js",
+              endpoint: "https://primedata.aristino.com"
+            }
+          },
+          oneSignal: {
+            enabled: false,
+            options: {
+              showLogs: false,
+              embedOneSignalSDK: false,
+              appId: "679be029-5cd1-4353-9d24-cc563201468e"
+            }
+          }
+        };
+        follower.initialize({"Prime Data": primeJsOpts});
+
+        if (primeJsOpts.webPush && primeJsOpts.webPush.enabled) {
+          if (firebase && !firebase.apps.length) {
+            firebase.initializeApp(primeJsOpts.webPush.options.firebaseConfig);
+          }
+          follower.initWebPush(primeJsOpts.webPush.options);
+        }
+
+        if (primeJsOpts.webPopup && primeJsOpts.webPopup.enabled) {
+          follower.initWebPopup(primeJsOpts);
+        }
+
+        if (primeJsOpts.oneSignal && primeJsOpts.oneSignal.enabled) {
+          follower.initOneSignal(primeJsOpts);
+        }
+      }
+    }();
+  }
+
+  function onSubmitContactForm() {
+    let cityData = [
+      {value: "0", title: "Chọn"},
+      {value: "50538", title: "Hà Nội"},
+      {value: "50539", title: "Hà Giang"},
+      {value: "50540", title: "Cao Bằng"},
+      {value: "50541", title: "Bắc Kạn"},
+      {value: "50542", title: "Tuyên Quang"},
+      {value: "50543", title: "Lào Cai"},
+      {value: "50544", title: "Điện Biên"},
+      {value: "50545", title: "Lai Châu"},
+      {value: "50546", title: "Sơn La"},
+      {value: "50547", title: "Yên Bái"},
+      {value: "50548", title: "Hoà Bình"},
+      {value: "50549", title: "Thái Nguyên"},
+      {value: "50550", title: "Lạng Sơn"},
+      {value: "50551", title: "Quảng Ninh"},
+      {value: "50552", title: "Bắc Giang"},
+      {value: "50553", title: "Phú Thọ"},
+      {value: "50554", title: "Vĩnh Phúc"},
+      {value: "50555", title: "Bắc Ninh"},
+      {value: "50556", title: "Hải Dương"},
+      {value: "50557", title: "Hải Phòng"},
+      {value: "50558", title: "Hưng Yên"},
+      {value: "50559", title: "Thái Bình"},
+      {value: "50560", title: "Hà Nam"},
+      {value: "50561", title: "Nam Định"},
+      {value: "50562", title: "Ninh Bình"},
+      {value: "50563", title: "Thanh Hóa"},
+      {value: "50564", title: "Nghệ An"},
+      {value: "50565", title: "Hà Tĩnh"},
+      {value: "50566", title: "Quảng Bình"},
+      {value: "50567", title: "Quảng Trị"},
+      {value: "50568", title: "Thừa Thiên Huế"},
+      {value: "50569", title: "Đà Nẵng"},
+      {value: "50570", title: "Quảng Nam"},
+      {value: "50571", title: "Quảng Ngãi"},
+      {value: "50572", title: "Bình Định"},
+      {value: "50573", title: "Phú Yên"},
+      {value: "50574", title: "Khánh Hòa"},
+      {value: "50575", title: "Ninh Thuận"},
+      {value: "50576", title: "Bình Thuận"},
+      {value: "50577", title: "Kon Tum"},
+      {value: "50578", title: "Gia Lai"},
+      {value: "50579", title: "Đắk Lắk"},
+      {value: "50580", title: "Đắk Nông"},
+      {value: "50581", title: "Lâm Đồng"},
+      {value: "50582", title: "Bình Phước"},
+      {value: "50583", title: "Tây Ninh"},
+      {value: "50584", title: "Bình Dương"},
+      {value: "50585", title: "Đồng Nai"},
+      {value: "50586", title: "Bà Rịa - Vũng Tàu"},
+      {value: "50587", title: "Hồ Chí Minh"},
+      {value: "50588", title: "Long An"},
+      {value: "50589", title: "Tiền Giang"},
+      {value: "50590", title: "Bến Tre"},
+      {value: "50591", title: "Trà Vinh"},
+      {value: "50592", title: "Vĩnh Long"},
+      {value: "50593", title: "Đồng Tháp"},
+      {value: "50594", title: "An Giang"},
+      {value: "50595", title: "Kiên Giang"},
+      {value: "50596", title: "Cần Thơ"},
+      {value: "50597", title: "Hậu Giang"},
+      {value: "50598", title: "Sóc Trăng"},
+      {value: "50599", title: "Bạc Liêu"},
+      {value: "50600", title: "Cà Mau"}
+    ];
+    let cityName = cityData.find(x => x.value === document.getElementById("cdp_city").value)?.title || "-";
+    let data = {
+      fname: document.getElementById("cdp_fname").value,
+      phone: document.getElementById("cdp_phone").value,
+      email: document.getElementById("cdp_email").value,
+      // address: document.getElementById("cdp_address").value,
+      city: cityName,
+      // job: document.getElementById("cdp_job").value,
+      dob: document.getElementById("cdp_dob").value,
+      gender: document.getElementById("cdp_gender_male").value || document.getElementById("cdp_gender_female").value
+    };
+    window.follower && follower.identify(data.email, {
+      date_of_birth: data.dob,
+      phone_number: data.phone,
+      email: data.email,
+      full_name: data.fname,
+      gender: data.gender,
+      city: data.city
+    }, null, () => {
+      setTimeout(() => {
+        follower.track("LeadFormSubmitted", {
+          "properties": {
+            "city": data.city,
+            "dob": data.dob,
+            "email": data.email,
+            "error_message": "",
+            "full_name": data.fname,
+            "gender": data.gender,
+            "phone_number": data.phone,
+            "status": ""
+          }
+        });
+      }, 2000);
+    });
+
+
+    document.getElementById("form_status").style.display = "flex";
+    document.getElementById("form_field").style.display = "none";
+  }
+
+  initDataSource()
+</script>
+
+
+</html>

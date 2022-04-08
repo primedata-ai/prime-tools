@@ -62,6 +62,10 @@
             padding-bottom: 32px;
         }
 
+        .flatpickr-current-month {
+            width: unset !important;
+        }
+
         .cdp_form {
             border: 1px solid #000;
             padding: 24px;
@@ -131,7 +135,12 @@
             display: none;
             flex-direction: column;
             gap: 12px;
-            /*margin-top: 24px;*/
+        }
+
+        #form_error_status {
+            display: none;
+            flex-direction: column;
+            gap: 12px;
         }
 
 
@@ -141,10 +150,11 @@
         }
 
         .status_headline {
-            color: #000;
+            color: #9E0C0D;
             font-size: 18px;
             line-height: 22px;
             text-align: center;
+            font-style: italic;
         }
 
 
@@ -201,7 +211,7 @@
             display: flex;
             width: 100%;
             justify-content: center;
-            padding-bottom: 24px ;
+            padding-bottom: 24px;
         }
 
         .btn-trigger-form {
@@ -259,13 +269,13 @@
             </div>
 
             <div id="photo-banner" class="cdp-banner-bg">
-                <img  width="100%" src="../statics/TMDT-01.png" alt="TMDT-01">
+                <img width="100%" src="../statics/TMDT-01.png" alt="TMDT-01">
             </div>
 
         </div>
 
         <div class="cta-wrapper">
-            <h3 class="btn-trigger-form" >Đăng ký tham gia</h3>
+            <h3 class="btn-trigger-form">Đăng ký tham gia</h3>
         </div>
 
     </section>
@@ -273,18 +283,21 @@
     <section id="section-form-register">
         <div id="subscribe" class="cdp_form">
             <form action="#" onsubmit="onSubmitContactForm();return false" class="form-container">
-<!--                <h3 class="form_headline">Đăng ký ngay hôm nay <br> để nhận ưu đãi khai trương</h3>-->
+                <!--                <h3 class="form_headline">Đăng ký ngay hôm nay <br> để nhận ưu đãi khai trương</h3>-->
 
                 <div id="form_status">
-                    <p class="status_headline">Cảm ơn quý khách, vui lòng kiểm tra hộp thư để nhận và sử dụng voucher tại các cửa hàng Aristino toàn quốc.</p>
+                    <p class="status_headline">Cảm ơn quý khách, vui lòng kiểm tra hộp thư để nhận và sử dụng voucher
+                        tại các cửa hàng Aristino toàn quốc.</p>
                 </div>
+
+                <div id="form_error_status"></div>
 
                 <div id="form_field">
 
                     <div class="f_inline">
                         <div class="f_item">
                             <label class="lbf" for="cdp_fname">Họ và tên <span class="required">*</span></label>
-                            <input required class="form-input" type="text" id="cdp_fname" name="fname"
+                            <input class="form-input" type="text" id="cdp_fname" name="fname"
                                    placeholder="Họ và tên" value="">
                         </div>
 
@@ -296,7 +309,7 @@
                                     <p class="lbf">Giới tính <span class="required">*</span></p>
                                     <div class="field_center">
                                         <div class="f_radio_item">
-                                            <input required type="radio" id="cdp_gender_male"
+                                            <input type="radio" id="cdp_gender_male"
                                                    name="cdp_gender_male" value="Nam" checked>
                                             <label for="cdp_gender_male">Nam</label>
                                         </div>
@@ -309,8 +322,10 @@
                                 </div>
 
                                 <div class="f_item">
-                                    <label class="lbf" for="cdp_city">Tỉnh/Thành phố <span class="required">*</span></label>
-                                    <select class="form-input" name="cdp_city" id="cdp_city" required >
+                                    <label class="lbf" for="cdp_city">Tỉnh/Thành phố <span
+                                            class="required">*</span></label>
+                                    <select class="form-input" name="cdp_city" id="cdp_city">
+                                        <option value="50587">Hồ Chí Minh</option>
                                         <option value="50538">Hà Nội</option>
                                         <option value="50539">Hà Giang</option>
                                         <option value="50540">Cao Bằng</option>
@@ -360,7 +375,6 @@
                                         <option value="50584">Bình Dương</option>
                                         <option value="50585">Đồng Nai</option>
                                         <option value="50586">Bà Rịa - Vũng Tàu</option>
-                                        <option value="50587">Hồ Chí Minh</option>
                                         <option value="50588">Long An</option>
                                         <option value="50589">Tiền Giang</option>
                                         <option value="50590">Bến Tre</option>
@@ -388,8 +402,9 @@
                         <div class="f_item">
                             <div class="f_inline">
                                 <div class="f_item">
-                                    <label class="lbf" for="cdp_phone">Số điện thoại <span class="required">*</span></label>
-                                    <input pattern="(\+84|0)\d{9,10}" title="Số điện thoại không hợp lệ" required
+                                    <label class="lbf" for="cdp_phone">Số điện thoại <span
+                                            class="required">*</span></label>
+                                    <input title="Số điện thoại không hợp lệ"
                                            class="form-input"
                                            type="text" id="cdp_phone" name="phone" placeholder="Số điện thoại"
                                            value="">
@@ -398,8 +413,8 @@
 
                                 <div class="f_item">
                                     <label class="lbf" for="cdp_email">Email <span class="required">*</span></label>
-                                    <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-                                           title="Địa chỉ email không hợp lệ" required class="form-input" id="cdp_email"
+                                    <input type="email"
+                                           title="Địa chỉ email không hợp lệ" class="form-input" id="cdp_email"
                                            name="email"
                                            placeholder="Địa chỉ email" value="">
                                 </div>
@@ -416,7 +431,6 @@
                         </div>
 
                     </div>
-
 
 
                     <div class="form-action">
@@ -442,101 +456,64 @@
 
   initDataForm();
 
-  function initDataSource() {
-    // PrimeData JS SDK
-    !function () {
-      var follower = window.follower = window.follower || [];
-      if (!follower.initialize) if (follower.invoked) window.console && console.error && console.error("PrimeDATA snippet included twice."); else {
-        follower.invoked = !0;
-        follower.methods = ["initOneSignal", "initWebPush", "initWebPopup", "utils", "trackSubmit", "trackClick", "trackLink", "trackForm", "pageview", "personalize", "identify", "initialize", "reset", "group", "track", "ready", "alias", "debug", "page", "once", "off", "on", "addSourceMiddleware", "addIntegrationMiddleware", "setAnonymousId", "addDestinationMiddleware"];
-        follower.factory = function (t) {
-          return function () {
-            var e = Array.prototype.slice.call(arguments);
-            e.unshift(t);
-            follower.push(e);
-            return follower;
-          };
-        };
-        for (var t = 0; t < follower.methods.length; t++) {
-          var e = follower.methods[t];
-          follower[e] = follower.factory(e);
-        }
-        follower.load = function (t, e) {
-          var n = document.createElement("script");
-          n.type = "text/javascript";
-          n.async = !0;
-          n.src = "https://primedata.aristino.com/powehi/mining.js";
-          var a = document.getElementsByTagName("script")[0];
-          a.parentNode.insertBefore(n, a);
-          follower._loadOptions = e;
-        };
-        follower.SNIPPET_VERSION = "0.1.0";
-        follower.load();
-        const primeJsOpts = {
-          scope: "JS-1rNSiugS2Ymue2sFSKZfQsOfrGS",
-          url: "https://primedata.aristino.com/powehi",
-          writeKey: "1rNSivbljtItN2nM5opiNT3faqz",
-          initialPageProperties: {
-            pageInfo: {
-              destinationURL: location.href
-            }
-          },
-          detectAdBlock: {
-            enable: false,
-            bannerMessage: "You are on the ad blocker. Our feature does not work well when your ad blocker is enabled on this site. To fully enjoy the service, please disable the ad blocker on our site. We guarantee that there will be no ads on our site.",
-            closeButtonLabel: "close"
-          },
-          webPush: {
-            enabled: false,
-            options: {
-              showLogs: false,
-              endpoint: "https://primedata.aristino.com",
-              firebaseMessagingSwUrl: "./firebase-messaging-sw.js",
-              firebaseConfig: {
-                authDomain: "aristino-webpush.firebaseapp.com",
-                projectId: "aristino-webpush",
-                storageBucket: "aristino-webpush.appspot.com",
-                messagingSenderId: "839057798326",
-                appId: "1:839057798326:web:c1c02082bdb2c52336e217",
-                apiKey: "AIzaSyCpP5Z1ZEAWj85sMGCPGEUoZpJRtP1GbQI"
-              }
-            }
-          },
-          webPopup: {
-            enabled: true,
-            options: {
-              showLogs: false,
-              onsiteWorkerPath: "./posjs-worker.js",
-              endpoint: "https://primedata.aristino.com"
-            }
-          },
-          oneSignal: {
-            enabled: false,
-            options: {
-              showLogs: false,
-              embedOneSignalSDK: false,
-              appId: "679be029-5cd1-4353-9d24-cc563201468e"
-            }
-          }
-        };
-        follower.initialize({"Prime Data": primeJsOpts});
+  function validateFormSubmit(formData) {
+    let valid = {
+      isValid: true,
+      error: ""
+    };
 
-        if (primeJsOpts.webPush && primeJsOpts.webPush.enabled) {
-          if (firebase && !firebase.apps.length) {
-            firebase.initializeApp(primeJsOpts.webPush.options.firebaseConfig);
-          }
-          follower.initWebPush(primeJsOpts.webPush.options);
-        }
+    if (!formData.fname) {
+      valid.error = "Bạn vui lòng nhập đầy đủ họ tên để làm thông tin nhận voucher!";
+      valid.isValid = false;
+      return valid;
+    }
 
-        if (primeJsOpts.webPopup && primeJsOpts.webPopup.enabled) {
-          follower.initWebPopup(primeJsOpts);
-        }
+    if (!formData.phone) {
+      valid.error = "Bạn vui lòng nhập số điện thoại để làm thông tin nhận voucher!";
+      valid.isValid = false;
+      return valid;
+    }
 
-        if (primeJsOpts.oneSignal && primeJsOpts.oneSignal.enabled) {
-          follower.initOneSignal(primeJsOpts);
-        }
+    if (formData.phone) {
+      let regexPhoneNumber = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+
+      if(!regexPhoneNumber.test(formData.phone)){
+        valid.error = "Bạn vui lòng nhập số điện thoại đúng định dạng!";
+        valid.isValid = false;
+        return valid;
       }
-    }();
+    }
+
+    if (!formData.email) {
+      valid.error = "Bạn vui lòng nhập email để nhận voucher!";
+      valid.isValid = false;
+      return valid;
+    }
+
+    if(formData.email){
+      let regexEmail = /^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+
+      if(!regexEmail.test(formData.email)){
+        valid.error = "Bạn vui lòng nhập email đúng định dạng!";
+        valid.isValid = false;
+        return valid;
+      }
+    }
+
+    if (!formData.gender) {
+      valid.error = "Bạn vui lòng cho biết giới tính của bạn để nhận voucher phù hợp!";
+      valid.isValid = false;
+      return valid;
+    }
+
+    if (!formData.city) {
+      valid.error = "Bạn vui lòng nhập tỉnh thành phố nơi bạn sinh sống để nhận voucher phù hợp!";
+      valid.isValid = false;
+      return valid;
+    }
+
+
+    return valid;
   }
 
   function onSubmitContactForm() {
@@ -611,42 +588,62 @@
       fname: document.getElementById("cdp_fname").value,
       phone: document.getElementById("cdp_phone").value,
       email: document.getElementById("cdp_email").value,
-      // address: document.getElementById("cdp_address").value,
       city: cityName,
-      // job: document.getElementById("cdp_job").value,
       dob: document.getElementById("cdp_dob").value,
       gender: document.getElementById("cdp_gender_male").value || document.getElementById("cdp_gender_female").value
     };
-    window.follower && follower.identify(data.email, {
-      date_of_birth: data.dob,
-      phone_number: data.phone,
-      email: data.email,
-      full_name: data.fname,
-      gender: data.gender,
-      city: data.city
-    }, null, () => {
-      setTimeout(() => {
-        follower.track("LeadFormSubmitted", {
-          "properties": {
-            "city": data.city,
-            "dob": data.dob,
-            "email": data.email,
-            "error_message": "",
-            "full_name": data.fname,
-            "gender": data.gender,
-            "phone_number": data.phone,
-            "status": ""
-          }
-        });
-      }, 2000);
-    });
+    let valid = validateFormSubmit(data);
+
+    if (!valid.isValid) {
+      trackEvent(data, valid);
+      document.getElementById("form_error_status").style.display = "flex";
+      document.getElementById("form_error_status").style.color = "#9E0C0D";
+      document.getElementById("form_error_status").textContent = valid.error;
+
+    } else {
+      identifyProfile(data, valid);
+      document.getElementById("form_error_status").style.display = "none";
+      document.getElementById("form_error_status").textContent = "";
+
+      document.getElementById("form_status").style.display = "flex";
+      document.getElementById("form_field").style.display = "none";
+    }
 
 
-    document.getElementById("form_status").style.display = "flex";
-    document.getElementById("form_field").style.display = "none";
   }
 
-  //initDataSource()
+  function identifyProfile(data, valid) {
+    if (data.email || data.phone || data.fname) {
+      window.follower && follower.identify(data.email || data.phone || data.fname, {
+        date_of_birth: data.dob,
+        phone_number: data.phone,
+        email: data.email,
+        full_name: data.fname,
+        gender: data.gender,
+        city: data.city
+      }, null, () => {
+        setTimeout(() => {
+          trackEvent(data, valid);
+        }, 2000);
+      });
+    } else trackEvent(data, valid);
+  }
+
+  function trackEvent(data, valid) {
+    follower.track("LeadFormSubmitted", {
+      "properties": {
+        "city": data.city,
+        "dob": data.dob,
+        "email": data.email,
+        "error_message": valid.error,
+        "full_name": data.fname,
+        "gender": data.gender,
+        "phone_number": data.phone,
+        "status": valid.isValid ? "Successfully" : "Failed"
+      }
+    });
+  }
+
 </script>
 
 

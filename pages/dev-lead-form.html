@@ -595,7 +595,7 @@
     let valid = validateFormSubmit(data);
 
     if (!valid.isValid) {
-      identifyProfile(data, valid);
+      trackEvent(data, valid);
       document.getElementById("form_error_status").style.display = "flex";
       document.getElementById("form_error_status").style.color = "#9E0C0D";
       document.getElementById("form_error_status").textContent = valid.error;

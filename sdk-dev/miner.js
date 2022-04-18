@@ -13956,6 +13956,7 @@
       var integration = require("@segment/analytics.js-integration");
       var extend = require("extend");
       var SDKUtils = require("prime-utils");
+      var PrimeServices = require("prime-services");
 
       var Prime = (module.exports = integration("Prime Data")
         .global("cxs")
@@ -16371,17 +16372,16 @@
         // us another way of knowing that we are processing a form.
         var arg = track.properties();
 
-        try {
-
-          var err = this.validate(track);
-          if (!err.valid) {
-            // console.error("ERROR: ",err);
-            console.error("CDP ERROR: Sorry, have an error with event \"" + err.event + "\": ", err);
-            // return;
-          }
-        } catch (error) {
-          console.error(error);
-        }
+        // PDT-1527 remove validate event, entity schema in client SDK JS
+        // try {
+        //   var err = this.validate(track);
+        //   if (!err.valid) {
+        //     console.error("CDP ERROR: Sorry, have an error with event \"" + err.event + "\": ", err);
+        //     // return;
+        //   }
+        // } catch (error) {
+        //   console.error(error);
+        // }
 
 
         var target = arg.target || this.buildTargetPage();
@@ -16428,6 +16428,13 @@
         }
 
         jsonData.sessionId = this.sessionId;
+
+        // PDT-1774 - [FE] - Implement call API context
+        let searchQueryContext = SDKUtils.getSearchParamFromUrl(window.location.href);
+        if(searchQueryContext?.pdid) {
+          console.log(searchQueryContext.pdid);
+          jsonData.profileId = searchQueryContext.pdid;
+        }
 
         var contextUrl = this.options.url + "/context";
         if (invalidate) {
@@ -16884,7 +16891,8 @@
       "@segment/utm-params": 45,
       "component-cookie": 49,
       "extend": 65,
-      "prime-utils": 111
+      "prime-utils": 111,
+      "prime-services": 116,
     }],
     109: [function (require, module, exports) {
       (function (global) {
@@ -17189,6 +17197,36 @@
         },
 
         /**
+         * getSearchParamFromUrl
+         * @param urlParam
+         * @returns {{}|null}
+         */
+        getSearchParamFromUrl: function (urlParam){
+          if (urlParam.indexOf("?") === -1) {
+            return null;
+          }
+
+          const queryString = urlParam.substring(urlParam.indexOf("?"), urlParam.length);
+
+          const urlParams = new URLSearchParams(queryString);
+
+          const // keys = urlParams.keys(),
+            // values = urlParams.values(),
+            entries = urlParams.entries();
+
+          // for (const key of keys) console.table(key);
+
+          // for (const value of values) console.table(value);
+
+          let objectJson = {};
+          for (const entry of entries) {
+            objectJson[entry[0]] = entry[1];
+          }
+
+          return objectJson;
+        },
+
+        /**
          * getDevicesInfo: get IP, platform, network, user-agent, ...
          * @returns {{}}
          */
@@ -17438,6 +17476,8 @@
       var PrimeLocalQueue = require("prime-local-queue");
       var primeLocalQueue = new PrimeLocalQueue("cdp_onsite_queue");
       var styleLogging = SDKUtils.styleLogging;
+      // Separator để ngăn cách phần event alias và event id trong button_event channel message lúc tạo collect lead popup
+      var SEPARATOR_PREFIX = "@PrimeData.ai@";
 
       var WebOnsitePrimeSDK = function (configs) {
         if (!configs) {
@@ -17532,6 +17572,37 @@
 
           },
           /**
+           * trackEventCollectLeadForm
+           * @param eventAlias => event to track
+           * @param forms => list forms elements
+           * @param cb => callback function
+           */
+          trackEventCollectLeadForm: function(eventAlias, forms, cb) {
+            let data = {
+              email: "",
+              date_of_birth: "",
+              phone_number: "",
+              full_name: "",
+              gender: "",
+              city: ""
+            }
+            forms.forEach(element => {
+              let valueInput = document.getElementById(element.fieldType)?.value || ""
+              if(element.fieldType === "EMAIL") data.email = valueInput;
+              if(element.fieldType === "PHONE") data.phone_number = valueInput;
+              if(element.fieldType === "GENDER") data.gender = valueInput.toLowerCase().includes("nam") ? "Nam" : "Nữ";
+              if(element.fieldType === "CITY") data.city = valueInput;
+              if(element.fieldType === "FULL_NAME") data.full_name = valueInput;
+              if(element.fieldType === "DOB") data.date_of_birth = valueInput;
+            })
+            isShowLog && console.log("OS Logging::: Identify profile with data::: ", data);
+            data?.email && window.follower.identify(data.email, {...data}, null, () => {
+              isShowLog && console.log("OS Logging::: Track event with alias::: ", eventAlias);
+              eventAlias && window.follower.track(eventAlias, {});
+              cb && cb()
+            });
+          },
+          /**
            * Mapping data from socket to pathfora format
            * @param messageDataParam
            * @returns {{msg: (string|*), image: *, onModalClose: onModalClose, cancelShow: boolean, okMessage: *, colors: {actionText: string, actionBackground: string, background: string, text: string, headline: string, close: string}, layout: string, onInit: onInit, displayConditions: {hideAfterAction: *}, variant: number, theme, position: string, confirmAction: {name: *, callback: confirmAction.callback}, fields: {phone: boolean, name: boolean, company: boolean, title: boolean, message: boolean, email: boolean}, headline: *, formElements: (*|*[])}}
@@ -17580,10 +17651,31 @@
 
             var layoutType = data.layout ? (data.layout.type || "") : "";
             const layout = layoutSwitchCaseObj[layoutType] || layoutSwitchCaseObj.MESSAGE_LAYOUT_MODAL;
-            const formElements = data.form_element ? data.form_element.map(el => ({
-              ...el,
-              type: el.type === "TEXT" ? el.type.toLowerCase() : "email"
-            })) : [];
+
+            let formElements = [];
+
+            if (data?.form_element) {
+              let fieldType = {
+                CITY: "text",
+                EMAIL: "email",
+                FULL_NAME: "text",
+                PHONE: "text",
+                GENDER: "text",
+                DOB: "text",
+                CHECKBOX_GROUP: "text",
+                RADIO_GROUP: "text",
+                TEXTAREA: "text",
+                TEXT: "text",
+                SELECT: "text",
+              };
+
+              formElements = data.form_element.map((el) => ({
+                ...el,
+                type: fieldType[el.type] || "text",
+                fieldType: el.type,
+              }));
+            }
+
 
             const messageId = dataParse ? (dataParse.id || "") : "";
 
@@ -17596,6 +17688,7 @@
                   : data.layout?.collect_leads?.image;
 
             return {
+              className: 'primedata-cdp-popup-onsite-wrapper',
               layout: layout,
               position: "top-fixed",
               headline: data.headline || "",
@@ -17634,7 +17727,18 @@
                   isShowLog && console.log("OS Logging::: campaign response status visited");
                   PrimeOnsiteSDK.handleCampaignResponse(messageId, PrimeOnsiteSDK.eventStatusEnum.visited);
 
-                  window.open(data.cta_button.link);
+
+                  let eventCTAOfCollectLead = data?.cta_button?.button_event
+                  if(eventCTAOfCollectLead){
+                    let eventAlias = eventCTAOfCollectLead.split(SEPARATOR_PREFIX)?.[0]
+                    PrimeOnsiteSDK.trackEventCollectLeadForm(eventAlias, formElements, () => {
+                      data?.cta_button?.link && window.open(data.cta_button.link);
+                    });
+                  } else {
+                    data?.cta_button?.link && window.open(data.cta_button.link);
+                  }
+
+
                 }
               },
               onInit: function (event, module) {
@@ -17724,7 +17828,7 @@
                 modal = new pathfora.Message(modalData);
                 break;
               case "COLLECT_LEADS" :
-                modal = new pathfora.Message(modalData);
+                modal = new pathfora.Form(modalData);
                 break;
               case "PRESENT_MESSAGE" :
                 modal = new pathfora.Message(modalData);
@@ -17758,9 +17862,50 @@
            * @param config
            */
           loadConfigPathfora: function (config) {
+
             const css = `
   .pf-widget-headline {
     line-height: 35px;
+  }
+  
+  @font-face {
+      src: url("${config.endpoint}/fonts/Gilroy-Medium.woff2") format("woff2");
+      font-display: swap;
+      font-family: "Gilroy";
+      font-style: normal;
+      font-weight: 500;
+  }
+  @font-face {
+      src: url("${config.endpoint}/fonts/Gilroy-Bold.woff2") format("woff2");
+      font-display: swap;
+      font-family: "Gilroy";
+      font-style: normal;
+      font-weight: 700;
+  }
+  @font-face {
+      src: url("${config.endpoint}/fonts/Gilroy.woff2") format("woff2");
+      font-display: swap;
+      font-family: "Gilroy";
+      font-style: normal;
+      font-weight: 400;
+  }
+  @font-face {
+      src: url("${config.endpoint}/fonts/Gilroy-Light.woff2") format("woff2");
+      font-display: swap;
+      font-family: "Gilroy";
+      font-style: normal;
+      font-weight: 300;
+  }
+  @font-face {
+      font-family: "Gilroy";
+      font-display: swap;
+      font-style: normal;
+      font-weight: bold;
+      src: url("${config.endpoint}/fonts/SVN-Gilroy SemiBold.otf");
+  }
+  
+  .primedata-cdp-popup-onsite-wrapper {
+    font-family: Gilroy, "svgGilroy" !important;
   }
 `;
             SDKUtils.appendStyle(css);
@@ -18500,6 +18645,86 @@
       };
 
       module.exports = OneSignalPrimeSDK;
-    }, {"prime-utils": 111}]
+    }, {"prime-utils": 111}],
+    116: [function (require, module, exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", {value: true});
+
+      var PrimeServices = {
+        callContextWithNewProfile: function (profile, opts) {
+          console.log('log::18655 callContextWithNewProfile', profile)
+          this.identify(profile, opts);
+        },
+        identify: function(profileId, opts, callback) {
+          const now = new Date().toISOString();
+          let body = {
+            requiredProfileProperties: ["*"],
+            source: {
+              scope: opts.scope,
+              itemId: window.location.pathname,
+              itemType: "page",
+              properties: {
+                screen_width: 2560,
+                screen_height: 1137,
+                connection_type: "4g",
+              },
+            },
+            sendAt: now,
+            events: [
+              {
+                eventType: "identify",
+                scope: opts.scope,
+                target: {
+                  itemId: "identify",
+                  itemType: "analyticsUser",
+                  properties: {
+                    email: "nguyenlephong@primedata.ai",
+                  },
+                },
+                timeStamp: now,
+                source: {
+                  scope: opts.scope,
+                  itemId: "context",
+                  itemType: "page",
+                  properties: {
+                    page: {
+                      path: window.location.pathname,
+                      title: window.document.title,
+                      url: window.location.href,
+                    },
+                  },
+                },
+              },
+            ],
+            sessionId: this.sessionId,
+            profileId: profileId,
+          };
+
+          fetch(opts.url + "/context", {
+            method: 'POST',
+            headers: {
+              "Content-Type": "application/json",
+              "X-Client-Id": opts.scope,
+              "X-Client-Access-Token": opts.writeKey,
+            },
+            body: JSON.stringify(body),
+          })
+            .then(response => response.json())
+            .then(data => {
+              console.log('Context Success:', data);
+              callback && callback(data)
+            })
+            .catch((error) => {
+              console.error('Context Error:', error);
+              callback && callback(error)
+            });
+
+        }
+      };
+
+
+
+      module.exports = PrimeServices;
+    }, {}]
   }, {}, [109])(109);
 });

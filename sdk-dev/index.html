@@ -22,6 +22,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.64.0/mode/javascript/javascript.min.js"
             integrity="sha512-DJ/Flq7rxJDDhgkO49H/rmidX44jmxWot/ku3c+XXEF9XFal78KIpu7w6jEaQhK4jli1U3/yOH+Rp3cIIEYFPQ=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/uuid@latest/dist/umd/uuidv4.min.js"></script>
+    <script src="https://kit.fontawesome.com/8454470208.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="../pages/dist/snackbar.min.css" media="screen" title="no title" charset="utf-8">
     <style>
 
         .pd-12 {
@@ -114,6 +120,14 @@
             border: 1px solid #d6d6d7;
         }
 
+        .title-editor {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            align-content: center;
+            align-items: center;
+        }
+
         @media only screen and (max-width: 600px) {
             .p-content {
                 flex-direction: column;
@@ -131,7 +145,12 @@
 
     <div class="p-content">
         <div class="p-code-editor">
-            <h3>Options Initialize JS SDK</h3>
+            <div class="title-editor">
+                <h3>Options Initialize JS SDK</h3>
+                <a id="source_link"
+                   href="https://dev.primedata.ai/Prime/en/data-source/detail/JS-25op1nncWL5g6xgLONmPKIpoYWq?active=event_logs"
+                   target="_blank">View Source</a>
+            </div>
             <textarea id="code" name="code">
 {
   "scope": "JS-25op1nncWL5g6xgLONmPKIpoYWq",
@@ -198,13 +217,19 @@
             <h4>Quick Track Action</h4>
             <div class="p-action-bar">
                 <a href="./?author=dom1">
-                    <button class="btn-action" onclick="trackEvent('phong_popup')" title="Track Event Popup Message bar">Collect lead form popup</button>
+                    <button class="btn-action" onclick="trackEvent('phong_popup')"
+                            title="Track Event Popup Message bar">Collect lead form popup
+                    </button>
                 </a>
                 <a href="./?author=dom1">
-                    <button class="btn-action" onclick="trackEvent('pbar')" title="Track Event Popup Message bar">Present bar</button>
+                    <button class="btn-action" onclick="trackEvent('pbar')" title="Track Event Popup Message bar">
+                        Present bar
+                    </button>
                 </a>
                 <a href="./?author=dom2">
-                    <button class="btn-action" onclick="trackEvent('pslideout')" title="Track Event Popup Message bar">Present slideout</button>
+                    <button class="btn-action" onclick="trackEvent('pslideout')" title="Track Event Popup Message bar">
+                        Present slideout
+                    </button>
                 </a>
             </div>
 
@@ -241,9 +266,9 @@
                         <label for="event_props">Event Properties:</label>
                         <textarea id="event_props" name="event_props">
 {
-  "scope": "JS-25op1nncWL5g6xgLONmPKIpoYWq",
-  "writeKey": "25op1mUEi8p9QweluasTAOPDMUB",
-  "url": "https://dev.primedata.ai/powehi"
+  "properties": {
+    "name": "koie"
+  }
 }
 </textarea>
 
@@ -288,15 +313,15 @@
     lineWrapping: true
   });
 
-  function checkBrowserSupported () {
-    if (typeof(SharedWorker) !== "undefined") {
+  function checkBrowserSupported() {
+    if (typeof (SharedWorker) !== "undefined") {
       document.getElementById("supported_status").textContent = "Great, your browser supports web shared workers";
     } else {
       document.getElementById("supported_status").textContent = "Your browser not supported web shared workers. But don't worry, I can implement it works on your browser but have some limits like not working when you open more than 7 tabs in the same browser";
     }
   }
 
-  checkBrowserSupported()
+  checkBrowserSupported();
 
   function deleteAllCookies() {
     var cookies = document.cookie.split(";");
@@ -372,13 +397,14 @@
   onInitialize();
 
   function trackEvent(type) {
-    follower.track(type)
+    follower.track(type);
   }
 
-  function trackEventCustom () {
+  function trackEventCustom() {
     let eventName = document.getElementById("event_name")?.value || "";
     let eventProps = JSON.parse((editorProps.getValue()));
     eventName && follower.track(eventName, eventProps);
+    eventName && showSnackbar("Track event: " + eventName + " success");
   }
 
   function renderInfoToUI() {
@@ -393,8 +419,11 @@
     document.getElementById("uri_websocket").textContent = socket_url;
   }
 
-
+  function showSnackbar(...mess) {
+    Snackbar.show({text: mess});
+  }
 </script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="../pages/dist/snackbar.min.js" charset="utf-8"></script>
 </body>
 </html>

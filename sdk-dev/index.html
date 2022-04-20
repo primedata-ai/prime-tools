@@ -70,6 +70,16 @@
             flex-wrap: wrap;
         }
 
+        .p-action-block {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+        }
+
+        label {
+            display: block;
+        }
+
         .btn-action {
             margin: 6px;
             padding: 8px 12px;
@@ -93,6 +103,15 @@
 
         .t-value {
             word-break: break-word;
+        }
+
+        input[type=text] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border-radius: 8px;
+            border: 1px solid #d6d6d7;
         }
 
         @media only screen and (max-width: 600px) {
@@ -176,7 +195,7 @@
                 <button class="btn-action" onclick="renderInfoToUI()" title="Refresh data information">Refresh</button>
             </div>
 
-            <h4>Track Action</h4>
+            <h4>Quick Track Action</h4>
             <div class="p-action-bar">
                 <a href="./?author=dom1">
                     <button class="btn-action" onclick="trackEvent('phong_popup')" title="Track Event Popup Message bar">Collect lead form popup</button>
@@ -186,24 +205,6 @@
                 </a>
                 <a href="./?author=dom2">
                     <button class="btn-action" onclick="trackEvent('pslideout')" title="Track Event Popup Message bar">Present slideout</button>
-                </a>
-                <a href="./?author=dom3">
-                    <button class="btn-action" onclick="trackEvent('pmodal')" title="Track Event Popup Message bar">Present modal</button>
-                </a>
-                <a href="./?author=dom4">
-                    <button class="btn-action" onclick="trackEvent('cslideout')" title="Track Event Popup Message bar">Collect leads slideout</button>
-                </a>
-                <a href="./?author=dom5">
-                    <button class="btn-action" onclick="trackEvent('cmodal')" title="Track Event Popup Message bar">Collect leads modal</button>
-                </a>
-                <a href="./?author=dom6">
-                    <button class="btn-action" onclick="trackEvent('dbar')" title="Track Event Popup Message bar">Drive bar</button>
-                </a>
-                <a href="./?author=dom7">
-                    <button class="btn-action" onclick="trackEvent('dslideout')" title="Track Event Popup Message bar">Drive slideout</button>
-                </a>
-                <a href="./?author=dom8">
-                    <button class="btn-action" onclick="trackEvent('dmodal')" title="Track Event Popup Message bar">Drive modal</button>
                 </a>
             </div>
 
@@ -228,6 +229,31 @@
                 <div class="t-value" id="uri_websocket"></div>
 
             </div>
+
+
+            <h4>Track With Custom Event</h4>
+            <div class="p-action-block">
+                <form action="">
+                    <label for="event_name">Event Name:</label>
+                    <input id="event_name" type="text" placeholder="Input your event name">
+
+                    <div class="p-code-editor">
+                        <label for="event_props">Event Properties:</label>
+                        <textarea id="event_props" name="event_props">
+{
+  "scope": "JS-25op1nncWL5g6xgLONmPKIpoYWq",
+  "writeKey": "25op1mUEi8p9QweluasTAOPDMUB",
+  "url": "https://dev.primedata.ai/powehi"
+}
+</textarea>
+
+                    </div>
+                </form>
+
+                <button class="btn-action" onclick="trackEventCustom()" title="Track Event">Track</button>
+
+            </div>
+
         </div>
     </div>
 
@@ -239,6 +265,18 @@
 <script>
 
   var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+    lineNumbers: true,
+    matchBrackets: true,
+    continueComments: "Enter",
+    extraKeys: {"Ctrl-Q": "toggleComment"},
+    autoCloseBrackets: true,
+    mode: "application/ld+json",
+    // mode: { name: "javascript", json: true },
+    readOnly: false,
+    lineWrapping: true
+  });
+
+  var editorProps = CodeMirror.fromTextArea(document.getElementById("event_props"), {
     lineNumbers: true,
     matchBrackets: true,
     continueComments: "Enter",
@@ -335,6 +373,12 @@
 
   function trackEvent(type) {
     follower.track(type)
+  }
+
+  function trackEventCustom () {
+    let eventName = document.getElementById("event_name")?.value || "";
+    let eventProps = JSON.parse((editorProps.getValue()));
+    eventName && follower.track(eventName, eventProps);
   }
 
   function renderInfoToUI() {

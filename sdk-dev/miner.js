@@ -13956,7 +13956,6 @@
       var integration = require("@segment/analytics.js-integration");
       var extend = require("extend");
       var SDKUtils = require("prime-utils");
-      var PrimeServices = require("prime-services");
 
       var Prime = (module.exports = integration("Prime Data")
         .global("cxs")
@@ -16432,7 +16431,7 @@
         // PDT-1774 - [FE] - Implement call API context
         let searchQueryContext = SDKUtils.getSearchParamFromUrl(window.location.href);
         if(searchQueryContext?.pdid) {
-          console.log(searchQueryContext.pdid);
+          // console.log(searchQueryContext.pdid);
           jsonData.profileId = searchQueryContext.pdid;
         }
 
@@ -16891,8 +16890,7 @@
       "@segment/utm-params": 45,
       "component-cookie": 49,
       "extend": 65,
-      "prime-utils": 111,
-      "prime-services": 116,
+      "prime-utils": 111
     }],
     109: [function (require, module, exports) {
       (function (global) {
@@ -17671,6 +17669,8 @@
 
               formElements = data.form_element.map((el) => ({
                 ...el,
+                placeholder: el?.label,
+                label: "",
                 type: fieldType[el.type] || "text",
                 fieldType: el.type,
               }));
@@ -18645,86 +18645,6 @@
       };
 
       module.exports = OneSignalPrimeSDK;
-    }, {"prime-utils": 111}],
-    116: [function (require, module, exports) {
-      "use strict";
-      Object.defineProperty(exports, "__esModule", {value: true});
-
-      var PrimeServices = {
-        callContextWithNewProfile: function (profile, opts) {
-          console.log('log::18655 callContextWithNewProfile', profile)
-          this.identify(profile, opts);
-        },
-        identify: function(profileId, opts, callback) {
-          const now = new Date().toISOString();
-          let body = {
-            requiredProfileProperties: ["*"],
-            source: {
-              scope: opts.scope,
-              itemId: window.location.pathname,
-              itemType: "page",
-              properties: {
-                screen_width: 2560,
-                screen_height: 1137,
-                connection_type: "4g",
-              },
-            },
-            sendAt: now,
-            events: [
-              {
-                eventType: "identify",
-                scope: opts.scope,
-                target: {
-                  itemId: "identify",
-                  itemType: "analyticsUser",
-                  properties: {
-                    email: "nguyenlephong@primedata.ai",
-                  },
-                },
-                timeStamp: now,
-                source: {
-                  scope: opts.scope,
-                  itemId: "context",
-                  itemType: "page",
-                  properties: {
-                    page: {
-                      path: window.location.pathname,
-                      title: window.document.title,
-                      url: window.location.href,
-                    },
-                  },
-                },
-              },
-            ],
-            sessionId: this.sessionId,
-            profileId: profileId,
-          };
-
-          fetch(opts.url + "/context", {
-            method: 'POST',
-            headers: {
-              "Content-Type": "application/json",
-              "X-Client-Id": opts.scope,
-              "X-Client-Access-Token": opts.writeKey,
-            },
-            body: JSON.stringify(body),
-          })
-            .then(response => response.json())
-            .then(data => {
-              console.log('Context Success:', data);
-              callback && callback(data)
-            })
-            .catch((error) => {
-              console.error('Context Error:', error);
-              callback && callback(error)
-            });
-
-        }
-      };
-
-
-
-      module.exports = PrimeServices;
-    }, {}]
+    }, {"prime-utils": 111}]
   }, {}, [109])(109);
 });

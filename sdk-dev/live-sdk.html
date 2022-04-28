@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>PrimeData JS SDK</title>
+    <title>PrimeData LIVE JS SDK</title>
     <link rel="icon" href="https://dev.primedata.ai/primedata_logo.png"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.64.0/codemirror.min.js"
             integrity="sha512-4DlmQ+aBOfYTZ3uzRKCDXdyL7y8IlopnVChhXG0pRFgyvhwONVQW3JX8e5DYoXUNr3evQpLZz7S3O1XxMH4WKA=="
@@ -146,7 +146,6 @@
             margin-block-end: unset;
             padding: 12px 0;
         }
-
         @media only screen and (max-width: 600px) {
             .p-content {
                 flex-direction: column;
@@ -160,21 +159,21 @@
 </head>
 <body>
 <div class="p-container">
-    <div class="p-title pd-24">PrimeData JS SDK</div>
+    <div class="p-title pd-24">PrimeData LIVE JS SDK</div>
 
     <div class="p-content">
         <div class="p-code-editor">
             <div class="title-editor">
                 <h3>Options Initialize JS SDK</h3>
                 <a id="source_link"
-                   href="https://dev.primedata.ai/Prime/en/data-source/detail/JS-25op1nncWL5g6xgLONmPKIpoYWq?active=event_logs"
+                   href="https://live.primedata.ai/Rainbow/en/data-source/detail/JS-26BWRI1KPYk4lMgylWo7Ebd88I1?active=event_logs"
                    target="_blank">View Source</a>
             </div>
             <textarea id="code" name="code">
 {
-  "scope": "JS-25op1nncWL5g6xgLONmPKIpoYWq",
-  "writeKey": "25op1mUEi8p9QweluasTAOPDMUB",
-  "url": "https://dev.primedata.ai/powehi",
+  "scope": "JS-26BWRI1KPYk4lMgylWo7Ebd88I1",
+  "writeKey": "26BWRIJeIuUfAkJvMf2S3Ryxmcz",
+  "url": "https://live.primedata.ai/powehi",
   "initialPageProperties": {
     "pageInfo": {
       "destinationURL": "./"
@@ -189,7 +188,7 @@
     "enabled": false,
     "options": {
       "showLogs": false,
-      "endpoint": "https://dev.primedata.ai",
+      "endpoint": "https://live.primedata.ai",
       "firebaseMessagingSwUrl": "./firebase-messaging-sw.js",
       "firebaseConfig": {
         "authDomain": "primedata-ai-c128b.firebaseapp.com",
@@ -213,7 +212,7 @@
     "enabled": false,
     "options": {
        "showLogs": false,
-       "embedOneSignalSDK": false,
+       "embedOneSignalSDK": true,
        "appId": "679be029-5cd1-4353-9d24-cc563201468e"
     }
   }
@@ -222,7 +221,7 @@
         </div>
 
         <div class="p-action">
-            <p class="info-title-text">Action</p>
+            <p class="info-title-text">Action</h4>
             <div class="p-action-bar">
                 <button class="btn-action" onclick="onInitialize()"
                         title="Connect DataSource with options have changed above">Initialize JS SDK
@@ -232,16 +231,13 @@
                 </button>
             </div>
 
-            <p class="info-title-text">Quick Track Action</p>
+            <p class="info-title-text">Quick Track Action</h4>
             <div class="p-action-bar">
                 <a href="./?author=dom1">
                     <button class="btn-action" onclick="trackEvent('phong_popup')"
                             title="Track Event Popup Message bar">Collect lead form popup
                     </button>
                 </a>
-                <button class="btn-action" onclick="renderPopup()"
-                        title="Show Popup Template 001">Show Popup Template 001
-                </button>
                 <a href="./?author=dom1">
                     <button class="btn-action" onclick="trackEvent('pbar')" title="Track Event Popup Message bar">
                         Present bar
@@ -254,7 +250,7 @@
                 </a>
             </div>
 
-            <p class="info-title-text">Information</p>
+            <p class="info-title-text">Information</h4>
             <div>
                 <div class="lbf">SharedWorker:</div>
                 <div class="t-value" id="supported_status"></div>
@@ -277,7 +273,7 @@
             </div>
 
 
-            <p class="info-title-text">Track With Custom Event</p>
+            <p class="info-title-text">Track With Custom Event</h4>
             <div class="p-action-block">
                 <form action="">
                     <label for="event_name">Event Name:</label>
@@ -364,33 +360,7 @@
 
   function onInitialize() {
     !function () {
-      var follower = window.follower = window.follower || [];
-      if (!follower.initialize) if (follower.invoked) window.console && console.error && console.error("PrimeDATA snippet included twice."); else {
-        follower.invoked = !0;
-        follower.methods = ["initOneSignal", "initWebPush", "initWebPopup", "utils", "trackSubmit", "trackClick", "trackLink", "trackForm", "pageview", "personalize", "identify", "initialize", "reset", "group", "track", "ready", "alias", "debug", "page", "once", "off", "on", "addSourceMiddleware", "addIntegrationMiddleware", "setAnonymousId", "addDestinationMiddleware"];
-        follower.factory = function (t) {
-          return function () {
-            var e = Array.prototype.slice.call(arguments);
-            e.unshift(t);
-            follower.push(e);
-            return follower;
-          };
-        };
-        for (var t = 0; t < follower.methods.length; t++) {
-          var e = follower.methods[t];
-          follower[e] = follower.factory(e);
-        }
-        follower.load = function (t, e) {
-          var n = document.createElement("script");
-          n.type = "text/javascript";
-          n.async = !0;
-          n.src = "https://dev.primedata.ai/powehi/mining.js";
-          // n.src = "./miner.js";
-          var a = document.getElementsByTagName("script")[0];
-          a.parentNode.insertBefore(n, a);
-          follower._loadOptions = e;
-        };
-        follower.SNIPPET_VERSION = "0.1.0";
+        var follower=window.follower=window.follower||[];if(!follower.initialize)if(follower.invoked)window.console&&console.error&&console.error("PrimeDATA snippet included twice.");else{follower.invoked=!0;follower.methods=["initOneSignal", "initWebPush","initWebPopup","utils","trackSubmit","trackClick","trackLink","trackForm","pageview","personalize","identify","initialize","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];follower.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);follower.push(e);return follower}};for(var t=0;t<follower.methods.length;t++){var e=follower.methods[t];follower[e]=follower.factory(e)}follower.load=function(t,e){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src="https://live.primedata.ai/powehi/mining.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(n,a);follower._loadOptions=e};follower.SNIPPET_VERSION="0.1.0";
         follower.load();
         const primeJsOpts = JSON.parse((editor.getValue()));
         follower.initialize({"Prime Data": primeJsOpts});
@@ -445,12 +415,11 @@
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script src="../pages/dist/snackbar.min.js" charset="utf-8"></script>
 <script src="./template-popup.js"></script>
-
 <script>
-    setInterval(function () {
-      renderInfoToUI()
-      console.log("Tool: Refresh information....")
-    }, 2000)
+  setInterval(function () {
+    renderInfoToUI()
+    console.log("Tool: Refresh information....")
+  }, 2000)
 </script>
 </body>
 </html>

@@ -6,7 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>PrimeData LIVE JS SDK</title>
-    <link rel="icon" href="https://dev.primedata.ai/primedata_logo.png"/>
+    <link rel="icon" href="https://live.primedata.ai/primedata_logo.png"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.64.0/codemirror.min.js"
             integrity="sha512-4DlmQ+aBOfYTZ3uzRKCDXdyL7y8IlopnVChhXG0pRFgyvhwONVQW3JX8e5DYoXUNr3evQpLZz7S3O1XxMH4WKA=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -205,7 +205,7 @@
     "options": {
       "showLogs": true,
       "onsiteWorkerPath": "./posjs-worker.js",
-      "endpoint": "https://dev.primedata.ai"
+      "endpoint": "https://live.primedata.ai"
     }
   },
   "oneSignal": {
@@ -404,7 +404,7 @@
     document.getElementById("client_id").textContent = configs.client_id;
     document.getElementById("notification_token").textContent = localStorage.getItem("notification_token");
 
-    const socket_url = "wss://dev.primedata.ai/prile/ws/register/" + configs.client_id + "/" + configs.x_client_id + "/" + configs.x_client_access_token;
+    const socket_url = "wss://live.primedata.ai/prile/ws/register/" + configs.client_id + "/" + configs.x_client_id + "/" + configs.x_client_access_token;
     document.getElementById("uri_websocket").textContent = socket_url;
   }
 

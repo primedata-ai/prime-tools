@@ -27,7 +27,7 @@
     <script src="https://unpkg.com/uuid@latest/dist/umd/uuidv4.min.js"></script>
     <script src="https://kit.fontawesome.com/8454470208.js" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="../pages/dist/snackbar.min.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/node-snackbar@latest/dist/snackbar.min.css" />
     <style>
 
         .p-container {
@@ -181,6 +181,7 @@
 </section>
 
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/node-snackbar@latest/src/js/snackbar.min.js"></script>
 <script type="text/javascript">
   var editorIdentifyProps = CodeMirror.fromTextArea(document.getElementById("identify_props"), {
     lineNumbers: true,
@@ -223,6 +224,9 @@
     eventName && showSnackbar("Track event: " + eventName + " success");
   }
 
+  function showSnackbar(...mess) {
+    Snackbar.show({text: mess});
+  }
 </script>
 </body>
 </html>

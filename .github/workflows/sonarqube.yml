@@ -1,11 +1,11 @@
-name: Build
+name: SonarQube Sync New Source
 on:
   push:
     branches:
       - main # or the name of your main branch
 jobs:
   build:
-    name: Build
+    name: Install & Sync
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2

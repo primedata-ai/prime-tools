@@ -161,22 +161,6 @@
               bannerMessage: "You are on the ad blocker. Our feature does not work well when your ad blocker is enabled on this site. To fully enjoy the service, please disable the ad blocker on our site. We guarantee that there will be no ads on our site.",
               closeButtonLabel: "close"
             },
-            webPush: {
-              enabled: false,
-              options: {
-                showLogs: false,
-                endpoint: 'https://dev.primedata.ai',
-                firebaseMessagingSwUrl: "./firebase-messaging-sw.js",
-                firebaseConfig: {
-                  authDomain: "primedata-ai-c128b.firebaseapp.com",
-                  projectId: "primedata-ai-c128b",
-                  storageBucket: "primedata-ai-c128b.appspot.com",
-                  messagingSenderId: "615374224384",
-                  appId: "1:615374224384:web:b6e95abaf525c339e76ce5",
-                  apiKey: "AIzaSyB0cQZgXYVCTaKE6dk_voN5tle_HXNCaUU"
-                }
-              }
-            },
             webPopup: {
               enabled: false,
               options: {
@@ -195,13 +179,6 @@
             }
           };
           follower.initialize({"Prime Data": primeJsOpts})
-
-          if (primeJsOpts.webPush && primeJsOpts.webPush.enabled) {
-            if (firebase && !firebase.apps.length) {
-              firebase.initializeApp(primeJsOpts.webPush.options.firebaseConfig);
-            }
-            follower.initWebPush(primeJsOpts.webPush.options);
-          }
 
           if(primeJsOpts.webPopup && primeJsOpts.webPopup.enabled){
             follower.initWebPopup(primeJsOpts);

@@ -294,6 +294,17 @@
 
             </div>
 
+            <p class="info-title-text">Facebook Test</p>
+            <div class="p-action-block">
+                <div class="fb-send-to-messenger"
+                     messenger_app_id="1175186586306268"
+                     page_id="115581731126804"
+                     ref="sdk-dev-test"
+                     color="blue"
+                     size="standard">
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -420,6 +431,48 @@
     renderInfoToUI()
     console.log("Tool: Refresh information....")
   }, 2000)
+
 </script>
+
+<!-- Messenger Plugin chat Code -->
+<div id="fb-root"></div>
+<!-- Your Plugin chat code -->
+<div id="fb-customer-chat" class="fb-customerchat">
+</div>
+<script>
+  var chatbox = document.getElementById("fb-customer-chat");
+  chatbox.setAttribute("page_id", "115581731126804");
+  chatbox.setAttribute("attribution", "biz_inbox");
+</script>
+<!-- Your SDK code -->
+<script>
+  window.fbAsyncInit = function () {
+    FB.init({
+      xfbml: true,
+      version: "v13.0"
+    });
+  };
+  (function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, "script", "facebook-jssdk"));
+</script>
+
+
+<script>
+  window.fbAsyncInit = function () {
+    FB.init({
+      appId: "1175186586306268",
+      autoLogAppEvents: true,
+      xfbml: true,
+      version: "v13.0"
+    });
+  };
+</script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
 </body>
 </html>

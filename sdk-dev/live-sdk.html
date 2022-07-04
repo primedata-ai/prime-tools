@@ -30,8 +30,8 @@
     <link rel="stylesheet" href="../pages/dist/snackbar.min.css" media="screen" title="no title" charset="utf-8">
     <style>
 
-        .pd-12 {
-            padding: 12px;
+        .zalo-chat-widget {
+            bottom: 125px !important;
         }
 
         .pd-24 {
@@ -296,16 +296,19 @@
 
             </div>
 
-            <p class="info-title-text">Facebook Test</p>
-            <div class="p-action-block">
-                <div class="fb-send-to-messenger"
-                     messenger_app_id="1175186586306268"
-                     page_id="115581731126804"
-                     ref="sdk-dev-test"
-                     color="blue"
-                     size="standard">
-                </div>
+            <div class="fb-send-to-messenger"
+                 messenger_app_id="1175186586306268"
+                 page_id="115581731126804"
+                 ref="sdk-dev-test"
+                 color="blue"
+                 size="standard">
             </div>
+            <p class="info-title-text">Zalo</p>
+            <div class="p-action-block">
+                <div class="zalo-follow-button" data-oaid="3789777605339207949" data-cover="yes" data-article="2" data-width="" data-height=""></div>
+                <div class="zalo-chat-widget" data-oaid="3789777605339207949" data-welcome-message="Rất vui khi được hỗ trợ bạn!" data-autopopup="2" data-width="100" data-height="100"></div>
+            </div>
+
 
         </div>
     </div>
@@ -492,5 +495,7 @@
   };
 </script>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+<!--** Widget chat-->
+<script src="https://sp.zalo.me/plugins/sdk.js"></script>
 </body>
 </html>

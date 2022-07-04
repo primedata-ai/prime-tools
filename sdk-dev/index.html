@@ -395,42 +395,39 @@
           follower[e] = follower.factory(e);
         }
         follower.load = function (t, e) {
-          var n = document.createElement("script");
-          n.type = "text/javascript";
-          n.async = !0;
-          n.src = "https://dev.primedata.ai/powehi/mining.js";
-          var a = document.getElementsByTagName("script")[0];
-          a.parentNode.insertBefore(n, a);
-
           // load fingerprint
           let fpScript = document.createElement("script");
           fpScript.type = "text/javascript";
           fpScript.async = !0;
           fpScript.src = "./fp.min.js";
+          // fpScript.src = "https://dev.primedata.ai/powehi/fingerprint.js";
+          fpScript.onload = function () {
+            FingerprintJS.load()
+              .then(fp => fp.get())
+              .then(result => {
+                console.info("This is the visitor identifier:", result.visitorId)
+                window.fingerprint = result
+
+                var n = document.createElement("script");
+                n.type = "text/javascript";
+                n.async = !0;
+                n.src = "https://dev.primedata.ai/powehi/mining.js";
+                // n.src = "./miner.js";
+                var a = document.getElementsByTagName("script")[0];
+                a.parentNode.insertBefore(n, a);
+                follower._loadOptions = e;
+
+              })
+          }
           let scriptHead = document.getElementsByTagName("script")[0];
           scriptHead.parentNode.insertBefore(fpScript, scriptHead);
-
-          follower._loadOptions = e;
         };
         follower.SNIPPET_VERSION = "0.1.0";
         follower.load();
         const primeJsOpts = JSON.parse((editor.getValue()));
         follower.initialize({"Prime Data": primeJsOpts});
 
-        if (primeJsOpts.webPush && primeJsOpts.webPush.enabled) {
-          if (firebase && !firebase.apps.length) {
-            firebase.initializeApp(primeJsOpts.webPush.options.firebaseConfig);
-          }
-          follower.initWebPush(primeJsOpts.webPush.options);
-        }
-
-        if (primeJsOpts.webPopup && primeJsOpts.webPopup.enabled) {
-          follower.initWebPopup(primeJsOpts);
-        }
-
-        if (primeJsOpts.oneSignal && primeJsOpts.oneSignal.enabled) {
-          follower.initOneSignal(primeJsOpts);
-        }
+        if (primeJsOpts.webPopup && primeJsOpts.webPopup.enabled) follower.initWebPopup(primeJsOpts);
       }
     }();
   }
@@ -451,7 +448,7 @@
   function renderInfoToUI() {
     document.getElementById("profile_id").textContent = localStorage.getItem("prime_profile_id");
     document.getElementById("session_id").textContent = localStorage.getItem("prime_session_id");
-    document.getElementById("fingerprintId").textContent = window?.cxs?.fingerprint?.visitorId;
+    document.getElementById("fingerprintId").textContent = window?.fingerprint?.visitorId;
 
     let configs = JSON.parse(localStorage.getItem("posjs-profile") || "{}");
     document.getElementById("client_id").textContent = configs.client_id;

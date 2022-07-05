@@ -398,32 +398,14 @@
           follower[e] = follower.factory(e);
         }
         follower.load = function (t, e) {
-          // load fingerprint
-          let fpScript = document.createElement("script");
-          fpScript.type = "text/javascript";
-          fpScript.async = !0;
-          fpScript.src = "./fp.min.js";
-          // fpScript.src = "https://dev.primedata.ai/powehi/fingerprint.js";
-          fpScript.onload = function () {
-            FingerprintJS.load()
-              .then(fp => fp.get())
-              .then(result => {
-                console.info("This is the visitor identifier:", result.visitorId)
-                window.fingerprint = result
-
-                var n = document.createElement("script");
-                n.type = "text/javascript";
-                n.async = !0;
-                n.src = "https://dev.primedata.ai/powehi/mining.js";
-                // n.src = "./miner.js";
-                var a = document.getElementsByTagName("script")[0];
-                a.parentNode.insertBefore(n, a);
-                follower._loadOptions = e;
-
-              })
-          }
-          let scriptHead = document.getElementsByTagName("script")[0];
-          scriptHead.parentNode.insertBefore(fpScript, scriptHead);
+          var n = document.createElement("script");
+          n.type = "text/javascript";
+          n.async = !0;
+          n.src = "https://dev.primedata.ai/powehi/mining.js";
+          // n.src = "./miner.js";
+          var a = document.getElementsByTagName("script")[0];
+          a.parentNode.insertBefore(n, a);
+          follower._loadOptions = e;
         };
         follower.SNIPPET_VERSION = "0.1.0";
         follower.load();
@@ -451,7 +433,7 @@
   function renderInfoToUI() {
     document.getElementById("profile_id").textContent = localStorage.getItem("prime_profile_id");
     document.getElementById("session_id").textContent = localStorage.getItem("prime_session_id");
-    document.getElementById("fingerprintId").textContent = window?.fingerprint?.visitorId;
+    document.getElementById("fingerprintId").textContent = window?._primedata_fingerprint?.visitorId;
 
     let configs = JSON.parse(localStorage.getItem("posjs-profile") || "{}");
     document.getElementById("client_id").textContent = configs.client_id;

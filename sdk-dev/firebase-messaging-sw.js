@@ -22,17 +22,6 @@ if( 'function' === typeof importScripts) {
 
   const messaging = firebase.messaging();
 
-// messaging.getToken().then((currentToken) => {
-//   if (currentToken) {
-//     console.log("currentToken:: ", currentToken);
-//   } else {
-//     console.log("No Instance ID token available. Request permission to generate one.");
-//   }
-// }).catch((err) => {
-//   console.log("An error occurred while retrieving token. ", err);
-//   // showToken('Error retrieving Instance ID token. ', err);
-//   // setTokenSentToServer(false);
-// });
 
 // If you would like to customize notifications that are received in the
 // background (Web app is closed or not in browser focus) then you should

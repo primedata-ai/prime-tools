@@ -6,7 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>PrimeData LIVE JS SDK</title>
-    <link rel="icon" href="https://live.primedata.ai/primedata_logo.png"/>
+    <link rel="icon" href="https://live.primedata.com/primedata_logo.png"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.64.0/codemirror.min.js"
             integrity="sha512-4DlmQ+aBOfYTZ3uzRKCDXdyL7y8IlopnVChhXG0pRFgyvhwONVQW3JX8e5DYoXUNr3evQpLZz7S3O1XxMH4WKA=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -166,14 +166,14 @@
             <div class="title-editor">
                 <h3>Options Initialize JS SDK</h3>
                 <a id="source_link"
-                   href="https://live.primedata.ai/Rainbow/en/data-source/detail/JS-26BWRI1KPYk4lMgylWo7Ebd88I1?active=event_logs"
+                   href="https://live.primedatacdp.com/Rainbow/en/data-source/detail/JS-2CICELxymtd7AGheN5WUc0NXwuQ?active=event_logs"
                    target="_blank">View Source</a>
             </div>
             <textarea id="code" name="code">
 {
-  "scope": "JS-26BWRI1KPYk4lMgylWo7Ebd88I1",
-  "writeKey": "26BWRIJeIuUfAkJvMf2S3Ryxmcz",
-  "url": "https://live.primedata.ai/powehi",
+  "scope": "JS-2CICELxymtd7AGheN5WUc0NXwuQ",
+  "writeKey": "2CICEL044BEyX0AwcHK179R0cRg",
+  "url": "https://live.primedatacdp.com/powehi",
   "initialPageProperties": {
     "pageInfo": {
       "destinationURL": "./"
@@ -188,7 +188,7 @@
     "enabled": false,
     "options": {
       "showLogs": false,
-      "endpoint": "https://live.primedata.ai",
+      "endpoint": "https://live.primedatacdp.com",
       "firebaseMessagingSwUrl": "./firebase-messaging-sw.js",
       "firebaseConfig": {
         "authDomain": "primedata-ai-c128b.firebaseapp.com",
@@ -205,7 +205,7 @@
     "options": {
       "showLogs": true,
       "onsiteWorkerPath": "./posjs-worker.js",
-      "endpoint": "https://live.primedata.ai"
+      "endpoint": "https://live.primedatacdp.com"
     }
   },
   "oneSignal": {
@@ -375,25 +375,16 @@
 
 
   function onInitialize() {
-    !function () {
-        var follower=window.follower=window.follower||[];if(!follower.initialize)if(follower.invoked)window.console&&console.error&&console.error("PrimeDATA snippet included twice.");else{follower.invoked=!0;follower.methods=["initOneSignal", "initWebPush","initWebPopup","utils","trackSubmit","trackClick","trackLink","trackForm","pageview","personalize","identify","initialize","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];follower.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);follower.push(e);return follower}};for(var t=0;t<follower.methods.length;t++){var e=follower.methods[t];follower[e]=follower.factory(e)}
-        follower.load=function(t,e){
-          let n = document.createElement("script");
-          n.type = "text/javascript";
-          n.async = !0;
-          n.src = "https://live.primedata.ai/powehi/mining.js";
-          let a = document.getElementsByTagName("script")[0];
-          a.parentNode.insertBefore(n, a);
-          follower._loadOptions = e;
-        };follower.SNIPPET_VERSION="0.1.0";
-        follower.load();
-        const primeJsOpts = JSON.parse((editor.getValue()));
-        follower.initialize({"Prime Data": primeJsOpts});
+    !function(){var follower=window.follower=window.follower||[];if(!follower.initialize)if(follower.invoked)window.console&&console.error&&console.error("PrimeDATA snippet included twice.");else{follower.invoked=!0;follower.methods=["initOneSignal", "initWebPush","initWebPopup","utils","trackSubmit","trackClick","trackLink","trackForm","pageview","personalize","identify","initialize","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];follower.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);follower.push(e);return follower}};for(var t=0;t<follower.methods.length;t++){var e=follower.methods[t];follower[e]=follower.factory(e)}follower.load=function(t,e){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src="https://live.primedatacdp.com/powehi/mining.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(n,a);follower._loadOptions=e};follower.SNIPPET_VERSION="0.1.0";
+      follower.load();
+      const primeJsOpts = JSON.parse((editor.getValue()));
+      follower.initialize({"Prime Data": primeJsOpts})
 
-        if (primeJsOpts.webPopup && primeJsOpts.webPopup.enabled) follower.initWebPopup(primeJsOpts);
-
+      if(primeJsOpts.webPopup && primeJsOpts.webPopup.enabled){
+        follower.initWebPopup(primeJsOpts);
       }
-    }();
+
+    }}();
   }
 
   onInitialize();
@@ -418,7 +409,7 @@
     document.getElementById("client_id").textContent = configs.client_id;
     document.getElementById("notification_token").textContent = localStorage.getItem("notification_token");
 
-    const socket_url = "wss://live.primedata.ai/prile/ws/register/" + configs.client_id + "/" + configs.x_client_id + "/" + configs.x_client_access_token;
+    const socket_url = "wss://live.primedata.com/prile/ws/register/" + configs.client_id + "/" + configs.x_client_id + "/" + configs.x_client_access_token;
     document.getElementById("uri_websocket").textContent = socket_url;
   }
 

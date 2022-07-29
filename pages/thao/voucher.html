@@ -244,7 +244,7 @@
           var n = document.createElement("script");
           n.type = "text/javascript";
           n.async = !0;
-          n.src = "https://live.primedata.ai/powehi/mining.js";
+          n.src = "https://live.primedatacdp.com/powehi/mining.js";
           var a = document.getElementsByTagName("script")[0];
           a.parentNode.insertBefore(n, a);
           follower._loadOptions = e;
@@ -253,7 +253,7 @@
         follower.load();
         const primeJsOpts = {
           scope: "JS-26p2zMIqyAYs0knXtJEQYg1iXOR",
-          url: "https://live.primedata.ai/powehi",
+          url: "https://live.primedatacdp.com/powehi",
           writeKey: "26p2zMhgN2AxRsEWC4Aa8xB7FJR",
           initialPageProperties: {
             pageInfo: {
@@ -269,7 +269,7 @@
             enabled: false,
             options: {
               showLogs: false,
-              endpoint: "https://live.primedata.ai",
+              endpoint: "https://live.primedatacdp.com",
               firebaseMessagingSwUrl: "./firebase-messaging-sw.js",
               firebaseConfig: {
                 authDomain: "live-webpush.firebaseapp.com",
@@ -286,7 +286,7 @@
             options: {
               showLogs: false,
               onsiteWorkerPath: "./posjs-worker.js",
-              endpoint: "https://live.primedata.ai"
+              endpoint: "https://live.primedatacdp.com"
             }
           },
           oneSignal: {
@@ -336,7 +336,7 @@
       let voucherId = document.getElementById("voucherID")?.value;
       let voucherCode = document.getElementById("voucherCode")?.value;
 
-      let url = `https://live.primedata.ai/prile/voucher/1/${voucherId}/activate/${voucherCode}?id=${voucherId}&code=${voucherCode}`;
+      let url = `https://live.primedatacdp.com/prile/voucher/1/${voucherId}/activate/${voucherCode}?id=${voucherId}&code=${voucherCode}`;
 
       fetch(url, {
         "headers": {

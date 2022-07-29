@@ -433,7 +433,7 @@
   function renderInfoToUI() {
     document.getElementById("profile_id").textContent = localStorage.getItem("prime_profile_id");
     document.getElementById("session_id").textContent = localStorage.getItem("prime_session_id");
-    document.getElementById("fingerprintId").textContent = window?._primedata_fingerprint?.visitorId;
+    document.getElementById("fingerprintId").textContent = localStorage.getItem("__prime_device_id");
 
     let configs = JSON.parse(localStorage.getItem("posjs-profile") || "{}");
     document.getElementById("client_id").textContent = configs.client_id;

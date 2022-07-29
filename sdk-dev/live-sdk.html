@@ -6,7 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>PrimeData LIVE JS SDK</title>
-    <link rel="icon" href="https://live.primedata.com/primedata_logo.png"/>
+    <link rel="icon" href="https://live.primedatacdp.com/primedata_logo.png"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.64.0/codemirror.min.js"
             integrity="sha512-4DlmQ+aBOfYTZ3uzRKCDXdyL7y8IlopnVChhXG0pRFgyvhwONVQW3JX8e5DYoXUNr3evQpLZz7S3O1XxMH4WKA=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -403,13 +403,13 @@
   function renderInfoToUI() {
     document.getElementById("profile_id").textContent = localStorage.getItem("prime_profile_id");
     document.getElementById("session_id").textContent = localStorage.getItem("prime_session_id");
-    document.getElementById("fingerprintId").textContent = window?._primedata_fingerprint?.visitorId;
+    document.getElementById("fingerprintId").textContent = localStorage.getItem("__prime_device_id");
 
     let configs = JSON.parse(localStorage.getItem("posjs-profile") || "{}");
     document.getElementById("client_id").textContent = configs.client_id;
     document.getElementById("notification_token").textContent = localStorage.getItem("notification_token");
 
-    const socket_url = "wss://live.primedata.com/prile/ws/register/" + configs.client_id + "/" + configs.x_client_id + "/" + configs.x_client_access_token;
+    const socket_url = "wss://live.primedatacdp.com/prile/ws/register/" + configs.client_id + "/" + configs.x_client_id + "/" + configs.x_client_access_token;
     document.getElementById("uri_websocket").textContent = socket_url;
   }
 

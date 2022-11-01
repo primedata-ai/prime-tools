@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CleverTap POC SDK</title>
+    <link rel="icon" href="https://dev.primedata.ai/primedata_logo.png"/>
+    <link rel="stylesheet" href="../../pages/dist/snackbar.min.css" media="screen" title="no title">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.64.0/codemirror.min.js"
+            integrity="sha512-4DlmQ+aBOfYTZ3uzRKCDXdyL7y8IlopnVChhXG0pRFgyvhwONVQW3JX8e5DYoXUNr3evQpLZz7S3O1XxMH4WKA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.64.0/codemirror.min.css"
+          integrity="sha512-CCnciBUnVXwa6IQT9q8EmGcarNit9GdKI5nJnj56B1iu0LuD13Qn/GZ+IUkrZROZaBdutN718NK6mIXdUjZGqg=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.64.0/addon/hint/javascript-hint.min.js"
+            integrity="sha512-HB0sEfERI4Pe2z7rbx7JVGS0SEEGbnAbV+9X0bs3Hs9R/nCYartwJQg16bK1P0jPsMzbiXjT+kYNHYLCsHQ8HA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.64.0/addon/lint/javascript-lint.min.js"
+            integrity="sha512-zwusqVz1qn+JyCHc09C0naAEMMZKn3K8deUOpDMnC4WCM59kfg8rmF+dJNyNW9AmfIELag6MeALrEBD33rJVpA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.64.0/mode/javascript/javascript.min.js"
+            integrity="sha512-DJ/Flq7rxJDDhgkO49H/rmidX44jmxWot/ku3c+XXEF9XFal78KIpu7w6jEaQhK4jli1U3/yOH+Rp3cIIEYFPQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuid.min.js"></script>
+    <script src="https://kit.fontawesome.com/8454470208.js" crossorigin="anonymous"></script>
+    <style>
+
+        .zalo-chat-widget {
+            bottom: 125px !important;
+        }
+
+        .pd-24 {
+            padding: 24px;
+        }
+
+        .p-container {
+            width: 100%;
+            height: 100%;
+        }
+
+        .p-content {
+            display: flex;
+            padding: 0 24px;
+
+        }
+
+        .p-title {
+            font-size: 32px;
+            font-weight: bold;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #05b305;
+        }
+
+        .p-action {
+            padding-left: 12px;
+        }
+
+        .CodeMirror {
+            border: 1px solid #d6d6d7;
+            height: unset;
+            width: 100%;
+        }
+
+
+        .p-code-editor {
+            max-width: 820px;
+            min-width: 482px;
+            padding-right: 12px;
+            padding-top: 12px;
+        }
+
+        body {
+            margin: unset;
+            padding: unset;
+        }
+
+        .p-action-bar {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .p-action-block {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+        }
+
+        label {
+            display: block;
+        }
+
+        .btn-action {
+            margin: 6px;
+            padding: 8px 12px;
+            background: #05b305;
+            color: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+            border: unset;
+        }
+
+        .btn-action:hover {
+            background: #14cd8f;
+        }
+
+        .lbf {
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #545663;
+            margin-top: 12px;
+        }
+
+        .t-value {
+            word-break: break-word;
+        }
+
+        input[type=text] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border-radius: 8px;
+            border: 1px solid #d6d6d7;
+        }
+
+        .title-editor {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            align-content: center;
+            align-items: center;
+        }
+
+        .info-title-text {
+            color: blue;
+            text-decoration: underline;
+            font-weight: bold;
+            font-size: 24px;
+            line-height: 28px;
+            margin-block-start: unset;
+            margin-block-end: unset;
+            padding: 12px 0;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .p-content {
+                flex-direction: column;
+            }
+
+            .p-action {
+                padding-top: 12px;
+            }
+        }
+    </style>
+    <script type="text/javascript">
+      var clevertap = {event: [], profile: [], account: [], onUserLogin: [], notifications: [], privacy: []};
+      // replace with the CLEVERTAP_ACCOUNT_ID with the actual ACCOUNT ID value from your Dashboard -> Settings page
+      clevertap.account.push({"id": "CLEVERTAP_ACCOUNT_ID"});
+      clevertap.privacy.push({optOut: false}); //set the flag to true, if the user of the device opts out of sharing their data
+      clevertap.privacy.push({useIP: false}); //set the flag to true, if the user agrees to share their IP data
+      (function () {
+        var wzrk = document.createElement("script");
+        wzrk.type = "text/javascript";
+        wzrk.async = true;
+        wzrk.src = ("https:" == document.location.protocol ? "https://d2r1yp2w7bby2u.cloudfront.net" : "http://static.clevertap.com") + "/js/a.js?v=0";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(wzrk, s);
+      })();
+    </script>
+</head>
+<body>
+<div class="p-container">
+    <div class="p-title pd-24">CleverTap Viettel POC JS SDK</div>
+    <div class="p-content">
+
+        <div class="p-action">
+            <p class="info-title-text">Information</p>
+            <div>
+
+                <div class="lbf">notification_token:</div>
+                <div class="t-value" id="notification_token"></div>
+
+                <div class="lbf">profile_id:</div>
+                <div class="t-value" id="profile_id"></div>
+
+                <div class="lbf">session_id:</div>
+                <div class="t-value" id="session_id"></div>
+
+            </div>
+
+            <p class="info-title-text">Track With Custom Event</p>
+            <div class="p-action-block">
+                <form action="">
+                    <label for="event_name">Event Name:</label>
+                    <input id="event_name" type="text" placeholder="Input your event name">
+
+                    <div class="p-code-editor">
+                        <label for="event_props">Event Properties:</label>
+                        <textarea id="event_props" name="event_props">
+{
+  "properties": {}
+}
+</textarea>
+
+                    </div>
+
+                    <div class="p-code-editor">
+                        <label for="profile_props">Profile Properties:</label>
+                        <textarea id="profile_props" name="profile_props">
+{
+  "properties": {}
+}
+</textarea>
+
+                    </div>
+                </form>
+
+                <button class="btn-action" onclick="trackEventCustom()" title="Track Event">Track</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script>
+  let editorProps = CodeMirror.fromTextArea(document.getElementById("event_props"), {
+    lineNumbers: true,
+    matchBrackets: true,
+    continueComments: "Enter",
+    extraKeys: {"Ctrl-Q": "toggleComment"},
+    autoCloseBrackets: true,
+    mode: "application/ld+json",
+    // mode: { name: "javascript", json: true },
+    readOnly: false,
+    lineWrapping: true
+  });
+  let profileProps = CodeMirror.fromTextArea(document.getElementById("profile_props"), {
+    lineNumbers: true,
+    matchBrackets: true,
+    continueComments: "Enter",
+    extraKeys: {"Ctrl-Q": "toggleComment"},
+    autoCloseBrackets: true,
+    mode: "application/ld+json",
+    // mode: { name: "javascript", json: true },
+    readOnly: false,
+    lineWrapping: true
+  });
+
+  function trackEventCustom() {
+    let eventName = document.getElementById("event_name")?.value || "";
+    let eventPropEditors = JSON.parse((editorProps.getValue()));
+    let profilePropEditors = JSON.parse((profileProps.getValue()));
+    // eventName && follower.track(eventName, eventPropEditors);
+    eventName && clevertap.event.push(eventName);
+    eventName && clevertap.profile.push({
+      "Site": {
+        "Name": "Nguyen Le Phong", // User's name
+        "Email": "nguyenlephong@primedata.ai"
+      }
+    });
+    eventName && showSnackbar("CleverTap track event: " + eventName + " success");
+  }
+
+  function showSnackbar(...mess) {
+    Snackbar.show({text: mess});
+  }
+</script>
+<script src="../../pages/dist/snackbar.min.js" charset="utf-8"></script>
+</body>
+</html>

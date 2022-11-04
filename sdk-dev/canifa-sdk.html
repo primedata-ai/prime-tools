@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PrimeData Canifa JS SDK</title>
+    <link rel="icon" href="https://live.primedatacdp.com/primedata_logo.png"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.64.0/codemirror.min.js"
+            integrity="sha512-4DlmQ+aBOfYTZ3uzRKCDXdyL7y8IlopnVChhXG0pRFgyvhwONVQW3JX8e5DYoXUNr3evQpLZz7S3O1XxMH4WKA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.64.0/codemirror.min.css"
+          integrity="sha512-CCnciBUnVXwa6IQT9q8EmGcarNit9GdKI5nJnj56B1iu0LuD13Qn/GZ+IUkrZROZaBdutN718NK6mIXdUjZGqg=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.64.0/addon/hint/javascript-hint.min.js"
+            integrity="sha512-HB0sEfERI4Pe2z7rbx7JVGS0SEEGbnAbV+9X0bs3Hs9R/nCYartwJQg16bK1P0jPsMzbiXjT+kYNHYLCsHQ8HA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.64.0/addon/lint/javascript-lint.min.js"
+            integrity="sha512-zwusqVz1qn+JyCHc09C0naAEMMZKn3K8deUOpDMnC4WCM59kfg8rmF+dJNyNW9AmfIELag6MeALrEBD33rJVpA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.64.0/mode/javascript/javascript.min.js"
+            integrity="sha512-DJ/Flq7rxJDDhgkO49H/rmidX44jmxWot/ku3c+XXEF9XFal78KIpu7w6jEaQhK4jli1U3/yOH+Rp3cIIEYFPQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuid.min.js"></script>
+    <script src="https://kit.fontawesome.com/8454470208.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="../pages/dist/snackbar.min.css" media="screen" title="no title">
+    <style>
+
+        .zalo-chat-widget {
+            bottom: 125px !important;
+        }
+
+        .pd-24 {
+            padding: 24px;
+        }
+
+        .p-container {
+            width: 100%;
+            height: 100%;
+        }
+
+        .p-content {
+            display: flex;
+            padding: 0 24px;
+
+        }
+
+        .p-title {
+            font-size: 32px;
+            font-weight: bold;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #05b305;
+        }
+
+        .p-action {
+            padding-left: 12px;
+        }
+
+        .CodeMirror {
+            border: 1px solid #d6d6d7;
+            height: unset;
+            width: 100%;
+        }
+
+
+        .p-code-editor {
+            max-width: 820px;
+            min-width: 482px;
+            padding-right: 12px;
+        }
+
+        body {
+            margin: unset;
+            padding: unset;
+        }
+
+        .p-action-bar {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .p-action-block {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+        }
+
+        label {
+            display: block;
+        }
+
+        .btn-action {
+            margin: 6px;
+            padding: 8px 12px;
+            background: #05b305;
+            color: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+            border: unset;
+        }
+
+        .btn-action:hover {
+            background: #14cd8f;
+        }
+
+        .lbf {
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #545663;
+            margin-top: 12px;
+        }
+
+        .t-value {
+            word-break: break-word;
+        }
+
+        input[type=text] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border-radius: 8px;
+            border: 1px solid #d6d6d7;
+        }
+
+        .title-editor {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            align-content: center;
+            align-items: center;
+        }
+
+        .info-title-text {
+            color: blue;
+            text-decoration: underline;
+            font-weight: bold;
+            font-size: 24px;
+            line-height: 28px;
+            margin-block-start: unset;
+            margin-block-end: unset;
+            padding: 12px 0;
+        }
+        @media only screen and (max-width: 600px) {
+            .p-content {
+                flex-direction: column;
+            }
+
+            .p-action {
+                padding-top: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="p-container">
+    <div class="p-title pd-24">PrimeData Canifa JS SDK</div>
+
+    <div class="p-content">
+        <div class="p-code-editor">
+            <div class="title-editor">
+                <h3>Options Initialize JS SDK</h3>
+                <a id="source_link"
+                   href="https://canifa.primedatacdp.com/Prime/en/data-source/detail/JS-2H4mfAX40prMfpHyLEqQH4rzA3l?active=event_logs"
+                   target="_blank">View Source</a>
+            </div>
+            <textarea id="code" name="code">
+{
+  "scope": "JS-2H4mfAX40prMfpHyLEqQH4rzA3l",
+  "writeKey": "2H4mf7wQplQa60LbZtH47md00YE",
+  "url": "https://canifa.primedatacdp.com/powehi",
+  "initialPageProperties": {
+    "pageInfo": {
+      "destinationURL": "./"
+    }
+  },
+  "detectAdBlock": {
+    "enable": true,
+    "bannerMessage": "You are on the ad blocker. Our feature does not work well when your ad blocker is enabled on this site. To fully enjoy the service, please disable the ad blocker on our site. We guarantee that there will be no ads on our site.",
+    "closeButtonLabel": "close"
+  },
+  "webPush": {
+    "enabled": false,
+    "options": {
+      "showLogs": false,
+      "endpoint": "https://canifa.primedatacdp.com",
+      "firebaseMessagingSwUrl": "./firebase-messaging-sw.js",
+      "firebaseConfig": {
+        "authDomain": "primedata-ai-c128b.firebaseapp.com",
+        "projectId": "primedata-ai-c128b",
+        "storageBucket": "primedata-ai-c128b.appspot.com",
+        "messagingSenderId": "615374224384",
+        "appId": "1:615374224384:web:b6e95abaf525c339e76ce5",
+        "apiKey": "AIzaSyB0cQZgXYVCTaKE6dk_voN5tle_HXNCaUU"
+      }
+    }
+  },
+  "webPopup": {
+    "enabled": true,
+    "options": {
+      "showLogs": true,
+      "onsiteWorkerPath": "./posjs-worker.js",
+      "endpoint": "https://canifa.primedatacdp.com"
+    }
+  },
+  "oneSignal": {
+    "enabled": false,
+    "options": {
+       "showLogs": false,
+       "embedOneSignalSDK": true,
+       "appId": "679be029-5cd1-4353-9d24-cc563201468e"
+    }
+  }
+}
+</textarea>
+        </div>
+
+        <div class="p-action">
+            <h4 class="info-title-text">Action</h4>
+            <div class="p-action-bar">
+                <button class="btn-action" onclick="onInitialize()"
+                        title="Connect DataSource with options have changed above">Initialize JS SDK
+                </button>
+                <button class="btn-action" onclick="cleanAllMemoryCache()" title="Clean all cache memory on client">
+                    Clean cache
+                </button>
+            </div>
+
+            <h4 class="info-title-text">Quick Track Action</h4>
+            <div class="p-action-bar">
+                <a href="./?author=dom1">
+                    <button class="btn-action" onclick="trackEvent('phong_popup')"
+                            title="Track Event Popup Message bar">Collect lead form popup
+                    </button>
+                </a>
+                <a href="./?author=dom1">
+                    <button class="btn-action" onclick="trackEvent('pbar')" title="Track Event Popup Message bar">
+                        Present bar
+                    </button>
+                </a>
+                <a href="./?author=dom2">
+                    <button class="btn-action" onclick="trackEvent('pslideout')" title="Track Event Popup Message bar">
+                        Present slideout
+                    </button>
+                </a>
+            </div>
+
+            <h4 class="info-title-text">Information</h4>
+            <div>
+                <div class="lbf">SharedWorker:</div>
+                <div class="t-value" id="supported_status"></div>
+
+                <div class="lbf">client_id:</div>
+                <div class="t-value" id="client_id"></div>
+
+                <div class="lbf">notification_token:</div>
+                <div class="t-value" id="notification_token"></div>
+
+                <div class="lbf">profile_id:</div>
+                <div class="t-value" id="profile_id"></div>
+
+                <div class="lbf">session_id:</div>
+                <div class="t-value" id="session_id"></div>
+
+                <div class="lbf">uri_websocket:</div>
+                <div class="t-value" id="uri_websocket"></div>
+
+                <div class="lbf">Fingerprint ID:</div>
+                <div class="t-value" id="fingerprintId"></div>
+            </div>
+
+
+            <h4 class="info-title-text">Track With Custom Event</h4>
+            <div class="p-action-block">
+                <form action="">
+                    <label for="event_name">Event Name:</label>
+                    <input id="event_name" type="text" placeholder="Input your event name">
+
+                    <div class="p-code-editor">
+                        <label for="event_props">Event Properties:</label>
+                        <textarea id="event_props" name="event_props">
+{
+  "properties": {}
+}
+</textarea>
+
+                    </div>
+                </form>
+
+                <button class="btn-action" onclick="trackEventCustom()" title="Track Event">Track</button>
+
+            </div>
+
+            <div class="fb-send-to-messenger"
+                 messenger_app_id="1175186586306268"
+                 page_id="115581731126804"
+                 ref="sdk-dev-test"
+                 color="blue"
+                 size="standard">
+            </div>
+            <p class="info-title-text">Zalo</p>
+            <div class="p-action-block">
+                <div class="zalo-follow-button" data-oaid="3789777605339207949" data-cover="yes" data-article="2" data-width="" data-height=""></div>
+                <div class="zalo-chat-widget" data-oaid="3789777605339207949" data-welcome-message="Rất vui khi được hỗ trợ bạn!" data-autopopup="2" data-width="100" data-height="100"></div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-messaging.js"></script>
+<script>
+
+  var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+    lineNumbers: true,
+    matchBrackets: true,
+    continueComments: "Enter",
+    extraKeys: {"Ctrl-Q": "toggleComment"},
+    autoCloseBrackets: true,
+    mode: "application/ld+json",
+    // mode: { name: "javascript", json: true },
+    readOnly: false,
+    lineWrapping: true
+  });
+
+  var editorProps = CodeMirror.fromTextArea(document.getElementById("event_props"), {
+    lineNumbers: true,
+    matchBrackets: true,
+    continueComments: "Enter",
+    extraKeys: {"Ctrl-Q": "toggleComment"},
+    autoCloseBrackets: true,
+    mode: "application/ld+json",
+    // mode: { name: "javascript", json: true },
+    readOnly: false,
+    lineWrapping: true
+  });
+
+  function checkBrowserSupported() {
+    if (typeof (SharedWorker) !== "undefined") {
+      document.getElementById("supported_status").textContent = "Great, your browser supports web shared workers";
+    } else {
+      document.getElementById("supported_status").textContent = "Your browser not supported web shared workers. But don't worry, I can implement it works on your browser but have some limits like not working when you open more than 7 tabs in the same browser";
+    }
+  }
+
+  checkBrowserSupported();
+
+  function deleteAllCookies() {
+    var cookies = document.cookie.split(";");
+
+    for (var i = 0; i < cookies.length; i++) {
+      var cookie = cookies[i];
+      var eqPos = cookie.indexOf("=");
+      var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+      document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    }
+  }
+
+  function cleanAllMemoryCache() {
+    deleteAllCookies();
+    localStorage.clear();
+    sessionStorage.clear();
+    window.follower = null;
+    renderInfoToUI();
+  }
+
+
+  function onInitialize() {
+    !function(){var follower=window.follower=window.follower||[];if(!follower.initialize)if(follower.invoked)window.console&&console.error&&console.error("PrimeDATA snippet included twice.");else{follower.invoked=!0;follower.methods=["initOneSignal", "initWebPush","initWebPopup","utils","trackSubmit","trackClick","trackLink","trackForm","pageview","personalize","identify","initialize","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];follower.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);follower.push(e);return follower}};for(var t=0;t<follower.methods.length;t++){var e=follower.methods[t];follower[e]=follower.factory(e)}follower.load=function(t,e){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src="https://canifa.primedatacdp.com/powehi/mining.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(n,a);follower._loadOptions=e};follower.SNIPPET_VERSION="0.1.0";
+      follower.load();
+      const primeJsOpts = JSON.parse((editor.getValue()));
+      follower.initialize({"Prime Data": primeJsOpts})
+
+      if(primeJsOpts.webPopup && primeJsOpts.webPopup.enabled){
+        follower.initWebPopup(primeJsOpts);
+      }
+
+    }}();
+  }
+
+  onInitialize();
+
+  function trackEvent(type) {
+    follower.track(type);
+  }
+
+  function trackEventCustom() {
+    let eventName = document.getElementById("event_name")?.value || "";
+    let eventProps = JSON.parse((editorProps.getValue()));
+    eventName && follower.track(eventName, eventProps);
+    eventName && showSnackbar("Track event: " + eventName + " success");
+  }
+
+  function renderInfoToUI() {
+    document.getElementById("profile_id").textContent = localStorage.getItem("prime_profile_id");
+    document.getElementById("session_id").textContent = localStorage.getItem("prime_session_id");
+    document.getElementById("fingerprintId").textContent = localStorage.getItem("__prime_device_id");
+
+    let configs = JSON.parse(localStorage.getItem("posjs-profile") || "{}");
+    document.getElementById("client_id").textContent = configs.client_id;
+    document.getElementById("notification_token").textContent = localStorage.getItem("notification_token");
+
+    const socket_url = "wss://canifa.primedatacdp.com/prile/ws/register/" + configs.client_id + "/" + configs.x_client_id + "/" + configs.x_client_access_token;
+    document.getElementById("uri_websocket").textContent = socket_url;
+  }
+
+  function showSnackbar(...mess) {
+    Snackbar.show({text: mess});
+  }
+</script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="../pages/dist/snackbar.min.js" charset="utf-8"></script>
+<script src="./template-popup.js"></script>
+<script>
+  setInterval(function () {
+    renderInfoToUI()
+    console.log("Tool: Refresh information....")
+  }, 2000)
+
+</script>
+
+<!-- Messenger Plugin chat Code -->
+<div id="fb-root"></div>
+<!-- Your Plugin chat code -->
+<div id="fb-customer-chat" class="fb-customerchat">
+</div>
+<script>
+  var chatbox = document.getElementById("fb-customer-chat");
+  chatbox.setAttribute("page_id", "115581731126804");
+  chatbox.setAttribute("attribution", "biz_inbox");
+</script>
+<!-- Your SDK code -->
+<script>
+  window.fbAsyncInit = function () {
+    FB.init({
+      xfbml: true,
+      version: "v13.0"
+    });
+  };
+  (function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, "script", "facebook-jssdk"));
+</script>
+
+
+<script>
+  window.fbAsyncInit = function () {
+    FB.init({
+      appId: "1175186586306268",
+      autoLogAppEvents: true,
+      xfbml: true,
+      version: "v13.0"
+    });
+  };
+</script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+<!--** Widget chat-->
+<script src="https://sp.zalo.me/plugins/sdk.js"></script>
+</body>
+</html>

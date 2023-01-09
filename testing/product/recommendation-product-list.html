@@ -43,7 +43,7 @@
         "accept": "application/json",
         "access-control-allow-origin": "*",
         "access-control-request-origin": "*",
-        "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJiYXNpYy4udXNlciIsImV4cCI6MTY3MzMzMTc3NSwianRpIjoiMjB3OEhhbDBjM3R5TWZmSU5qTnV1ZGZ3QXRMIiwiaWF0IjoxNjczMjQ1Mzc1LCJpc3MiOiJwcmltZSIsIm5iZiI6MTY3MzI0NTM3NSwidXNlcl9pZCI6IjIwdzhIYWwwYzN0eU1mZklOak51dWRmd0F0TCIsImVtYWlsIjoibmd1eWVubGVwaG9uZ0BwcmltZWRhdGEuYWkiLCJ0ZW5hbnRfaWQiOiIxIiwic2Vzc2lvbl9pZCI6IiJ9.B-5myxjxJa4-HUYHcmPl01Z74wVED2jiqCQJXc-yt7Q",
+        "authorization": "Bearer " + window.localStorage.prime_token,
         "content-type": "application/json",
         "sec-ch-ua": "\"Not?A_Brand\";v=\"8\", \"Chromium\";v=\"108\", \"Google Chrome\";v=\"108\"",
         "sec-ch-ua-mobile": "?0",
@@ -60,11 +60,12 @@
       .then(res => res.json())
       .then(res => {
         const items = res.data.items;
-        const defaultImageSrc = "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg";
+        const defaultImageSrc1 = "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg";
+        const defaultImageSrc2 = "https://png.pngtree.com/png-vector/20190628/ourlarge/pngtree-empty-box-icon-for-your-project-png-image_1521417.jpg";
         const products = items.map(prod => {
           return {
             ...prod,
-            imageSrc: prod?.includedProperties?.find(x => x.key === "image")?.value || defaultImageSrc
+            imageSrc: prod?.includedProperties?.find(x => x.key === "image")?.value || defaultImageSrc2
           };
         });
         handleRenderProducts(products);

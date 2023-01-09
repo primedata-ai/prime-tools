@@ -29,6 +29,14 @@
 
     <link rel="stylesheet" href="../pages/dist/snackbar.min.css" media="screen" title="no title">
     <style>
+        .block-container {
+            margin: 24px;
+            padding: 24px;
+            border: 1px dashed #d6d6d7;
+            display: flex;
+            justify-content: center;
+            align-content: center;
+        }
 
         .zalo-chat-widget {
             bottom: 125px !important;
@@ -216,6 +224,9 @@
        "embedOneSignalSDK": false,
        "appId": "679be029-5cd1-4353-9d24-cc563201468e"
     }
+  },
+  recommendation: {
+    enabled: false
   }
 }
 </textarea>
@@ -318,7 +329,13 @@
         </div>
     </div>
 
-
+    <div class="block-container">
+        <product-recommendations
+                style="width: 100%"
+                recipe-id="688c68357400498a84c4eeed24b0cf47"
+                profile-id="2HwaaNpfAblXLxhaMPMFxE2CBnh">
+        </product-recommendations>
+    </div>
 </div>
 
 <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>

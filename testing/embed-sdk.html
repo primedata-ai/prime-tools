@@ -4,10 +4,6 @@
     <link rel="icon" href="https://dev.primedata.ai/primedata_logo.png"/>
     <title>Javascript SDK - Demo Recommendation Product List for profile</title>
 
-    <script>
-      (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-
     <style>
         body {
             display: flex;
@@ -40,83 +36,59 @@
     <div class="block-container">Page content</div>
 
     <div class="block-container">
-        <recommendation-product-list
+        <product-recommendations
                 style="width: 100%"
                 recipe-id="688c68357400498a84c4eeed24b0cf47"
                 profile-id="2HwaaNpfAblXLxhaMPMFxE2CBnh">
-        </recommendation-product-list>
+        </product-recommendations>
     </div>
 
 
     <div class="block-container">More section</div>
 
     <div class="block-container">
-        <recommendation-product-list
+        <product-recommendations
                 style="width: 100%"
                 recipe-id="11d65799c9e145b0a72e1d3d942b2ef7"
-                profile-id="2HtkM0I0kVZlRoeEBEs2J4cu16i"></recommendation-product-list>
+                profile-id="2HtkM0I0kVZlRoeEBEs2J4cu16i"></product-recommendations>
     </div>
 
     <div class="block-container">Footer</div>
 </section>
-
 <script>
-  // TODO => Move it into Javascript SDK of PrimeData VN
-  class RecommendationProductList extends HTMLElement {
-    get profileId() {
-      return this.hasAttribute("profile-id");
-    }
-
-    constructor() {
-      super();
-      this.addEventListener("click", e => {
-        alert("You Clicked Me!");
-      });
-      this.innerText = "Hello There!";
-    }
-
-    static get observedAttributes() {
-      return ["profile-id"];
-    }
-
-    connectedCallback() {
-      if (this.profileId) {
-        let profileId = this.attributes["profile-id"].value;
-        let recipeId = this.attributes["recipe-id"].value;
-        this.innerHTML = `
-<div>
-  <p style="text-align: center">Profile ID: <a href="https://dev.primedata.ai/Prime/en/audience/user-profile/${profileId}" target="_blank" rel="nofollow"><strong>${profileId}</strong></a></p>
-  <p style="text-align: center">Recipe ID: <a href="https://dev.primedata.ai/Prime/en/recommendation/edit/${recipeId}" target="_blank" rel="nofollow"><strong>${recipeId}</strong></a></p>
-  <iframe id="${recipeId}" name="${recipeId}" src="./product/recommendation-product-list.html" width="100%" height="460" frameBorder="0">Browser not compatible. </iframe>
-</div>
-`;
-        console.log("RecommendationProductList HTML custom: ", this);
-        const rec = document.getElementById(recipeId);
-
-        if (rec) {
-          rec.addEventListener("load", () => {
-            const transportEventData = {
-              type: "transport",
-              data: {
-                profileId: profileId,
-                recipeId: recipeId
-              }
-            };
-            rec.contentWindow.postMessage(transportEventData, window.location.origin);
-          });
+  !function(){var follower=window.follower=window.follower||[];if(!follower.initialize)if(follower.invoked)window.console&&console.error&&console.error("PrimeDATA snippet included twice.");else{follower.invoked=!0;follower.methods=["initOneSignal", "initWebPush","initWebPopup","utils","trackSubmit","trackClick","trackLink","trackForm","pageview","personalize","identify","initialize","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];follower.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);follower.push(e);return follower}};for(var t=0;t<follower.methods.length;t++){var e=follower.methods[t];follower[e]=follower.factory(e)}follower.load=function(t,e){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src="https://dev.primedata.ai/powehi/mining.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(n,a);follower._loadOptions=e};follower.SNIPPET_VERSION="0.1.0";
+    follower.load();
+    const primeJsOpts = {
+      scope: 'JS-2K5HeWEAdIeYJV3waxN3CRePNnD',
+      url: 'https://dev.primedata.ai/powehi',
+      writeKey: '2K5HePcstHXrEesq79wLTDWSG9A',
+      initialPageProperties: {
+        pageInfo: {
+          destinationURL: location.href
         }
-      } else this.innerHTML = "No profile id";
+      },
+      detectAdBlock: {
+        enable: true,
+        bannerMessage: "You are on the ad blocker. Our feature does not work well when your ad blocker is enabled on this site. To fully enjoy the service, please disable the ad blocker on our site. We guarantee that there will be no ads on our site.",
+        closeButtonLabel: "close"
+      },
+      webPopup: {
+        enabled: true,
+        options: {
+          showLogs: true,
+          onsiteWorkerPath: "./posjs-worker.js",
+          endpoint: 'https://dev.primedata.ai'
+        }
+      },
+      recommendation: {enabled: true}
+    };
+    follower.initialize({"Prime Data": primeJsOpts})
+
+    if(primeJsOpts.webPopup && primeJsOpts.webPopup.enabled){
+      follower.initWebPopup(primeJsOpts);
     }
 
-    attributeChangedCallback(name, oldValue, newValue) {
-      if (name == "profile-id") {
-        //uncomment to see the behaviour
-        // alert(`The ${name} changed to ${newValue}`)
-      }
-    }
-  }
-
-  window.customElements.define("recommendation-product-list", RecommendationProductList);
+  }}();
 </script>
 </body>
 

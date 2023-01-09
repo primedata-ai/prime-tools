@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="vi">
+<head>
+    <link rel="icon" href="https://dev.primedata.ai/primedata_logo.png"/>
+    <title>Javascript SDK - Demo Recommendation Product List for profile</title>
+
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+        }
+
+        .block-container {
+            padding: 24px;
+            border: 1px dashed #d6d6d7;
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            margin-bottom: 12px;
+        }
+
+        section {
+            padding: 12px;
+            width: 1330px;
+        }
+    </style>
+</head>
+
+<body>
+<section>
+
+    <div class="block-container">Header</div>
+
+    <div class="block-container">Page content</div>
+
+    <div class="block-container">
+        <recommendation-product-list
+                style="width: 100%"
+                recipe-id="688c68357400498a84c4eeed24b0cf47"
+                profile-id="2HwaaNpfAblXLxhaMPMFxE2CBnh">
+        </recommendation-product-list>
+    </div>
+
+
+    <div class="block-container">More section</div>
+
+    <div class="block-container">
+        <recommendation-product-list
+                style="width: 100%"
+                recipe-id="11d65799c9e145b0a72e1d3d942b2ef7"
+                profile-id="2HtkM0I0kVZlRoeEBEs2J4cu16i"></recommendation-product-list>
+    </div>
+
+    <div class="block-container">Footer</div>
+</section>
+
+<script>
+  // TODO => Move it into Javascript SDK of PrimeData VN
+  class RecommendationProductList extends HTMLElement {
+    get profileId() {
+      return this.hasAttribute("profile-id");
+    }
+
+    constructor() {
+      super();
+      this.addEventListener("click", e => {
+        alert("You Clicked Me!");
+      });
+      this.innerText = "Hello There!";
+    }
+
+    static get observedAttributes() {
+      return ["profile-id"];
+    }
+
+    connectedCallback() {
+      if (this.profileId) {
+        let profileId = this.attributes["profile-id"].value;
+        let recipeId = this.attributes["recipe-id"].value;
+        this.innerHTML = `
+<div>
+  <p style="text-align: center">Profile ID: <a href="https://dev.primedata.ai/Prime/en/audience/user-profile/${profileId}" target="_blank" rel="nofollow"><strong>${profileId}</strong></a></p>
+  <p style="text-align: center">Recipe ID: <a href="https://dev.primedata.ai/Prime/en/recommendation/edit/${recipeId}" target="_blank" rel="nofollow"><strong>${recipeId}</strong></a></p>
+  <iframe id="${recipeId}" name="${recipeId}" src="./product/recommendation-product-list.html" width="100%" height="460" frameBorder="0">Browser not compatible. </iframe>
+</div>
+`;
+        console.log("RecommendationProductList HTML custom: ", this);
+        const rec = document.getElementById(recipeId);
+
+        if (rec) {
+          rec.addEventListener("load", () => {
+            const transportEventData = {
+              type: "transport",
+              data: {
+                profileId: profileId,
+                recipeId: recipeId
+              }
+            };
+            rec.contentWindow.postMessage(transportEventData, window.location.origin);
+          });
+        }
+      } else this.innerHTML = "No profile id";
+    }
+
+    attributeChangedCallback(name, oldValue, newValue) {
+      if (name == "profile-id") {
+        //uncomment to see the behaviour
+        // alert(`The ${name} changed to ${newValue}`)
+      }
+    }
+  }
+
+  window.customElements.define("recommendation-product-list", RecommendationProductList);
+</script>
+</body>
+
+</html>

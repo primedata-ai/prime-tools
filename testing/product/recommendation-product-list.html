@@ -38,7 +38,7 @@
   function handleRefreshData(payload) {
     const profileId = payload.profileId;
     const recipeId = payload.recipeId;
-    fetch(`https://dev.primedata.ai/dipi/recommendation/v1/recipe_resolvers/1/${recipeId}/${profileId}?n_item=4&included_properties=*`, {
+    fetch(`https://uat.primedatacdp.com/dipi/recommendation/v1/recipe_resolvers/1/${recipeId}/${profileId}?n_item=4&included_properties=*`, {
       "headers": {
         "accept": "application/json",
         "access-control-allow-origin": "*",

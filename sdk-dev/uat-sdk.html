@@ -5,8 +5,8 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>PrimeData JS SDK</title>
-    <link rel="icon" href="https://dev.primedata.ai/primedata_logo.png"/>
+    <title>PrimeData UAT JS SDK</title>
+    <link rel="icon" href="https://uat.primedatacdp.com/primedata_logo.png"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.64.0/codemirror.min.js"
             integrity="sha512-4DlmQ+aBOfYTZ3uzRKCDXdyL7y8IlopnVChhXG0pRFgyvhwONVQW3JX8e5DYoXUNr3evQpLZz7S3O1XxMH4WKA=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -29,14 +29,6 @@
 
     <link rel="stylesheet" href="../pages/dist/snackbar.min.css" media="screen" title="no title">
     <style>
-        .block-container {
-            margin: 24px;
-            padding: 24px;
-            border: 1px dashed #d6d6d7;
-            display: flex;
-            justify-content: center;
-            align-content: center;
-        }
 
         .zalo-chat-widget {
             bottom: 125px !important;
@@ -168,21 +160,21 @@
 </head>
 <body>
 <div class="p-container">
-    <div class="p-title pd-24">PrimeData JS SDK</div>
+    <div class="p-title pd-24">PrimeData UAT JS SDK</div>
 
     <div class="p-content">
         <div class="p-code-editor">
             <div class="title-editor">
                 <h3>Options Initialize JS SDK</h3>
                 <a id="source_link"
-                   href="https://dev.primedata.ai/Prime/en/data-source/detail/JS-25op1nncWL5g6xgLONmPKIpoYWq?active=event_logs"
+                   href="https://uat.primedatacdp.com/Prime/en/data-source/detail/JS-2LUc0ox23E3ys5oj4n9Dcu2Daot?active=event_logs"
                    target="_blank">View Source</a>
             </div>
             <textarea id="code" name="code">
 {
-  "scope": "JS-25op1nncWL5g6xgLONmPKIpoYWq",
-  "writeKey": "25op1mUEi8p9QweluasTAOPDMUB",
-  "url": "https://dev.primedata.ai/powehi",
+  "scope": "JS-2LUc0ox23E3ys5oj4n9Dcu2Daot",
+  "writeKey": "2LUc0qoFQMtl000aQoCn73gV9QU",
+  "url": "https://uat.primedatacdp.com/powehi",
   "initialPageProperties": {
     "pageInfo": {
       "destinationURL": "./"
@@ -197,7 +189,7 @@
     "enabled": false,
     "options": {
       "showLogs": false,
-      "endpoint": "https://dev.primedata.ai",
+      "endpoint": "https://uat.primedatacdp.com",
       "firebaseMessagingSwUrl": "./firebase-messaging-sw.js",
       "firebaseConfig": {
         "authDomain": "primedata-ai-c128b.firebaseapp.com",
@@ -214,14 +206,14 @@
     "options": {
       "showLogs": true,
       "onsiteWorkerPath": "./posjs-worker.js",
-      "endpoint": "https://dev.primedata.ai"
+      "endpoint": "https://uat.primedatacdp.com"
     }
   },
   "oneSignal": {
     "enabled": false,
     "options": {
        "showLogs": false,
-       "embedOneSignalSDK": false,
+       "embedOneSignalSDK": true,
        "appId": "679be029-5cd1-4353-9d24-cc563201468e"
     }
   },
@@ -229,7 +221,7 @@
     "enabled": true,
     "options": {
       "showLogs": true,
-      "endpoint": "https://dev.primedata.ai",
+      "endpoint": "https://uat.primedatacdp.com",
       "title": "Product Recommendation",
       "summary": "Product Recommendation Summary",
       "template_html_url": "https://prime-tools-ghp.primedatacdp.com/testing/product/recommendation-product-list.html"
@@ -240,7 +232,7 @@
         </div>
 
         <div class="p-action">
-            <p class="info-title-text">Action</p>
+            <h4 class="info-title-text">Action</h4>
             <div class="p-action-bar">
                 <button class="btn-action" onclick="onInitialize()"
                         title="Connect DataSource with options have changed above">Initialize JS SDK
@@ -250,16 +242,13 @@
                 </button>
             </div>
 
-            <p class="info-title-text">Quick Track Action</p>
+            <h4 class="info-title-text">Quick Track Action</h4>
             <div class="p-action-bar">
                 <a href="./?author=dom1">
                     <button class="btn-action" onclick="trackEvent('phong_popup')"
                             title="Track Event Popup Message bar">Collect lead form popup
                     </button>
                 </a>
-                <button class="btn-action" onclick="renderPopup()"
-                        title="Show Popup Template 001">Show Popup Template 001
-                </button>
                 <a href="./?author=dom1">
                     <button class="btn-action" onclick="trackEvent('pbar')" title="Track Event Popup Message bar">
                         Present bar
@@ -272,7 +261,7 @@
                 </a>
             </div>
 
-            <p class="info-title-text">Information</p>
+            <h4 class="info-title-text">Information</h4>
             <div>
                 <div class="lbf">SharedWorker:</div>
                 <div class="t-value" id="supported_status"></div>
@@ -297,7 +286,7 @@
             </div>
 
 
-            <p class="info-title-text">Track With Custom Event</p>
+            <h4 class="info-title-text">Track With Custom Event</h4>
             <div class="p-action-block">
                 <form action="">
                     <label for="event_name">Event Name:</label>
@@ -318,7 +307,6 @@
 
             </div>
 
-
             <div class="fb-send-to-messenger"
                  messenger_app_id="1175186586306268"
                  page_id="115581731126804"
@@ -328,14 +316,16 @@
             </div>
             <p class="info-title-text">Zalo</p>
             <div class="p-action-block">
-                <div class="zalo-follow-button" data-oaid="3789777605339207949" data-cover="yes" data-article="2" data-width="" data-height=""></div>
-                <div class="zalo-chat-widget" data-oaid="3789777605339207949" data-welcome-message="Rất vui khi được hỗ trợ bạn!" data-autopopup="2" data-width="100" data-height="100"></div>
+                <div class="zalo-follow-button" data-oaid="3789777605339207949" data-cover="yes" data-article="2"
+                     data-width="" data-height=""></div>
+                <div class="zalo-chat-widget" data-oaid="3789777605339207949"
+                     data-welcome-message="Rất vui khi được hỗ trợ bạn!" data-autopopup="2" data-width="100"
+                     data-height="100"></div>
             </div>
 
 
         </div>
     </div>
-
     <div class="block-container">
         <product-recommendations
                 id="prod-rec"
@@ -344,6 +334,7 @@
                 profile-id="2HwaaNpfAblXLxhaMPMFxE2CBnh">
         </product-recommendations>
     </div>
+
 </div>
 
 <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
@@ -426,8 +417,8 @@
           var n = document.createElement("script");
           n.type = "text/javascript";
           n.async = !0;
-          n.src = "https://dev.primedata.ai/powehi/mining.js";
-          // n.src = "./miner.js";
+          // n.src = "https://uat.primedatacdp.com/powehi/mining.js";
+          n.src = "./miner.js";
           var a = document.getElementsByTagName("script")[0];
           a.parentNode.insertBefore(n, a);
           follower._loadOptions = e;
@@ -437,7 +428,10 @@
         const primeJsOpts = JSON.parse((editor.getValue()));
         follower.initialize({"Prime Data": primeJsOpts});
 
-        if (primeJsOpts.webPopup && primeJsOpts.webPopup.enabled) follower.initWebPopup(primeJsOpts);
+        if (primeJsOpts.webPopup && primeJsOpts.webPopup.enabled) {
+          follower.initWebPopup(primeJsOpts);
+        }
+
       }
     }();
   }
@@ -457,15 +451,16 @@
 
   function renderInfoToUI() {
     document.getElementById("profile_id").textContent = localStorage.getItem("prime_profile_id");
-    document.getElementById("prod-rec").setAttribute("profile-id", localStorage.getItem("prime_profile_id") || window.cxs.profileId);
     document.getElementById("session_id").textContent = localStorage.getItem("prime_session_id");
     document.getElementById("fingerprintId").textContent = localStorage.getItem("__prime_device_id");
+
+    document.getElementById("prod-rec").setAttribute("profile-id", localStorage.getItem("prime_profile_id") || window.cxs.profileId);
 
     let configs = JSON.parse(localStorage.getItem("posjs-profile") || "{}");
     document.getElementById("client_id").textContent = configs.client_id;
     document.getElementById("notification_token").textContent = localStorage.getItem("notification_token");
 
-    const socket_url = "wss://dev.primedata.ai/prile/ws/register/" + configs.client_id + "/" + configs.x_client_id + "/" + configs.x_client_access_token;
+    const socket_url = "wss://uat.primedatacdp.com/prile/ws/register/" + configs.client_id + "/" + configs.x_client_id + "/" + configs.x_client_access_token;
     document.getElementById("uri_websocket").textContent = socket_url;
   }
 
@@ -476,13 +471,14 @@
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script src="../pages/dist/snackbar.min.js" charset="utf-8"></script>
 <script src="./template-popup.js"></script>
-
 <script>
   setInterval(function () {
     renderInfoToUI();
     console.log("Tool: Refresh information....");
   }, 2000);
+
 </script>
+
 <!-- Messenger Plugin chat Code -->
 <div id="fb-root"></div>
 <!-- Your Plugin chat code -->
@@ -523,15 +519,7 @@
   };
 </script>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
-
-
 <!--** Widget chat-->
 <script src="https://sp.zalo.me/plugins/sdk.js"></script>
-<script>
-  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics._writeKey="Dk0r1F0AYEJyTn576eD7bgMBY0bGRthl";;analytics.SNIPPET_VERSION="4.15.3";
-    analytics.load("Dk0r1F0AYEJyTn576eD7bgMBY0bGRthl", {retryQueue: true});
-    analytics.page();
-  }}();
-</script>
 </body>
 </html>

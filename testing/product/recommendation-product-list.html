@@ -25,7 +25,8 @@
     <div class="bg-white">
         <div style="padding: 12px; margin: 0;"
              class="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
-            <h2 class="text-2xl font-extrabold tracking-tight text-gray-900">Product Recommendations</h2>
+            <h2 id="primedata_recommendation_title" class="text-2xl font-extrabold tracking-tight text-gray-900">Recommendations Title</h2>
+            <h3 id="primedata_recommendation_summary" class="text-2xl font-extrabold tracking-tight text-gray-900">Recommendations Summary</h3>
 
             <div class="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8" id="product-container">
 
@@ -36,9 +37,8 @@
 
 <script>
   function handleRefreshData(payload) {
-    const profileId = payload.profileId;
-    const recipeId = payload.recipeId;
-    fetch(`https://uat.primedatacdp.com/dipi/recommendation/v1/recipe_resolvers/1/${recipeId}/${profileId}?n_item=4&included_properties=*`, {
+    const {profileId, recipeId, catalogSize} = payload;
+    fetch(`${payload.options.endpoint}/dipi/recommendation/v1/recipe_resolvers/1/${recipeId}/${profileId}?n_item=${catalogSize}&included_properties=*`, {
       "headers": {
         "accept": "application/json",
         "access-control-allow-origin": "*",
@@ -71,7 +71,14 @@
         handleRenderProducts(products);
       });
 
+    updateUIBlock(payload)
+  }
 
+  function updateUIBlock(payload){
+    if(!payload.summary) document.getElementById("primedata_recommendation_summary").remove()
+    if(!payload.title) document.getElementById("primedata_recommendation_title").remove()
+    if(payload.title) document.getElementById("primedata_recommendation_title").textContent = payload.title
+    if(payload.summary) document.getElementById("primedata_recommendation_summary").textContent = payload.summary
   }
 
   function handleRenderProducts(products) {
@@ -113,14 +120,14 @@
       const eventData = event.data;
       switch (eventData.type) {
         case "transport":
-          console.log("Message receive: ", eventData.data);
+          console.log("Message receive from SDK to builder template (only object): ", eventData.data);
           return handleRefreshData(eventData.data);
         default:
           return "null";
       }
     }
 
-    console.log("Message receive: ", event.data);
+    console.log("Message receive from SDK to builder template (any data): ", event.data);
   });
 
 </script>

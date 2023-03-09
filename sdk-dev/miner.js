@@ -20884,8 +20884,9 @@ var WebOnsitePrimeSDK = function (configs, analytics) {
 module.exports = WebOnsitePrimeSDK;
 },{"./prime-utils":112,"uuid/v4":101}],110:[function(require,module,exports){
 var PrimeRecommendation = {
-  initWebComponent: function (_options) {
-    console.log('log::3 initWebComponent', _options)
+  dataStorageKey: "__primedata_recommendation_options",
+  initWebComponent: function (options) {
+    window[this.dataStorageKey] = options.recommendation
     window.customElements.define("product-recommendations", ProductRecommendations);
   }
 };
@@ -20911,22 +20912,56 @@ class ProductRecommendations extends HTMLElement {
     if (this.profileId) {
       let profileId = this.attributes["profile-id"].value;
       let recipeId = this.attributes["recipe-id"].value;
+      let catalogSize = this.attributes["catalog-size"].value || 4;
+      let title = this.attributes["title"].value || "";
+      let summary = this.attributes["summary"].value || "";
+      window[PrimeRecommendation.dataStorageKey] = {
+        ...window[PrimeRecommendation.dataStorageKey],
+        profileId,
+        recipeId,
+        catalogSize,
+        title,
+        summary
+      }
+
+      const configs = window[PrimeRecommendation.dataStorageKey] || {
+        "enabled": true,
+        "options": {
+          "showLogs": true,
+          "endpoint": "https://uat.primedatacdp.com",
+          "template_html_url": "https://prime-tools-ghp.primedatacdp.com/testing/product/recommendation-product-list.html",
+          styles: {
+            width: "100%",
+            height: "460px",
+            containerClassName: ""
+          }
+        },
+        profileId,
+        recipeId,
+        catalogSize,
+        title,
+        summary
+      }
+
+      const styles = {
+        width: "100%",
+        height: "460px",
+        containerClassName: "prime-recommendation-render",
+        ...configs.options.styles,
+      }
+
       this.innerHTML = `
-<div>
-<!--  <p style="text-align: center">Profile ID: <a href="https://dev.primedata.ai/Prime/en/audience/user-profile/${profileId}" target="_blank" rel="nofollow"><strong>${profileId}</strong></a></p>-->
-<!--  <p style="text-align: center">Recipe ID: <a href="https://dev.primedata.ai/Prime/en/recommendation/edit/${recipeId}" target="_blank" rel="nofollow"><strong>${recipeId}</strong></a></p>-->
-  <iframe id="${recipeId}" name="${recipeId}" src="https://prime-tools-ghp.primedatacdp.com/testing/product/recommendation-product-list.html" width="100%" height="460" frameBorder="0">Browser not compatible. </iframe>
+<div class="${styles.containerClassName}">
+  <iframe id="${recipeId}" name="${recipeId}" src="${configs.options.template_html_url}" width="${styles.width}" height="${styles.height}" frameBorder="0">Browser not compatible. </iframe>
 </div>
 `;
-      console.log("RecommendationProductList HTML custom: ", this);
       const rec = document.getElementById(recipeId);
 
       if (rec) {
         rec.addEventListener("load", () => {
           const transportEventData = {
-            type: "transport", data: {
-              profileId: profileId, recipeId: recipeId
-            }
+            type: "transport",
+            data: {...configs}
           };
           rec.contentWindow.postMessage(transportEventData, "*" || window.location.origin);
         });

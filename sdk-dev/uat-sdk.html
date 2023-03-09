@@ -224,7 +224,10 @@
       "endpoint": "https://uat.primedatacdp.com",
       "title": "Product Recommendation",
       "summary": "Product Recommendation Summary",
-      "template_html_url": "https://prime-tools-ghp.primedatacdp.com/testing/product/recommendation-product-list.html"
+      "template_html_url": "http://localhost:1070/testing/product/recommendation-product-list.html",
+      "styles": {
+         "containerClassName": "prime-recommendation-render-products-relevant"
+      }
     }
   }
 }
@@ -330,7 +333,21 @@
         <product-recommendations
                 id="prod-rec"
                 style="width: 100%"
+                catalog-size="6"
+                title="Product Recommendation"
+                summary="Product Recommendation Summary"
                 recipe-id="0b3f49a4146844008994d6dc82d3b807"
+                profile-id="2HwaaNpfAblXLxhaMPMFxE2CBnh">
+        </product-recommendations>
+    </div>
+    <div class="block-container">
+        <product-recommendations
+                id="prod-rec"
+                style="width: 100%"
+                title="Product Recommendation 2"
+                summary="Product Recommendation Summary 2"
+                catalog-size="4"
+                recipe-id="a672bb9c766a494db84b87d7346552e0"
                 profile-id="2HwaaNpfAblXLxhaMPMFxE2CBnh">
         </product-recommendations>
     </div>
@@ -417,8 +434,8 @@
           var n = document.createElement("script");
           n.type = "text/javascript";
           n.async = !0;
-          // n.src = "https://uat.primedatacdp.com/powehi/mining.js";
-          n.src = "./miner.js";
+          n.src = "https://uat.primedatacdp.com/powehi/mining.js";
+          // n.src = "./miner.js";
           var a = document.getElementsByTagName("script")[0];
           a.parentNode.insertBefore(n, a);
           follower._loadOptions = e;

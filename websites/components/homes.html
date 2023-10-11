@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Home Page</title>
+  <style>
+    body {
+      margin: 0;
+    }
+
+    .p_block {
+      width: 100%;
+      /*padding: 24px;*/
+      /*display: grid;*/
+      /*flex: 1;*/
+      /*flex-wrap: wrap;*/
+      /*padding-bottom: 80px;*/
+    }
+
+    .p_block_item {
+      /*display: inline-grid;*/
+    }
+
+    .p_card_container {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .p_card_item {
+      min-width: 260px;
+      min-height: 272px;
+    }
+
+    .p_item_ab_gif {
+      position: absolute;
+      width: 700px;
+      height: 239px;
+    }
+
+
+
+
+    .work_live_section .carousel-container {
+      padding: 24px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+
+    .work_live_section .carousel-slide {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      margin-top: 40px;
+    }
+
+    .work_live_section .slide {
+      /*box-sizing: border-box;*/
+      /*width: 40%;*/
+    }
+
+    .work_live_section .carousel-buttons {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .work_live_section .carousel_header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+  </style>
+
+</head>
+<body>
+
+<div class="p_block">
+  <div class="p_block_item">
+    <embed src="../assets/home/home_hero_banner.svg"></embed>
+    <embed src="../assets/why-primedata/our_mission.svg"></embed>
+<!--    <embed src="../assets/why-primedata/meet_the_team.svg"></embed>-->
+    <embed src="../assets/why-primedata/industry_activities.svg"></embed>
+<!--    <div class="p_item_ab_gif">-->
+<!--      <img src="../assets/home/HeroBanner_Primedata.gif" alt="Gif">-->
+<!--    </div>-->
+  </div>
+</div>
+
+<div class="work_live_section" style="background: #60C0A7">
+
+  <div class="carousel-container">
+    <div class="carousel_header">
+      <embed src="../assets/why-primedata/work&live_title.svg" />
+      <div class="carousel-buttons">
+        <div onclick="prevSlide()">
+          <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g opacity="0.4">
+              <path d="M17.4167 23.75L12.6667 19M12.6667 19L17.4167 14.25M12.6667 19L25.3333 19M4.75 19C4.75 11.1299 11.1299 4.75 19 4.75C26.8701 4.75 33.25 11.1299 33.25 19C33.25 26.8701 26.8701 33.25 19 33.25C11.1299 33.25 4.75 26.8701 4.75 19Z" stroke="#F7F7F7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+          </svg>
+
+        </div>
+        <div onclick="nextSlide()">
+          <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M34.6667 40L42.6667 32M42.6667 32L34.6667 24M42.6667 32L21.3333 32M56 32C56 18.7452 45.2548 8 32 8C18.7452 8 8 18.7452 8 32C8 45.2548 18.7452 56 32 56C45.2548 56 56 45.2548 56 32Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-slide">
+      <div class="slide"><img src="../assets/why-primedata/demo.png" style="width: 100%" alt="Image 1"></div>
+      <div class="slide"><img src="../assets/why-primedata/demo.png" alt="Image 2"></div>
+      <div class="slide"><img src="../assets/why-primedata/demo.png" alt="Image 3"></div>
+      <div class="slide"><img src="../assets/why-primedata/demo.png" alt="Image 3"></div>
+      <div class="slide"><img src="../assets/why-primedata/demo.png" alt="Image 3"></div>
+      <div class="slide"><img src="../assets/why-primedata/demo.png" alt="Image 3"></div>
+      <div class="slide"><img src="../assets/why-primedata/demo.png" alt="Image 3"></div>
+      <div class="slide"><img src="../assets/why-primedata/demo.png" alt="Image 3"></div>
+      <div class="slide"><img src="../assets/why-primedata/demo.png" alt="Image 3"></div>
+    </div>
+  </div>
+
+</div>
+
+
+
+<script>
+  let currentIndex = 0;
+  const slides = document.querySelectorAll('.slide');
+  const totalSlides = slides.length;
+
+  function showSlide(index) {
+    if (index < 0) {
+      currentIndex = totalSlides - 1;
+    } else if (index >= totalSlides) {
+      currentIndex = 0;
+    } else {
+      currentIndex = index;
+    }
+
+    const offset = -currentIndex * 35 + '%';
+    document.querySelector('.carousel-slide').style.transform = `translateX(${offset})`;
+  }
+
+  function prevSlide() {
+    showSlide(currentIndex - 1);
+  }
+
+  function nextSlide() {
+    showSlide(currentIndex + 1);
+  }
+</script>
+
+<!--<div class="p_block">-->
+<!--  <div class="p_block_item">-->
+<!--    <embed src="../assets/home/hero_banner_full.svg"></embed>-->
+<!--  </div>-->
+<!--</div>-->
+
+<!--<div class="p_block">-->
+<!--  <div class="p_block_item">-->
+<!--&lt;!&ndash;    <object data="./assets/home/blog_new.svg" type="image/svg+xml">&ndash;&gt;-->
+<!--&lt;!&ndash;    </object>&ndash;&gt;-->
+
+<!--    <img  src="./assets/home/blog_new.svg" preserveAspectRatio="xMidYMid meet"/>-->
+
+<!--  </div>-->
+<!--</div>-->
+
+<!--<div class="p_block">-->
+<!--  <div class="p_block_item">-->
+<!--    <embed src="https://dev.primedata.ai/assets/home/our_strategic_growth_full.svg" ></embed>-->
+<!--  </div>-->
+
+<!--</div>-->
+
+<!--<div class="p_block">-->
+<!--  <div class="p_block_item">-->
+<!--    <embed src="https://dev.primedata.ai/assets/home/global_martech_partner.svg" ></embed>-->
+<!--  </div>-->
+<!--</div>-->
+
+<!--<div class="p_block">-->
+<!--  <div class="p_block_item">-->
+<!--    <embed src="https://primedata.ai/wp-content/uploads/2023/10/blog_new.svg" ></embed>-->
+<!--  </div>-->
+<!--</div>-->
+
+
+<!--<div class="p_block">-->
+<!--  <div class="p_block_item">-->
+<!--    <embed src="https://dev.primedata.ai/assets/home/customer&partner.svg" ></embed>-->
+<!--  </div>-->
+<!--</div>-->
+
+
+</body>
+</html>
